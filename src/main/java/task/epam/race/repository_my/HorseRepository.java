@@ -1,8 +1,9 @@
-package task.epam.race.repository;
+package task.epam.race.repository_my;
 
 import task.epam.race.entity.Horse;
 import task.epam.race.pool.ConnectionPool;
-import task.epam.race.specification.Specification;
+import task.epam.race.specification_my.Specification;
+import static task.epam.race.constant.SqlConstant.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,11 +17,17 @@ public enum HorseRepository implements Repository<Horse> {
 
     private Connection connection = ConnectionPool.getInstance().takeConnection();
 
+    public Connection getConnection() {
+        return connection;
+    }
 
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public boolean add(Horse horse) throws SQLException {
-        ResultSet resultSet = this.connection.prepareStatement(SQL_HORSE_SELECT_NAME).executeQuery();
+        ResultSet resultSet = this.connection.prepareStatement(SQL_HORSES_SELECT_NAME).executeQuery();
         boolean flag = true;
         while (resultSet.next()){
             if(resultSet.getString("name").equals(horse.getName())){
@@ -28,7 +35,7 @@ public enum HorseRepository implements Repository<Horse> {
             }
         }
         if(flag) {
-            PreparedStatement preparedStatement = this.connection.prepareStatement(SQL_HORSE_INSERT);
+            PreparedStatement preparedStatement = this.connection.prepareStatement(SQL_HORSES_INSERT);
             preparedStatement.setString(1, horse.getName());
             preparedStatement.setInt(2, horse.getAge());
             preparedStatement.setInt(3, horse.getWins());
@@ -49,16 +56,15 @@ public enum HorseRepository implements Repository<Horse> {
 
     @Override
     public List<Horse> query(Specification specification) throws SQLException{
+        ResultSet resultSet = specification.getPreparedStatement().executeQuery();
         List<Horse> horses = new ArrayList<>();
-        ResultSet resultSet = this.connection.prepareStatement(SQL_HORSE_SELECT_ALL).executeQuery();
         while (resultSet.next()){
+            int id = resultSet.getInt("horse_id");
             String name = resultSet.getString("name");
-            int age = resultSet.getInt("years");
+            int age = resultSet.getInt("age");
             int wins = resultSet.getInt("wins");
-            Horse horse = new Horse(name, age, wins);
-            if(specification.specify(horse)){
-                horses.add(horse);
-            }
+            Horse horse = new Horse(id, name, age, wins);
+            horses.add(horse);
         }
         return horses;
     }

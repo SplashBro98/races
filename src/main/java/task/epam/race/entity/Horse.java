@@ -1,9 +1,17 @@
 package task.epam.race.entity;
 
-public class Horse {
+public class Horse implements Entity {
+    private int horseId;
     private String name;
     private int age;
     private int wins;
+
+    public Horse(int horseId, String name, int age, int wins) {
+        this.horseId = horseId;
+        this.name = name;
+        this.age = age;
+        this.wins = wins;
+    }
 
     public Horse(String name, int age, int wins) {
         this.name = name;

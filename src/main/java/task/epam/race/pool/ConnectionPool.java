@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
@@ -37,12 +38,14 @@ public class ConnectionPool {
     }
     public void addConnection(ProxyConnection proxyConnection){
         avaliableConnections.add(proxyConnection);
+        System.out.println("SIZE: " + avaliableConnections.size());
     }
 
     public Connection takeConnection(){
         ProxyConnection connection = null;
         try {
             connection = avaliableConnections.take();
+            System.out.println("SIZE: " + avaliableConnections.size());
             usedConnections.put(connection);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -54,6 +57,7 @@ public class ConnectionPool {
             try {
                 ProxyConnection realConnection = (ProxyConnection) connection;
                 avaliableConnections.put(realConnection);
+                System.out.println("SIZE: " + avaliableConnections.size());
                 usedConnections.remove(realConnection);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -69,7 +73,14 @@ public class ConnectionPool {
             } catch (InterruptedException | SQLException e) {
                 e.printStackTrace();
             }
-
+        }
+        for (int i = 0; i < usedConnections.size(); i++) {
+            try {
+                ProxyConnection connection = usedConnections.take();
+                connection.realClose();
+            } catch (InterruptedException | SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
