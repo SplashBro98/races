@@ -38,14 +38,14 @@ public class ConnectionPool {
     }
     public void addConnection(ProxyConnection proxyConnection){
         avaliableConnections.add(proxyConnection);
-        System.out.println("SIZE: " + avaliableConnections.size());
+        //System.out.println("SIZE: " + avaliableConnections.size());
     }
 
     public Connection takeConnection(){
         ProxyConnection connection = null;
         try {
             connection = avaliableConnections.take();
-            System.out.println("SIZE: " + avaliableConnections.size());
+            //System.out.println("SIZE: " + avaliableConnections.size());
             usedConnections.put(connection);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -57,7 +57,7 @@ public class ConnectionPool {
             try {
                 ProxyConnection realConnection = (ProxyConnection) connection;
                 avaliableConnections.put(realConnection);
-                System.out.println("SIZE: " + avaliableConnections.size());
+                //System.out.println("SIZE: " + avaliableConnections.size());
                 usedConnections.remove(realConnection);
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -82,4 +82,12 @@ public class User implements Entity{
     public String getPassword() {
         return password;
     }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
 }

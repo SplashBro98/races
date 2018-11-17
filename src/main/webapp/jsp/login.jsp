@@ -7,34 +7,26 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <html>
 <head>
-    <title>SignUp_JSP</title>
-    <meta charset="utf-8">
+    <title>Login_JSP</title>
+    <%--<meta charset="utf-8">--%>
     <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h4>Registration:</h4>
 
 <div class="form-style-2">
-    <form action="signUp" method="post">
-        <%--<input type="hidden" name="command" value="login">--%>
-        <label>Enter your name:
-            <input type="text" name="name">
-        </label>
-        <label>Enter your surname:
-            <input type="text" name="surname">
-        </label>
+    <form action="main" method="post">
+        <input type="hidden" name="command" value="login">
         <label>Enter login:
             <input type="text" name="login">
         </label>
         <label>Enter password:
-            <input type="text" name="password">
+            <input type="password" name="password">
         </label>
-        <label>Confirm password:
-            <input type="text" name="name">
-        </label>
-        <input type="submit" name="button" value="Зарегистрироваться">
+        <input type="submit" name="button" value="Войти">
     </form>
 </div>
 

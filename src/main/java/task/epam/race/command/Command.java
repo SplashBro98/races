@@ -1,5 +1,9 @@
 package task.epam.race.command;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+
 public interface Command {
-    void execute();
+    String execute(HttpServletRequest req) throws ServletException, IOException;
 }
