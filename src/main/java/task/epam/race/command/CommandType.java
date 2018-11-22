@@ -3,5 +3,9 @@ package task.epam.race.command;
 public enum CommandType {
     LOGIN,
     ERROR,
-    RETURN,
+    TO_LOGIN,
+    TO_SIGN_UP,
+    SIGN_UP,
+    ADD_HORSE,
+    TO_ADD_HORSE
 }

@@ -10,15 +10,35 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <html>
 <head>
-    <title>Main</title>
+    <title>Main_JSP</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<h4>List of horses:</h4>
+<div class="form-style-2">
+    <table>
+        <tr class="form-style-2-heading">
+            <td><h5>NickName</h5></td>
+            <td><h5>Age</h5></td>
+            <td><h5>Wins</h5></td>
+        </tr>
+        <c:forEach items="${horses}" var="horse">
+            <tr>
+                <td>${horse.name}</td>
+                <td>${horse.age}</td>
+                <td>${horse.wins}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
+<form action="main" method="post" class="form-style-2">
+    <input type="hidden" name="command" value="to add horse">
+    <input type="submit" value="Add horse">
+</form>
 
 
 
-<h4>It`s a main page, bitch</h4>
-<a href="/main?command=return">to Login page</a>
+<a href="/main?command=to login">to Login page</a>
 
 <%--<jsp:useBean id="horse" class="task.epam.race.entity.Horse"/>--%>
 

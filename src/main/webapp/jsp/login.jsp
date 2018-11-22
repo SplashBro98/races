@@ -15,18 +15,22 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h4>Registration:</h4>
+<h4>${incorrect}</h4>
 
 <div class="form-style-2">
     <form action="main" method="post">
         <input type="hidden" name="command" value="login">
         <label>Enter login:
-            <input type="text" name="login">
+            <input type="text" name="login" required>
         </label>
         <label>Enter password:
-            <input type="password" name="password">
+            <input type="password" name="password" required>
         </label>
-        <input type="submit" name="button" value="Войти">
+        <input type="submit" value="Sign In">
+    </form>
+    <form action="main" method="post">
+        <input type="hidden" name="command" value="to sign up">
+        <input type="submit" value="Sign Up">
     </form>
 </div>
 

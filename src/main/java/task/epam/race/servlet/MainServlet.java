@@ -1,8 +1,9 @@
 package task.epam.race.servlet;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import task.epam.race.command.Command;
-import task.epam.race.entity.Horse;
-import task.epam.race.entity.User;
 import task.epam.race.pool.ConnectionPool;
 import task.epam.race.pool.ProxyConnection;
 
@@ -19,6 +20,7 @@ import java.util.*;
 
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
+    private static Logger logger = LogManager.getLogger(MainServlet.class);
 
     @Override
     public void init() throws ServletException {
@@ -32,6 +34,8 @@ public class MainServlet extends HttpServlet {
 
             Class.forName(driverClassName);
             ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name, password)));
+            ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
+            ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
             ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
             ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
             ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
@@ -57,24 +61,15 @@ public class MainServlet extends HttpServlet {
 
     private void trustTheProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Command command = RequestHelper.INSTANCE.getCommand(req);
+        logger.log(Level.INFO, "Command: " + req.getParameter("command"));
+        Command command = ActionFactory.INSTANCE.getCommand(req);
         String page = command.execute(req);
+
+        logger.log(Level.INFO, "Page: " + page);
 
         getServletContext().getRequestDispatcher(page).forward(req, resp);
 
 
-
-//        String name = req.getParameter("name");
-//        int years = Integer.parseInt(req.getParameter("age"));
-//        int wins = Integer.parseInt(req.getParameter("wins"));
-//        Horse horse = new Horse(name, years, wins);
-//        try {
-//            HorseRepository.INSTANCE.add(horse);
-//            doGet(req, resp);
-//
-//        } catch (SQLException e) {
-//            throw new IllegalStateException(e);
-//        }
     }
 
     @Override

@@ -6,6 +6,9 @@ public class Horse implements Entity {
     private int age;
     private int wins;
 
+    public Horse() {
+    }
+
     public Horse(int horseId, String name, int age, int wins) {
         this.horseId = horseId;
         this.name = name;
@@ -17,6 +20,14 @@ public class Horse implements Entity {
         this.name = name;
         this.age = age;
         this.wins = wins;
+    }
+
+    public int getHorseId() {
+        return horseId;
+    }
+
+    public void setHorseId(int horseId) {
+        this.horseId = horseId;
     }
 
     public String getName() {

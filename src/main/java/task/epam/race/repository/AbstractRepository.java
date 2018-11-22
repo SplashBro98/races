@@ -16,19 +16,20 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 
 
 
-    public abstract T createItem(ResultSet resultSet);
+    public abstract T createItem(ResultSet resultSet) throws SQLException;
 
-    public void nonSelectQuery(SQLSpecification specification) {
+    protected void nonSelectQuery(SQLSpecification specification) {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = specification.getStatement(connection::prepareStatement)) {
             statement.execute();
+            ConnectionPool.getInstance().returnConnection(connection);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public List<T> selectQuery(SQLSpecification specification) throws RepositoryException{
+    protected List<T> selectQuery(SQLSpecification specification) throws RepositoryException{
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = specification.getStatement(connection::prepareStatement)) {
             ResultSet resultSet = statement.executeQuery();
@@ -36,6 +37,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
             while (resultSet.next()){
                 result.add(createItem(resultSet));
             }
+            ConnectionPool.getInstance().returnConnection(connection);
             return result;
         } catch (SQLException e) {
             throw new RepositoryException(e);

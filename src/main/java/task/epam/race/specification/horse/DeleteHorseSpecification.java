@@ -1,4 +1,4 @@
-package task.epam.race.specification.user;
+package task.epam.race.specification.horse;
 
 import task.epam.race.util.constant.SQLConstant;
 import task.epam.race.specification.SQLFunction;
@@ -7,26 +7,23 @@ import task.epam.race.specification.SQLSpecification;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SelectUserSpecification implements SQLSpecification {
+public class DeleteHorseSpecification implements SQLSpecification {
 
-    private String login;
-    private String password;
+    private String name;
 
-    public SelectUserSpecification(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public DeleteHorseSpecification(String name) {
+        this.name = name;
     }
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLConstant.SQL_USERS_SELECT_BY_LOGIN_AND_PASSWORD);
+        PreparedStatement statement = function.apply(SQLConstant.SQL_HORSES_DELETE_BY_NAME);
         fillStatement(statement);
         return statement;
     }
 
     @Override
     public void fillStatement(PreparedStatement statement) throws SQLException {
-        statement.setString(1,login);
-        statement.setString(2,password);
+        statement.setString(1,name);
     }
 }
