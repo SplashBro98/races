@@ -11,6 +11,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class HorseRepository extends AbstractRepository<Horse> {
+    private static HorseRepository instance;
+
+    private HorseRepository(){
+
+    }
+
+    public static HorseRepository getInstance(){
+        if(instance == null){
+            instance = new HorseRepository();
+        }
+        return instance;
+    }
+
 
     @Override
     public void add(Horse horse) throws SQLException {
@@ -29,7 +42,7 @@ public class HorseRepository extends AbstractRepository<Horse> {
 
     @Override
     public List<Horse> query(SQLSpecification specification) throws SQLException {
-        return selectQuery(new SelectAllHorsesSpecification());
+        return selectQuery(specification);
     }
 
     @Override

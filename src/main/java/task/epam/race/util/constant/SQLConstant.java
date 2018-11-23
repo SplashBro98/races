@@ -6,7 +6,7 @@ public final class SQLConstant {
     //language=sql
     public static final String SQL_HORSES_SELECT_NAME = "SELECT name from horses";
     //language=sql
-    public static final String SQL_HORSES_SELECT_BY_NAME = "SELECT name, age, wins from horses where name=?";
+    public static final String SQL_HORSES_SELECT_BY_NAME = "SELECT * from horses where name=?";
     //language=sql
     public static final String SQL_HORSES_SELECT_BY_YEAR = "SELECT name, years, wins from horses where years=?";
     //language=sql
@@ -30,6 +30,16 @@ public final class SQLConstant {
             "values (?,?,?,?,?,?)";
     //language=sql
     public static final String SQL_USERS_REMOVE_BY_ID = "DELETE from users where user_id = ?";
+
     //language=sql
-    public static final String SQL_USERS_SELECT_LOGIN = "SELECT login from users";
+    public static final String SQL_RACES_SELECT_ALL = "SELECT * from races";
+
+    //language=sql
+    public static final String SQL_RACES_SELECT_BY_NAME = "SELECT * from races where name  = ?";
+
+    //language=sql
+    public static final String SQL_RACES_INSERT = "INSERT INTO races(name, place, date, time) VALUES " +
+            "(?,?,?,?)";
+    //language=sql
+    public static final String SQL_RACES_DELETE_BY_NAME = "DELETE from races where name = ?";
 }

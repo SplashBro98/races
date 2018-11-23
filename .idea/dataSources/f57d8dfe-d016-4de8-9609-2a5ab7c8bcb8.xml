@@ -60,8 +60,8 @@
     <schema id="15" parent="6" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <IntrospectionTimestamp>2018-11-22.00:42:12.281</IntrospectionTimestamp>
-      <IntrospectionStateNumber>718</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-11-23.21:41:55.236</IntrospectionTimestamp>
+      <IntrospectionStateNumber>741</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -89,9 +89,9 @@
       <ObjectId>3580</ObjectId>
       <Comment>block range index (BRIN) access method</Comment>
     </access-method>
-    <sequence id="22" parent="15" name="users_userid_seq">
-      <ObjectId>32886</ObjectId>
-      <StateNumber>718</StateNumber>
+    <sequence id="22" parent="15" name="races_race_id_seq">
+      <ObjectId>32896</ObjectId>
+      <StateNumber>741</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
@@ -103,9 +103,9 @@
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
     </sequence>
-    <sequence id="24" parent="15" name="races_race_id_seq">
-      <ObjectId>32859</ObjectId>
-      <StateNumber>699</StateNumber>
+    <sequence id="24" parent="15" name="users_userid_seq">
+      <ObjectId>32886</ObjectId>
+      <StateNumber>718</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
@@ -119,8 +119,8 @@
       <StateNumber>697</StateNumber>
     </table>
     <table id="27" parent="15" name="races">
-      <ObjectId>32861</ObjectId>
-      <StateNumber>699</StateNumber>
+      <ObjectId>32898</ObjectId>
+      <StateNumber>741</StateNumber>
     </table>
     <table id="28" parent="15" name="users">
       <ObjectId>32888</ObjectId>
@@ -186,52 +186,47 @@
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>699</StateNumber>
+      <StateNumber>741</StateNumber>
       <DefaultExpression>nextval(&apos;races_race_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
       <SequenceName>races_race_id_seq</SequenceName>
     </column>
     <column id="39" parent="27" name="name">
       <Position>2</Position>
-      <DataType>varchar(60)|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>699</StateNumber>
+      <DataType>varchar(40)|0s</DataType>
+      <StateNumber>741</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="40" parent="27" name="place">
       <Position>3</Position>
-      <DataType>varchar(40)|0s</DataType>
-      <StateNumber>699</StateNumber>
+      <DataType>varchar(50)|0s</DataType>
+      <StateNumber>741</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="41" parent="27" name="date">
       <Position>4</Position>
       <DataType>date|0s</DataType>
-      <StateNumber>699</StateNumber>
+      <StateNumber>741</StateNumber>
       <TypeId>1082</TypeId>
     </column>
-    <index id="42" parent="27" name="races_pkey">
-      <ObjectId>32865</ObjectId>
+    <column id="42" parent="27" name="time">
+      <Position>5</Position>
+      <DataType>time|0s</DataType>
+      <StateNumber>741</StateNumber>
+      <TypeId>1083</TypeId>
+    </column>
+    <index id="43" parent="27" name="races_pkey">
+      <ObjectId>32902</ObjectId>
       <ColNames>race_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="43" parent="27" name="races_name_key">
-      <ObjectId>32867</ObjectId>
-      <ColNames>name</ColNames>
-      <Unique>1</Unique>
-    </index>
     <key id="44" parent="27" name="races_pkey">
-      <ObjectId>32866</ObjectId>
+      <ObjectId>32903</ObjectId>
       <ColNames>race_id</ColNames>
       <UnderlyingIndexName>races_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="45" parent="27" name="races_name_key">
-      <ObjectId>32868</ObjectId>
-      <ColNames>name</ColNames>
-      <UnderlyingIndexName>races_name_key</UnderlyingIndexName>
-    </key>
-    <column id="46" parent="28" name="userid">
+    <column id="45" parent="28" name="userid">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -240,82 +235,82 @@
       <TypeId>23</TypeId>
       <SequenceName>users_userid_seq</SequenceName>
     </column>
-    <column id="47" parent="28" name="name">
+    <column id="46" parent="28" name="name">
       <Position>2</Position>
       <DataType>varchar(40)|0s</DataType>
       <StateNumber>718</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="48" parent="28" name="surname">
+    <column id="47" parent="28" name="surname">
       <Position>3</Position>
       <DataType>varchar(40)|0s</DataType>
       <StateNumber>718</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="49" parent="28" name="login">
+    <column id="48" parent="28" name="login">
       <Position>4</Position>
       <DataType>varchar(40)|0s</DataType>
       <StateNumber>718</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="50" parent="28" name="password">
+    <column id="49" parent="28" name="password">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
       <StateNumber>718</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="51" parent="28" name="email">
+    <column id="50" parent="28" name="email">
       <Position>6</Position>
       <DataType>varchar(50)|0s</DataType>
       <StateNumber>718</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="52" parent="28" name="usertype_id">
+    <column id="51" parent="28" name="usertype_id">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>718</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="53" parent="28" name="users_pkey">
+    <index id="52" parent="28" name="users_pkey">
       <ObjectId>32892</ObjectId>
       <ColNames>userid</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="54" parent="28" name="users_login_key">
+    <index id="53" parent="28" name="users_login_key">
       <ObjectId>32894</ObjectId>
       <ColNames>login</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="55" parent="28" name="users_pkey">
+    <key id="54" parent="28" name="users_pkey">
       <ObjectId>32893</ObjectId>
       <ColNames>userid</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="56" parent="28" name="users_login_key">
+    <key id="55" parent="28" name="users_login_key">
       <ObjectId>32895</ObjectId>
       <ColNames>login</ColNames>
       <UnderlyingIndexName>users_login_key</UnderlyingIndexName>
     </key>
-    <column id="57" parent="29" name="usertype_id">
+    <column id="56" parent="29" name="usertype_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>714</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="58" parent="29" name="value">
+    <column id="57" parent="29" name="value">
       <Position>2</Position>
       <DataType>varchar(25)|0s</DataType>
       <StateNumber>714</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="59" parent="29" name="usertype_pkey">
+    <index id="58" parent="29" name="usertype_pkey">
       <ObjectId>32879</ObjectId>
       <ColNames>usertype_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="60" parent="29" name="usertype_pkey">
+    <key id="59" parent="29" name="usertype_pkey">
       <ObjectId>32880</ObjectId>
       <ColNames>usertype_id</ColNames>
       <UnderlyingIndexName>usertype_pkey</UnderlyingIndexName>

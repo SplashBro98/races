@@ -3,13 +3,16 @@ package task.epam.race.command.impl;
 
 import task.epam.race.command.Command;
 import task.epam.race.entity.Horse;
+import task.epam.race.entity.Race;
 import task.epam.race.entity.User;
 import task.epam.race.exception.RepositoryException;
 import task.epam.race.repository.HorseRepository;
+import task.epam.race.repository.RaceRepository;
 import task.epam.race.repository.UserRepository;
 import task.epam.race.servlet.ConfigurationManager;
 import task.epam.race.specification.SQLSpecification;
 import task.epam.race.specification.horse.SelectAllHorsesSpecification;
+import task.epam.race.specification.race.SelectAllRacesSpecification;
 import task.epam.race.specification.user.SelectUserSpecification;
 import task.epam.race.util.encryption.Encryption;
 
@@ -29,10 +32,13 @@ public class LoginCommand implements Command {
 
         String page;
         try {
-            List<User> users = new UserRepository().query(specification);
+            List<User> users = UserRepository.getInstance().query(specification);
             if(!users.isEmpty()){
-                List<Horse> horses = new HorseRepository().query(new SelectAllHorsesSpecification());
-                req.setAttribute("horses",horses);
+                List<Race> races = RaceRepository.getInstance().query(new SelectAllRacesSpecification());
+                req.setAttribute("races",races);
+
+                List<Race> allRaces = RaceRepository.getInstance().query(new SelectAllRacesSpecification());
+                req.setAttribute("allRaces",allRaces);
                 page = ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.PATH_MAIN_PAGE);
             }else {
                 req.setAttribute("incorrect","Incorrect login or password");

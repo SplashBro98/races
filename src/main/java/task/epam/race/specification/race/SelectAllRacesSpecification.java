@@ -1,4 +1,4 @@
-package task.epam.race.specification.horse;
+package task.epam.race.specification.race;
 
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
@@ -7,23 +7,16 @@ import task.epam.race.util.constant.SQLConstant;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SelectHorseSpecification implements SQLSpecification {
-
-    private String name;
-
-    public SelectHorseSpecification(String name) {
-        this.name = name;
-    }
+public class SelectAllRacesSpecification implements SQLSpecification {
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLConstant.SQL_HORSES_SELECT_BY_NAME);
-        fillStatement(statement);
+        PreparedStatement statement = function.apply(SQLConstant.SQL_RACES_SELECT_ALL);
         return statement;
     }
 
     @Override
     public void fillStatement(PreparedStatement statement) throws SQLException {
-        statement.setString(1,name);
+
     }
 }

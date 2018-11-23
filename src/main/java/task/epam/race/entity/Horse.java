@@ -9,6 +9,10 @@ public class Horse implements Entity {
     public Horse() {
     }
 
+    public Horse(String name) {
+        this.name = name;
+    }
+
     public Horse(int horseId, String name, int age, int wins) {
         this.horseId = horseId;
         this.name = name;

@@ -11,101 +11,101 @@
 <html>
 <head>
     <title>Main_JSP</title>
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h4>List of horses:</h4>
-<div class="form-style-2">
-    <table>
-        <tr class="form-style-2-heading">
-            <td><h5>NickName</h5></td>
-            <td><h5>Age</h5></td>
-            <td><h5>Wins</h5></td>
-        </tr>
-        <c:forEach items="${horses}" var="horse">
-            <tr>
-                <td>${horse.name}</td>
-                <td>${horse.age}</td>
-                <td>${horse.wins}</td>
-            </tr>
-        </c:forEach>
-    </table>
+
+<div class="container">
+
+    <div class="header">
+        <form class="form-style-2">
+            <input type="text" name="query" size="30">
+            <input type="submit" value="Search">
+            <select name="type">
+                <option>Race</option>
+                <option>Horse</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="sidebar1">
+        <h4>List of Races</h4>
+        <ul class="nav">
+            <c:forEach items="${allRaces}" var="race">
+            <li><a href="main?command=select race&name=${race.name}"/> ${race.name}</li>
+                <%--<li>${race.name}</li>--%>
+            </c:forEach>
+        </ul>
+    </div>
+
+    <div class="content">
+
+        <table class="nav" cols=1>
+            <c:forEach items="${races}" var="race">
+                <tr>
+                    <td><h4>${race.name}</h4></td>
+                </tr>
+                <tr>
+                    <td>Place: ${race.place}</td>
+                </tr>
+                <tr>
+                    <td>Date: ${race.date}</td>
+                </tr>
+                <tr>
+                    <td>Time: ${race.time}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        <form action="main" method="post" class="form-style-2">
+        <input type="hidden" name="command" value="to add horse">
+        <input type="submit" value="Add horse">
+        </form>
+        <form action="main" method="post" class="form-style-2">
+        <input type="hidden" name="command" value="to delete horse">
+        <input type="submit" value="Delete horse">
+        </form>
+
+    </div>
+
+
+
 </div>
-<form action="main" method="post" class="form-style-2">
-    <input type="hidden" name="command" value="to add horse">
-    <input type="submit" value="Add horse">
-</form>
 
 
 
-<a href="/main?command=to login">to Login page</a>
-
-<%--<jsp:useBean id="horse" class="task.epam.race.entity.Horse"/>--%>
 
 
+
+<%--<h4>List of horses:</h4>--%>
 <%--<div class="form-style-2">--%>
-    <%--<form action="start" method="POST">--%>
-        <%--<table>--%>
-            <%--<tr>--%>
-                <%--<label for="name">${enter1}:--%>
-                    <%--<input class="input-field" type="text" id="name" name="name">--%>
-                <%--</label>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<label for="age">${enter2}:--%>
-                    <%--<input class="input-field" id="age" name="age">--%>
-                <%--</label>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<label for="wins">${enter3}:--%>
-                <%--<input class="input-field" id="wins" name="wins">--%>
-                <%--</label>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<input type="submit" name="button" value="Добавить лошадь"/>--%>
-            <%--</tr>--%>
-        <%--</table>--%>
-    <%--</form>--%>
-    <%--<form action="signUp" method="get">--%>
-        <%--<input type="submit" name="sign" value="Зарегистрироваться">--%>
-    <%--</form>--%>
-<%--</div>--%>
-
-<%--<form action="start" method="GET">--%>
     <%--<table>--%>
-        <%--<tr>--%>
-            <%--<td>Horse</td>--%>
-            <%--<td>Age</td>--%>
-            <%--<td>Wins</td>--%>
+        <%--<tr class="form-style-2-heading">--%>
+            <%--<td><h5>NickName</h5></td>--%>
+            <%--<td><h5>Age</h5></td>--%>
+            <%--<td><h5>Wins</h5></td>--%>
         <%--</tr>--%>
-    <%--<c:forEach items="${horses}" var="horse">--%>
-        <%--<tr>--%>
-            <%--<td>${horse.name}</td>--%>
-            <%--<td>${horse.age}</td>--%>
-            <%--<td>${horse.wins}</td>--%>
-        <%--</tr>--%>
-    <%--</c:forEach>--%>
-    <%--</table>--%>
-    <%--<table>--%>
-        <%--<tr>--%>
-            <%--<td>User_id</td>--%>
-            <%--<td>Name</td>--%>
-            <%--<td>Surname</td>--%>
-            <%--<td>Login</td>--%>
-            <%--<td>Account</td>--%>
-        <%--</tr>--%>
-        <%--<c:forEach items="${users}" var="user">--%>
+        <%--<c:forEach items="${horses}" var="horse">--%>
             <%--<tr>--%>
-                <%--<td>${user.userId}</td>--%>
-                <%--<td>${user.name}</td>--%>
-                <%--<td>${user.surname}</td>--%>
-                <%--<td>${user.login}</td>--%>
-                <%--<td>${user.account}</td>--%>
+                <%--<td>${horse.name}</td>--%>
+                <%--<td>${horse.age}</td>--%>
+                <%--<td>${horse.wins}</td>--%>
             <%--</tr>--%>
         <%--</c:forEach>--%>
     <%--</table>--%>
-
+<%--</div>--%>
+<%--<form action="main" method="post" class="form-style-2">--%>
+    <%--<input type="hidden" name="command" value="to add horse">--%>
+    <%--<input type="submit" value="Add horse">--%>
 <%--</form>--%>
+<%--<form action="main" method="post" class="form-style-2">--%>
+    <%--<input type="hidden" name="command" value="to delete horse">--%>
+    <%--<input type="submit" value="Delete horse">--%>
+<%--</form>--%>
+
+
+
+<%--<a href="/main?command=to login">to Login page</a>--%>
 
 
 

@@ -12,13 +12,9 @@ public class SignUpValidator {
 
     public boolean checkLogin(String login) throws SQLException {
 
-        List<User> users = new UserRepository().query(new SelectAllUsersSpecification());
+        List<User> users = UserRepository.getInstance().query(new SelectAllUsersSpecification());
         List<String> loginList = new ArrayList<>();
         users.forEach(u -> loginList.add(u.getLogin()));
-        boolean result = false;
-        if(!loginList.contains(login)){
-            result = true;
-        }
-        return result;
+        return !loginList.contains(login);
     }
 }

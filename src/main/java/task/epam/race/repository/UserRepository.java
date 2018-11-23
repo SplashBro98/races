@@ -11,6 +11,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserRepository extends AbstractRepository<User> {
+    private static UserRepository instance;
+
+    private UserRepository(){
+
+    }
+
+    public static UserRepository getInstance(){
+        if(instance == null){
+            instance = new UserRepository();
+        }
+        return instance;
+    }
 
     @Override
     public User createItem(ResultSet resultSet) throws SQLException {
@@ -19,7 +31,7 @@ public class UserRepository extends AbstractRepository<User> {
         newUser.setName(resultSet.getString("name"));
         newUser.setSurname(resultSet.getString("surname"));
         newUser.setLogin(resultSet.getString("login"));
-        newUser.setLogin(resultSet.getString("password"));
+        newUser.setPassword(resultSet.getString("password"));
         newUser.setEmail(resultSet.getString("email"));
         int type = resultSet.getInt("userType_id");
         switch (type){

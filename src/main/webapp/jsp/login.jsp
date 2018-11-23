@@ -18,7 +18,7 @@
 <h4>${incorrect}</h4>
 
 <div class="form-style-2">
-    <form action="main" method="post">
+    <form action="main" method="post" id="steph">
         <input type="hidden" name="command" value="login">
         <label>Enter login:
             <input type="text" name="login" required>
@@ -26,7 +26,7 @@
         <label>Enter password:
             <input type="password" name="password" required>
         </label>
-        <input type="submit" value="Sign In">
+        <input type="submit" value="Sign In" >
     </form>
     <form action="main" method="post">
         <input type="hidden" name="command" value="to sign up">

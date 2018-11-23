@@ -40,8 +40,8 @@ public class SignUpCommand implements Command {
         try {
             SignUpValidator validator = new SignUpValidator();
             if(validator.checkLogin(user.getLogin())) {
-                new UserRepository().add(user);
-                List<Horse> horses = new HorseRepository().query(new SelectAllHorsesSpecification());
+                UserRepository.getInstance().add(user);
+                List<Horse> horses = HorseRepository.getInstance().query(new SelectAllHorsesSpecification());
                 req.setAttribute("horses", horses);
                 page = ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.PATH_MAIN_PAGE);
             }else {
