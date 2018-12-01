@@ -1,5 +1,7 @@
 package task.epam.race.repository;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import task.epam.race.exception.RepositoryException;
 import task.epam.race.pool.ConnectionPool;
 import task.epam.race.specification.SQLFunction;
@@ -13,19 +15,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractRepository<T> implements Repository<T> {
+    private static Logger logger = LogManager.getLogger(AbstractRepository.class);
 
 
 
     public abstract T createItem(ResultSet resultSet) throws SQLException;
 
-    protected void nonSelectQuery(SQLSpecification specification) {
+    protected void nonSelectQuery(SQLSpecification specification){
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = specification.getStatement(connection::prepareStatement)) {
             statement.execute();
-            ConnectionPool.getInstance().returnConnection(connection);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.fatal("Problem with connection with database",e);
+            throw new RuntimeException();
         }
     }
 
@@ -37,10 +40,10 @@ public abstract class AbstractRepository<T> implements Repository<T> {
             while (resultSet.next()){
                 result.add(createItem(resultSet));
             }
-            ConnectionPool.getInstance().returnConnection(connection);
             return result;
         } catch (SQLException e) {
-            throw new RepositoryException(e);
+           logger.fatal("Problem with connection with database",e);
+           throw new RuntimeException();
         }
     }
 }

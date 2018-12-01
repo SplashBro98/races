@@ -3,7 +3,6 @@ package task.epam.race.specification.race;
 import task.epam.race.entity.Race;
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
-import task.epam.race.util.constant.SQLConstant;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -20,7 +19,7 @@ public class InsertRaceSpecification implements SQLSpecification {
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLConstant.SQL_RACES_INSERT);
+        PreparedStatement statement = function.apply(SQLRaceConstant.SQL_RACES_INSERT);
         fillStatement(statement);
         return statement;
     }

@@ -2,6 +2,7 @@ package task.epam.race.specification;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.function.Function;
 
 public interface SQLSpecification {
 

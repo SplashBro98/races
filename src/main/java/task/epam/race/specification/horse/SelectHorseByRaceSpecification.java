@@ -1,30 +1,29 @@
-package task.epam.race.specification.user;
+package task.epam.race.specification.horse;
 
-import task.epam.race.entity.User;
+import task.epam.race.entity.Race;
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DeleteUserSpecification implements SQLSpecification {
+public class SelectHorseByRaceSpecification implements SQLSpecification {
 
+    private Race race;
 
-    private User user;
-
-    public DeleteUserSpecification(User user) {
-        this.user = user;
+    public SelectHorseByRaceSpecification(Race race) {
+        this.race = race;
     }
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLUserConstant.SQL_USERS_REMOVE_BY_ID);
+        PreparedStatement statement = function.apply(SQLHorseConstant.SQL_HORSES_SELECT_BY_RACE_ID);
         fillStatement(statement);
         return statement;
     }
 
     @Override
     public void fillStatement(PreparedStatement statement) throws SQLException {
-        statement.setLong(1,user.getUserId());
+        statement.setInt(1,race.getRaceId());
     }
 }

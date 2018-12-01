@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ToSignUpCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest req) throws ServletException, IOException {
+    public String execute(HttpServletRequest req) {
         return ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.PATH_SIGN_UP_PAGE);
     }
 }

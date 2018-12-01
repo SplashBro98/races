@@ -18,7 +18,6 @@ public enum ActionFactory {
         Command result = CommandMap.INSTANCE.getCommand(CommandType.valueOf(req.getParameter("command").replace(' ','_').
                 toUpperCase()));
         logger.log(Level.INFO,"CommandClass: " + result.getClass());
-
         return result;
     }
 }

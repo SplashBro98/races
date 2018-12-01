@@ -27,6 +27,11 @@
                 <option>Horse</option>
             </select>
         </form>
+        <h4>${login}</h4>
+        <form class="form-style-2">
+            <input type="hidden" name="command" value="log out">
+            <input type="submit" value="Log Out">
+        </form>
     </div>
 
     <div class="sidebar1">
@@ -37,26 +42,29 @@
                 <%--<li>${race.name}</li>--%>
             </c:forEach>
         </ul>
+        <form action="main" method="post" class="form-style-2">
+            <input type="hidden" name="command" value="to add race">
+            <input type="submit" value="Add Race">
+        </form>
     </div>
 
     <div class="content">
 
-        <table class="nav" cols=1>
-            <c:forEach items="${races}" var="race">
-                <tr>
-                    <td><h4>${race.name}</h4></td>
-                </tr>
-                <tr>
-                    <td>Place: ${race.place}</td>
-                </tr>
-                <tr>
-                    <td>Date: ${race.date}</td>
-                </tr>
-                <tr>
-                    <td>Time: ${race.time}</td>
-                </tr>
-            </c:forEach>
-        </table>
+        <div class="nav" >
+            <div class="form-style-2">
+                    <h4>${race.name}</h4><br>
+                    Place: ${race.place}<br>
+                    Date: ${race.date}<br>
+                    Time: ${race.time}<br>
+            </div>
+            <div>
+                <c:forEach items="${horses}" var="horse">
+                    <h4>${horse.name}</h4>
+                    Age: ${horse.age}<br>
+                    Wins: ${horse.wins}<br>
+                </c:forEach>
+            </div>
+        </div>
         <form action="main" method="post" class="form-style-2">
         <input type="hidden" name="command" value="to add horse">
         <input type="submit" value="Add horse">

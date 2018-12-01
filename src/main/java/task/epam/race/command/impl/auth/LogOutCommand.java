@@ -1,16 +1,15 @@
-package task.epam.race.command.impl.page;
+package task.epam.race.command.impl.auth;
 
 import task.epam.race.command.Command;
 import task.epam.race.servlet.ConfigurationManager;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
-public class ToLoginCommand implements Command {
+public class LogOutCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest req){
+    public String execute(HttpServletRequest req) {
+        req.getSession().invalidate();
         return ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.PATH_LOGIN_PAGE);
     }
 }

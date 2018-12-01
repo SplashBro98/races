@@ -21,10 +21,13 @@ import java.util.*;
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
     private static Logger logger = LogManager.getLogger(MainServlet.class);
+    private static Properties properties;
 
+
+    //TODO надо ли это выносить в отдельный класс
     @Override
     public void init() throws ServletException {
-        Properties properties = new Properties();
+        properties = new Properties();
         try {
             properties.load(new FileInputStream(getServletContext().getRealPath("/WEB-INF/classes/db.properties")));
             String url = properties.getProperty("db.url");
@@ -33,21 +36,19 @@ public class MainServlet extends HttpServlet {
             String driverClassName = properties.getProperty("db.classname");
 
             Class.forName(driverClassName);
-            ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name, password)));
-            ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
-            ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
-            ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
-            ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
-            ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
-            ConnectionPool.getInstance().addConnection(new ProxyConnection(DriverManager.getConnection(url, name,password)));
+//            DriverManager.registerDriver(DriverManager.getDriver(properties.getProperty("db.classname")));
 
+            for (int i = 0; i < ConnectionPool.MAX_POOL_SIZE; i++) {
+                ConnectionPool.getInstance().addConnection(
+                        new ProxyConnection(DriverManager.getConnection(url, name, password)));
+            }
 
         } catch (IOException | ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-
     }
 
+    //TODO checkbox and sql-запросы
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -72,8 +73,14 @@ public class MainServlet extends HttpServlet {
 
     }
 
+    //TODO deregister drivers
     @Override
     public void destroy() {
         ConnectionPool.getInstance().close();
+//        try {
+//            DriverManager.deregisterDriver(DriverManager.getDriver(properties.getProperty("db.classname")));
+//        }catch (SQLException e){
+//            logger.error("Can`t deregister driver",e);
+//        }
     }
 }

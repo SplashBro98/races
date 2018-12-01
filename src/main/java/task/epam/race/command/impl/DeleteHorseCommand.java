@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class DeleteHorseCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest req) throws ServletException, IOException {
+    public String execute(HttpServletRequest req) {
         String page;
 
         String name = req.getParameter("name");

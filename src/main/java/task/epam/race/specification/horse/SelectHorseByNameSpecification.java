@@ -1,22 +1,22 @@
-package task.epam.race.specification.race;
+package task.epam.race.specification.horse;
 
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
-import task.epam.race.util.constant.SQLConstant;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SelectRaceSpecification implements SQLSpecification {
+public class SelectHorseByNameSpecification implements SQLSpecification {
 
     private String name;
 
-    public SelectRaceSpecification(String name) {
+    public SelectHorseByNameSpecification(String name) {
         this.name = name;
     }
+
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLConstant.SQL_RACES_SELECT_BY_NAME);
+        PreparedStatement statement = function.apply(SQLHorseConstant.SQL_HORSES_SELECT_BY_NAME);
         fillStatement(statement);
         return statement;
     }

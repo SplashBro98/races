@@ -1,6 +1,5 @@
 package task.epam.race.specification.horse;
 
-import task.epam.race.util.constant.SQLConstant;
 import task.epam.race.entity.Horse;
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
@@ -18,7 +17,7 @@ public class InsertHorseSpecification implements SQLSpecification {
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLConstant.SQL_HORSES_INSERT);
+        PreparedStatement statement = function.apply(SQLHorseConstant.SQL_HORSES_INSERT);
         fillStatement(statement);
         return statement;
     }

@@ -1,4 +1,4 @@
-package task.epam.race.command.impl;
+package task.epam.race.command.impl.auth;
 
 
 import task.epam.race.command.Command;
@@ -7,10 +7,12 @@ import task.epam.race.entity.User;
 import task.epam.race.entity.UserType;
 import task.epam.race.repository.HorseRepository;
 import task.epam.race.repository.UserRepository;
+import task.epam.race.service.MainPageService;
 import task.epam.race.servlet.ConfigurationManager;
 import task.epam.race.specification.SQLSpecification;
 import task.epam.race.specification.horse.SelectAllHorsesSpecification;
 import task.epam.race.specification.user.InsertUserSpecification;
+import task.epam.race.util.constant.StringConstant;
 import task.epam.race.util.encryption.Encryption;
 import task.epam.race.util.validation.SignUpValidator;
 
@@ -24,15 +26,15 @@ import java.util.List;
 public class SignUpCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest req) throws ServletException, IOException {
+    public String execute(HttpServletRequest req) {
 
         User user = new User();
-        user.setName(req.getParameter("name"));
-        user.setSurname(req.getParameter("surname"));
-        user.setLogin(req.getParameter("login"));
-        user.setEmail(req.getParameter("email"));
+        user.setName(req.getParameter(StringConstant.NAME));
+        user.setSurname(req.getParameter(StringConstant.SURNAME));
+        user.setLogin(req.getParameter(StringConstant.LOGIN));
+        user.setEmail(req.getParameter(StringConstant.EMAIL));
 
-        String encryptedPassword = Encryption.encrypt(req.getParameter("password"));
+        String encryptedPassword = Encryption.encrypt(req.getParameter(StringConstant.PASSWORD));
         user.setPassword(encryptedPassword);
         user.setUserType(UserType.valueOf(req.getParameter("userType").replace(' ','_').toUpperCase()));
 
@@ -41,8 +43,8 @@ public class SignUpCommand implements Command {
             SignUpValidator validator = new SignUpValidator();
             if(validator.checkLogin(user.getLogin())) {
                 UserRepository.getInstance().add(user);
-                List<Horse> horses = HorseRepository.getInstance().query(new SelectAllHorsesSpecification());
-                req.setAttribute("horses", horses);
+                req.getSession().setAttribute(StringConstant.LOGIN, req.getParameter(StringConstant.LOGIN));
+                new MainPageService().setAttributes(req);
                 page = ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.PATH_MAIN_PAGE);
             }else {
                 req.setAttribute("incorrect_login","User with this login is already exists");

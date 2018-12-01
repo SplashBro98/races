@@ -4,7 +4,7 @@ import task.epam.race.command.Command;
 import task.epam.race.entity.Horse;
 import task.epam.race.repository.HorseRepository;
 import task.epam.race.servlet.ConfigurationManager;
-import task.epam.race.specification.horse.SelectHorseSpecification;
+import task.epam.race.specification.horse.SelectHorseByNameSpecification;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +15,11 @@ import java.util.List;
 public class SelectHorseCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest req) throws ServletException, IOException {
+    public String execute(HttpServletRequest req){
         String page;
         String name = req.getParameter("name");
         try {
-            List<Horse> horses = HorseRepository.getInstance().query(new SelectHorseSpecification(name));
+            List<Horse> horses = HorseRepository.getInstance().query(new SelectHorseByNameSpecification(name));
             if(!horses.isEmpty()){
                 req.setAttribute("horse",horses.get(0));
             }else {

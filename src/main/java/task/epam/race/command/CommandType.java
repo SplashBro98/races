@@ -1,7 +1,7 @@
 package task.epam.race.command;
 
 public enum CommandType {
-    LOGIN,
+    LOG_IN,
     ERROR,
     TO_LOGIN,
     TO_SIGN_UP,
@@ -11,5 +11,8 @@ public enum CommandType {
     DELETE_HORSE,
     TO_DELETE_HORSE,
     SELECT_HORSE,
-    SELECT_RACE
+    SELECT_RACE,
+    ADD_RACE,
+    TO_ADD_RACE,
+    LOG_OUT
 }

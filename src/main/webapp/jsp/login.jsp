@@ -10,16 +10,16 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Login_JSP</title>
-    <%--<meta charset="utf-8">--%>
     <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h4>${incorrect}</h4>
 
 <div class="form-style-2">
-    <form action="main" method="post" id="steph">
-        <input type="hidden" name="command" value="login">
+    <form action="main" method="post">
+        <input type="hidden" name="command" value="log_in">
         <label>Enter login:
             <input type="text" name="login" required>
         </label>

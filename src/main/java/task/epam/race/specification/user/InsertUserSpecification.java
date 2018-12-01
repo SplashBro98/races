@@ -1,6 +1,5 @@
 package task.epam.race.specification.user;
 
-import task.epam.race.util.constant.SQLConstant;
 import task.epam.race.entity.User;
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
@@ -20,7 +19,7 @@ public class InsertUserSpecification implements SQLSpecification {
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLConstant.SQL_USERS_INSERT);
+        PreparedStatement statement = function.apply(SQLUserConstant.SQL_USERS_INSERT);
         fillStatement(statement);
         return statement;
     }

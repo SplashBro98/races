@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ToDeleteHorseCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest req) throws ServletException, IOException {
+    public String execute(HttpServletRequest req) {
         return ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.PATH_DELETE_HORSE_PAGE);
     }
 }

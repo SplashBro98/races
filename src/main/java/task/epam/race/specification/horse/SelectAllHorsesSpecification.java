@@ -1,6 +1,5 @@
 package task.epam.race.specification.horse;
 
-import task.epam.race.util.constant.SQLConstant;
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
 
@@ -11,7 +10,7 @@ public class SelectAllHorsesSpecification implements SQLSpecification {
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLConstant.SQL_HORSES_SELECT_ALL);
+        PreparedStatement statement = function.apply(SQLHorseConstant.SQL_HORSES_SELECT_ALL);
         return statement;
     }
 
