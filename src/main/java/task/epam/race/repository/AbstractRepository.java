@@ -19,16 +19,16 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 
 
 
-    public abstract T createItem(ResultSet resultSet) throws SQLException;
+    public abstract T createItem(ResultSet resultSet) throws RepositoryException;
 
-    protected void nonSelectQuery(SQLSpecification specification){
+    protected void nonSelectQuery(SQLSpecification specification) throws RepositoryException{
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = specification.getStatement(connection::prepareStatement)) {
             statement.execute();
 
         } catch (SQLException e) {
             logger.fatal("Problem with connection with database",e);
-            throw new RuntimeException();
+            throw new RepositoryException(e);
         }
     }
 
@@ -43,7 +43,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
             return result;
         } catch (SQLException e) {
            logger.fatal("Problem with connection with database",e);
-           throw new RuntimeException();
+           throw new RepositoryException(e);
         }
     }
 }

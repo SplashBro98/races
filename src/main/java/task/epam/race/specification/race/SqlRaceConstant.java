@@ -1,6 +1,6 @@
 package task.epam.race.specification.race;
 
-public final class SQLRaceConstant {
+public final class SqlRaceConstant {
     //language=sql
     public static final String SQL_RACES_SELECT_ALL = "SELECT * from races";
 

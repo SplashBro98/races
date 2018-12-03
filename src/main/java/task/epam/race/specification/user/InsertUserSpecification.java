@@ -1,6 +1,8 @@
 package task.epam.race.specification.user;
 
 import task.epam.race.entity.User;
+import task.epam.race.exception.RepositoryException;
+import task.epam.race.repository.Repository;
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
 
@@ -18,18 +20,27 @@ public class InsertUserSpecification implements SQLSpecification {
     }
 
     @Override
-    public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLUserConstant.SQL_USERS_INSERT);
-        fillStatement(statement);
-        return statement;
+    public PreparedStatement getStatement(SQLFunction<String, PreparedStatement, SQLException> function)
+            throws RepositoryException {
+        try {
+            PreparedStatement statement = function.apply(SqlUserConstant.SQL_USERS_INSERT);
+            fillStatement(statement);
+            return statement;
+        } catch (SQLException e){
+            throw new RepositoryException(e);
+        }
     }
     @Override
-    public void fillStatement(PreparedStatement statement) throws SQLException{
-        statement.setString(1,user.getName());
-        statement.setString(2,user.getSurname());
-        statement.setString(3,user.getLogin());
-        statement.setString(4,user.getPassword());
-        statement.setString(5,user.getEmail());
-        statement.setInt(6,user.getUserType().ordinal());
+    public void fillStatement(PreparedStatement statement) throws RepositoryException{
+        try {
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getSurname());
+            statement.setString(3, user.getLogin());
+            statement.setString(4, user.getPassword());
+            statement.setString(5, user.getEmail());
+            statement.setInt(6, user.getUserType().ordinal());
+        }catch (SQLException e){
+            throw new RepositoryException(e);
+        }
     }
 }

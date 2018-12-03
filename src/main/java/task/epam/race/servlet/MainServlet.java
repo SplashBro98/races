@@ -3,6 +3,7 @@ package task.epam.race.servlet;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import task.epam.race.command.ActionFactory;
 import task.epam.race.command.Command;
 import task.epam.race.pool.ConnectionPool;
 import task.epam.race.pool.ProxyConnection;
@@ -21,35 +22,10 @@ import java.util.*;
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
     private static Logger logger = LogManager.getLogger(MainServlet.class);
-    private static Properties properties;
 
 
-    //TODO надо ли это выносить в отдельный класс
-    @Override
-    public void init() throws ServletException {
-        properties = new Properties();
-        try {
-            properties.load(new FileInputStream(getServletContext().getRealPath("/WEB-INF/classes/db.properties")));
-            String url = properties.getProperty("db.url");
-            String password = properties.getProperty("db.password");
-            String name = properties.getProperty("db.username");
-            String driverClassName = properties.getProperty("db.classname");
-
-            Class.forName(driverClassName);
-//            DriverManager.registerDriver(DriverManager.getDriver(properties.getProperty("db.classname")));
-
-            for (int i = 0; i < ConnectionPool.MAX_POOL_SIZE; i++) {
-                ConnectionPool.getInstance().addConnection(
-                        new ProxyConnection(DriverManager.getConnection(url, name, password)));
-            }
-
-        } catch (IOException | ClassNotFoundException | SQLException e) {
-            throw new RuntimeException();
-        }
-    }
 
     //TODO checkbox and sql-запросы
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         trustTheProcess(req, resp);
@@ -73,14 +49,9 @@ public class MainServlet extends HttpServlet {
 
     }
 
-    //TODO deregister drivers
+    //TODO deregister drivers UPD: все перенести в пул
     @Override
     public void destroy() {
         ConnectionPool.getInstance().close();
-//        try {
-//            DriverManager.deregisterDriver(DriverManager.getDriver(properties.getProperty("db.classname")));
-//        }catch (SQLException e){
-//            logger.error("Can`t deregister driver",e);
-//        }
     }
 }

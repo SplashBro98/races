@@ -1,8 +1,8 @@
-package task.epam.race.servlet;
+package task.epam.race.command;
 
 import java.util.ResourceBundle;
 
-public enum ConfigurationManager {
+public enum PageManager {
     INSTANCE;
 
     private ResourceBundle bundle = ResourceBundle.getBundle("config");

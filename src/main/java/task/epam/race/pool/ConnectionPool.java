@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -18,12 +19,19 @@ public class ConnectionPool {
     private static AtomicBoolean isCreated = new AtomicBoolean(false);
 
     public static final int MAX_POOL_SIZE = 15;
-    private static BlockingQueue<ProxyConnection> avaliableConnections = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
-    private static BlockingQueue<ProxyConnection> usedConnections = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
+    private static BlockingQueue<ProxyConnection> avaliableConnections = new LinkedBlockingQueue<>();
+    private static BlockingQueue<ProxyConnection> usedConnections = new LinkedBlockingQueue<>();
 
 
     private ConnectionPool() {
-
+        for (int i = 0; i < MAX_POOL_SIZE ; i++) {
+            try {
+                avaliableConnections.put(ConnectionLoader.INSTANCE.loadConnection());
+            } catch (InterruptedException e) {
+                logger.fatal("Can`t put ProxyConnection to queue",e);
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 
@@ -40,14 +48,6 @@ public class ConnectionPool {
             }
         }
         return instance;
-    }
-    public void addConnection(ProxyConnection proxyConnection){
-        try {
-            avaliableConnections.put(proxyConnection);
-            //logger.log(Level.INFO, "addConnection: size of avaliable: " + avaliableConnections.size());
-        }catch (InterruptedException e){
-            logger.error("Can`t put ProxyConnection to queue",e);
-        }
     }
 
     public Connection takeConnection(){
@@ -83,14 +83,15 @@ public class ConnectionPool {
                 e.printStackTrace();
             }
         }
-        for (int i = 0; i < usedConnections.size(); i++) {
+        DriverManager.drivers().forEach(x-> {
             try {
-                ProxyConnection connection = usedConnections.take();
-                connection.realClose();
-            } catch (InterruptedException | SQLException e) {
-                e.printStackTrace();
+                DriverManager.deregisterDriver(x);
+            } catch (SQLException e) {
+                logger.error("Error while deregister drivers", e);
+                throw new RuntimeException(e);
             }
-        }
+        });
+
     }
 
 

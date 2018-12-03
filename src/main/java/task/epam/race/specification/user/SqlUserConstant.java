@@ -1,6 +1,6 @@
 package task.epam.race.specification.user;
 
-public final class SQLUserConstant {
+public final class SqlUserConstant {
 
     //language=sql
     public static final String SQL_USERS_SELECT_ALL = "SELECT * from users";

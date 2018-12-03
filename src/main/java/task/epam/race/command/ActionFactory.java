@@ -1,12 +1,10 @@
-package task.epam.race.servlet;
+package task.epam.race.command;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import task.epam.race.command.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.EnumMap;
 
 public enum ActionFactory {
     INSTANCE;
@@ -15,8 +13,10 @@ public enum ActionFactory {
 
 
     public Command getCommand(HttpServletRequest req){
-        Command result = CommandMap.INSTANCE.getCommand(CommandType.valueOf(req.getParameter("command").replace(' ','_').
-                toUpperCase()));
+        String commandName = req.getParameter("command");
+        CommandType commandType = CommandType.valueOf(commandName.replace(' ','_').
+                toUpperCase());
+        Command result = CommandMap.INSTANCE.getCommand(commandType);
         logger.log(Level.INFO,"CommandClass: " + result.getClass());
         return result;
     }

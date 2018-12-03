@@ -1,5 +1,6 @@
 package task.epam.race.specification.user;
 
+import task.epam.race.exception.RepositoryException;
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
 
@@ -11,13 +12,18 @@ public class SelectAllUsersSpecification implements SQLSpecification {
 
 
     @Override
-    public PreparedStatement getStatement(SQLFunction<String, PreparedStatement> function) throws SQLException {
-        PreparedStatement statement = function.apply(SQLUserConstant.SQL_USERS_SELECT_ALL);
-        return statement;
+    public PreparedStatement getStatement(SQLFunction<String, PreparedStatement, SQLException> function)
+            throws RepositoryException {
+        try {
+            PreparedStatement statement = function.apply(SqlUserConstant.SQL_USERS_SELECT_ALL);
+            return statement;
+        }catch (SQLException e){
+            throw new RepositoryException(e);
+        }
     }
 
     @Override
-    public void fillStatement(PreparedStatement statement) throws SQLException {
+    public void fillStatement(PreparedStatement statement) throws RepositoryException {
 
     }
 }

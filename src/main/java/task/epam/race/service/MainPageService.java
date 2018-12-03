@@ -3,6 +3,7 @@ package task.epam.race.service;
 import task.epam.race.entity.Race;
 import task.epam.race.repository.RaceRepository;
 import task.epam.race.specification.race.SelectAllRacesSpecification;
+import task.epam.race.util.constant.StringAttributes;
 import task.epam.race.util.constant.StringConstant;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,8 @@ public class MainPageService implements PageService {
 
         List<Race> allRaces = RaceRepository.getInstance().query(new SelectAllRacesSpecification());
         request.setAttribute("allRaces",allRaces);
-        request.setAttribute(StringConstant.LOGIN, request.getSession().getAttribute("login"));
+        request.setAttribute(StringAttributes.LOGIN, request.getSession().
+                getAttribute(StringAttributes.LOGIN));
 
     }
 }

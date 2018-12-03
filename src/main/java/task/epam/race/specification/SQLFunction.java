@@ -1,10 +1,11 @@
 package task.epam.race.specification;
 
+import task.epam.race.exception.RepositoryException;
+
 import java.sql.SQLException;
-import java.util.function.BiFunction;
-import java.util.function.Function;
+
 
 @FunctionalInterface
-public interface SQLFunction<T,K>{
-    K apply(T t) throws SQLException;
+public interface SQLFunction<T,K, E extends SQLException> {
+    K apply(T t) throws E;
 }

@@ -1,10 +1,10 @@
 package task.epam.race.command.impl;
 
 import task.epam.race.command.Command;
+import task.epam.race.command.PageManager;
 import task.epam.race.entity.Race;
 import task.epam.race.repository.RaceRepository;
 import task.epam.race.service.MainPageService;
-import task.epam.race.servlet.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -26,9 +26,9 @@ public class AddRaceCommand implements Command {
             RaceRepository.getInstance().add(race);
 
             new MainPageService().setAttributes(req);
-            page = ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.PATH_MAIN_PAGE);
+            page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
         }catch (SQLException e){
-            page = ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.PATH_ERROR_PAGE);
+            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;
 

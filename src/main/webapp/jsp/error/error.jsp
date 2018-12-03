@@ -11,7 +11,15 @@
     <title>Error Page</title>
 </head>
 <body>
-Error Page
+Request from ${pageContext.errorData.requestURI} is failed
+<br/>
+Servlet name: ${pageContext.errorData.servletName}
+<br/>
+Status code: ${pageContext.errorData.statusCode}
+<br/>
+Exception: ${pageContext.exception}
+<br/>
+Message from exception: ${pageContext.exception.message}
 
 
 
