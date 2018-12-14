@@ -1,28 +1,27 @@
-package task.epam.race.specification.user;
+package task.epam.race.specification.bet;
 
+import task.epam.race.entity.Bet;
 import task.epam.race.exception.RepositoryException;
+import task.epam.race.repository.Repository;
 import task.epam.race.specification.SQLFunction;
 import task.epam.race.specification.SQLSpecification;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SelectUserSpecification implements SQLSpecification {
+public class InsertBetSpecification implements SQLSpecification {
 
-    private String login;
-    private String password;
+    private Bet bet;
 
-    public SelectUserSpecification(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public InsertBetSpecification(Bet bet) {
+        this.bet = bet;
     }
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement, SQLException> function)
             throws RepositoryException {
         try {
-            PreparedStatement statement = function.apply(SqlUserConstant.
-                    SQL_USERS_SELECT_BY_LOGIN_AND_PASSWORD);
+            PreparedStatement statement = function.apply(SqlBetConstant.SQL_BETS_INSERT);
             fillStatement(statement);
             return statement;
         }catch (SQLException e){
@@ -33,8 +32,9 @@ public class SelectUserSpecification implements SQLSpecification {
     @Override
     public void fillStatement(PreparedStatement statement) throws RepositoryException {
         try {
-            statement.setString(1, login);
-            statement.setString(2, password);
+            statement.setString(1,bet.getDescribe());
+            statement.setInt(2, bet.getRace().getRaceId());
+            statement.setDouble(3, bet.getCoeff());
         }catch (SQLException e){
             throw new RepositoryException(e);
         }

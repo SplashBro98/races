@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserRepository extends AbstractRepository<User> {
+
+    //TODO Надо ли делать репозиторий синглтоном (потокобезопансым)
     private static UserRepository instance;
 
     private UserRepository(){

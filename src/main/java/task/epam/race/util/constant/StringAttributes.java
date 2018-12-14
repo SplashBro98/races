@@ -6,6 +6,7 @@ public final class StringAttributes {
     public static final String LOGIN = "login";
     public static final String PASSWORD = "password";
     public static final String SURNAME = "surname";
+    public static final String USER_ID = "userId";
 
-    public static final String ATTRIBUTE_WRONG_EMAIL_OR_PASSWORD = "Incorrect login or password";
+    public static final String ATTRIBUTE_WRONG_EMAIL_OR_PASSWORD = "Incorrect login or password, try again";
 }

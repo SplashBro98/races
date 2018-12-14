@@ -49,7 +49,6 @@ public class MainServlet extends HttpServlet {
 
     }
 
-    //TODO deregister drivers UPD: все перенести в пул
     @Override
     public void destroy() {
         ConnectionPool.getInstance().close();

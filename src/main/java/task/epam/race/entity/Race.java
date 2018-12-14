@@ -2,6 +2,8 @@ package task.epam.race.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Collections;
+import java.util.List;
 
 public class Race implements Entity {
     private int raceId;
@@ -9,6 +11,8 @@ public class Race implements Entity {
     private String place;
     private LocalDate date;
     private LocalTime time;
+
+    private List<Bet> bets;
 
     public Race() {
     }
@@ -66,5 +70,29 @@ public class Race implements Entity {
 
     public void setTime(LocalTime time) {
         this.time = time;
+    }
+
+
+    public void addBet(Bet bet){
+        bets.add(bet);
+    }
+
+    public void removeBet(Bet bet){
+        bets.remove(bet);
+    }
+
+    public List<Bet> getBets() {
+        return Collections.unmodifiableList(bets);
+    }
+
+    @Override
+    public String toString() {
+        return "Race{" +
+                "raceId=" + raceId +
+                ", name='" + name + '\'' +
+                ", place='" + place + '\'' +
+                ", date=" + date +
+                ", time=" + time +
+                '}';
     }
 }

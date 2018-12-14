@@ -14,20 +14,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractRepository<T> implements Repository<T> {
-    private static Logger logger = LogManager.getLogger(AbstractRepository.class);
+public abstract class AbstractRepository<T> implements Repository<T>{
 
+    private static Logger logger = LogManager.getLogger(AbstractRepository.class);
 
 
     public abstract T createItem(ResultSet resultSet) throws RepositoryException;
 
+    //TODO нормально ли, что я для каждого запроса беру новый конекшн
     protected void nonSelectQuery(SQLSpecification specification) throws RepositoryException{
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = specification.getStatement(connection::prepareStatement)) {
             statement.execute();
 
         } catch (SQLException e) {
-            logger.fatal("Problem with connection with database",e);
+            logger.error("Problem with connection with database",e);
             throw new RepositoryException(e);
         }
     }
@@ -42,7 +43,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
             }
             return result;
         } catch (SQLException e) {
-           logger.fatal("Problem with connection with database",e);
+           logger.error("Problem with connection with database",e);
            throw new RepositoryException(e);
         }
     }

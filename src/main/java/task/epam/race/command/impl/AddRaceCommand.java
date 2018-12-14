@@ -25,7 +25,7 @@ public class AddRaceCommand implements Command {
         try{
             RaceRepository.getInstance().add(race);
 
-            new MainPageService().setAttributes(req);
+
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
         }catch (SQLException e){
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);

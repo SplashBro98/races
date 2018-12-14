@@ -6,6 +6,7 @@ import task.epam.race.command.PageManager;
 import task.epam.race.entity.User;
 import task.epam.race.entity.UserType;
 import task.epam.race.service.MainPageService;
+import task.epam.race.service.RaceService;
 import task.epam.race.service.UserService;
 import task.epam.race.util.constant.StringAttributes;
 import task.epam.race.util.constant.StringConstant;
@@ -32,8 +33,9 @@ public class SignUpCommand implements Command {
 
         String encryptedPassword = Encryption.encrypt(req.getParameter(StringAttributes.PASSWORD));
         user.setPassword(encryptedPassword);
-        String userType = req.getParameter("userType").replace(' ','_').toUpperCase();
+        String userType = req.getParameter("type").replace(' ','_').toUpperCase();
         user.setUserType(UserType.valueOf(userType));
+
 
         String page;
         try {
@@ -41,7 +43,7 @@ public class SignUpCommand implements Command {
 
             if(success) {
                 req.getSession().setAttribute(StringAttributes.LOGIN, req.getParameter(StringAttributes.LOGIN));
-                new MainPageService().setAttributes(req);
+                req.setAttribute("races",new RaceService().findAllRaces());
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
             }else {
                 req.setAttribute("incorrect_login","User with this login is already exists");

@@ -5,7 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import task.epam.race.command.Command;
 import task.epam.race.command.PageManager;
+import task.epam.race.entity.User;
 import task.epam.race.service.MainPageService;
+import task.epam.race.service.RaceService;
 import task.epam.race.service.UserService;
 import task.epam.race.util.constant.StringAttributes;
 import task.epam.race.util.constant.StringConstant;
@@ -13,6 +15,8 @@ import task.epam.race.util.encryption.Encryption;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.Optional;
 
 
 public class LogInCommand implements Command {
@@ -25,14 +29,18 @@ public class LogInCommand implements Command {
         String page;
 
         try {
-           boolean isPresent = new UserService().findUser(login, password);
+           Optional<User> maybeUser = new UserService().findUser(login, password);
 
-            if (isPresent) {
+            if (maybeUser.isPresent()) {
 
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
 
+                String role = maybeUser.get().getUserType().toString().toLowerCase();
+
+                req.getSession().setAttribute("role",role);
+                req.getSession().setAttribute("locale", Locale.getDefault());
                 req.getSession().setAttribute(StringAttributes.LOGIN,login);
-                new MainPageService().setAttributes(req);
+                req.getSession().setAttribute("races",new RaceService().findAllRaces());
 
             }
             else {
@@ -45,7 +53,7 @@ public class LogInCommand implements Command {
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;
-//        SQLSpecification specification = new SelectUserSpecification(login, password);
+//        SQLSpecification specification = new SelectUserByLoginAndPasswordSpecification(login, password);
 //
 //        String page;
 //        try {

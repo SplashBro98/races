@@ -8,6 +8,9 @@ public final class SqlRaceConstant {
     public static final String SQL_RACES_SELECT_BY_NAME = "SELECT * from races where name  = ?";
 
     //language=sql
+    public static final String SQL_RACES_SELECT_ID_BY_NAME = "SELECT races.race_id from races where name  = ?";
+
+    //language=sql
     public static final String SQL_RACES_INSERT = "INSERT INTO races(name, place, date, time) VALUES " +
             "(?,?,?,?)";
     //language=sql

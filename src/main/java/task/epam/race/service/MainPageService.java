@@ -10,15 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.List;
 
-public class MainPageService implements PageService {
+public class MainPageService {
 
-    @Override
-    public void setAttributes(HttpServletRequest request) throws SQLException {
 
-        List<Race> allRaces = RaceRepository.getInstance().query(new SelectAllRacesSpecification());
-        request.setAttribute("allRaces",allRaces);
-        request.setAttribute(StringAttributes.LOGIN, request.getSession().
-                getAttribute(StringAttributes.LOGIN));
-
-    }
 }

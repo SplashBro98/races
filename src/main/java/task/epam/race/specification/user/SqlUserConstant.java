@@ -7,6 +7,10 @@ public final class SqlUserConstant {
     //language=sql
     public static final String SQL_USERS_SELECT_BY_NAME = "SELECT * from users where name=?";
     //language=sql
+    public static final String SQL_USERS_SELECT_BY_LOGIN = "SELECT * from users where login=?";
+    //language=sql
+    public static final String SQL_USERS_SELECT_BY_ID = "SELECT * from users where userid=?";
+    //language=sql
     public static final String SQL_USERS_SELECT_BY_LOGIN_AND_PASSWORD = "SELECT * from users where login = ?" +
             " and password = ?";
     //language=sql
