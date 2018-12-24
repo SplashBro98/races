@@ -12,13 +12,13 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="/css/header.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top" id="up">
-    <a class="navbar-brand" href="#">Races</a>
+    <a class="navbar-brand" href="#"><fmt:message key="title" bundle="${var}"/> </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <form action="/main" method="post">

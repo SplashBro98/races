@@ -9,7 +9,7 @@
     <uri>liverpool</uri>
     <tag>
         <name>info-time</name>
-        <tag-class>task.epam.race.tag.InfoTag</tag-class>
+        <tag-class>com.epam.race.tag.InfoTag</tag-class>
         <body-content>empty</body-content>
     </tag>
 </taglib>

@@ -12,55 +12,54 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
     <div class="row">
 
-
-        <div class="col-md-12">
+        <div class="col-md-12" style="color: white">
             <h2>List of possible bets</h2>
             <div class="table-responsive">
 
 
-                <table id="mytable" class="table table-bordred table-striped">
+                <table id="mytable" class="table table-bordred table-striped" style="color: white">
 
                     <thead>
-
-                    <%--<th><input type="checkbox" id="checkall" /></th>--%>
-                    <%--<th>First Name</th>--%>
-                    <%--<th>Last Name</th>--%>
                     <th>Describe</th>
-                    <%--<th>Email</th>--%>
                     <th>Coefficient</th>
-                    <%--<th>Edit</th>--%>
-
-                    <%--<th>Delete</th>--%>
                     </thead>
                     <tbody>
 
                     <c:forEach items="${bets}" var="bet">
+
+                        <input type="hidden" name="raceName" value="${race.raceId}">
                         <tr>
-                                <%--<td><input type="checkbox" class="checkthis" /></td>--%>
-                                <%--<td>Mohsin</td>--%>
-                                <%--<td>Irshad</td>--%>
                             <td>${bet.describe}</td>
-                                <%--<td>isometric.mohsin@gmail.com</td>--%>
+
                             <td>${bet.coeff}</td>
                             <td>
-                                <form method="post" action="/main">
-                                    <input type="hidden" name="command" value="add bet">
-                                    <input type="submit" class="btn btn-success" value="Make Bet">
-                                </form>
+                                    <%--<input type="submit" class="btn btn-success"--%>
+                                    <%--data-toggle="modal" data-target="#exampleModal" value="Make Bet">--%>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                                    Make Bet
+                                </button>
                             </td>
-                                <%--<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>--%>
-                                <%--<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>--%>
-                        </tr>
 
+                        </tr>
                     </c:forEach>
 
 
@@ -109,7 +108,6 @@
     <!-- /.modal-dialog -->
 </div>
 
-
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -138,5 +136,34 @@
     <!-- /.modal-dialog -->
 </div>
 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Sum of the Bet</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm" action="/main" method="post">
+                    <div class="form-group">
+                        <label for="sum">Enter Sum:</label>
+                        <input id="sum" class="form-control" name="sum" required type="text"
+                               placeholder="Sum">
+                    </div>
+
+                    <button id="button" class="btn btn-success" type="submit"></button>
+                    <%--<div class="result">--%>
+                        <%--<span id="answer"></span>--%>
+                        <%--<span id="loader" style="display:none"><img src="images/loader.gif" alt=""></span>--%>
+                    <%--</div>--%>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

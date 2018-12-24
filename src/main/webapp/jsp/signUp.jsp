@@ -16,12 +16,12 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
     <link href="/css/login.css" rel="stylesheet" type="text/css">
-    <link href="/css/start.css" rel="stylesheet" type="text/css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="/css/header.css" rel="stylesheet" type="text/css">
 
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="/vendors/jquery/jquery.min.js">
+    <link href="/vendors/jquery/jquery-1.11.1.min.js">
+    <link href="/vendors/bootstrap/js/bootstrap.min.js">
+
 </head>
 <body>
 
@@ -35,7 +35,7 @@
                 <div class="text-center">
                     <%--Sign up form--%>
                     <div class="container">
-                        <div id="signupbox" style="margin-left: 10%; margin-top: 120px"
+                        <div id="signupbox" style="margin-right: auto; margin-left: auto"
                              class="mainbox col-md-8  col-sm-8">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
@@ -45,36 +45,41 @@
                                     <form id="signupform">
                                         <input type="hidden" name="command" value="sign up">
 
-                                        <div id="signupalert" style="display:none" class="alert alert-danger">
-                                            <p>Error:</p>
-                                            <span></span>
-                                        </div>
-
-                                        <label class="col-md-6 control-label">First Name
+                                        <label class="col-md-6 control-label">First Name:
 
                                             <input type="text" class="form-control" name="name"
-                                                   placeholder="First Name">
+                                                   pattern="[A-Za-zА-Яа-я ]{1,30}" value="${name}"
+                                                   placeholder="First Name" required>
                                         </label>
 
-                                        <label class="col-md-6 control-label">Last Name
-
+                                        <label class="col-md-6 control-label">Last Name:
                                             <input type="text" class="form-control" name="surname"
-                                                   placeholder="Last Name">
+                                                   pattern="[A-Za-zА-Яа-я -]{1,30}" value="${surname}"
+                                                   placeholder="Last Name" required>
                                         </label>
-                                        <label class="col-md-6 control-label">Login
 
+                                        <label class="col-md-6 control-label">Login:
                                             <input type="text" class="form-control" name="login"
-                                                   placeholder="Login">
+                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${login}"
+                                                   placeholder="Login" required>
+                                            ${incorrect_login}
                                         </label>
 
-                                        <label class="col-md-6 control-label">Password
+
+                                        <label class="col-md-6 control-label">Password:
                                             <input type="password" class="form-control" name="password"
-                                                   placeholder="Password">
+                                                   pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
+                                                   placeholder="Password" required>
                                         </label>
-
-                                        <label class="col-md-6 control-label">Email
-                                            <input type="text" class="form-control" name="email"
-                                                   placeholder="Email Address">
+                                        <label class="col-md-6 control-label">ConfirmPassword:
+                                            <input type="password" class="form-control" name="confirmedPassword"
+                                                   pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
+                                                   placeholder="Password" value="${confirmedPassword}" required>
+                                        </label>
+                                        <label class="col-md-6 control-label">Email:
+                                            <input type="email" class="form-control" name="email"
+                                                   placeholder="Email Address" value="${email}"
+                                                   required>
                                         </label>
 
                                         <div style="margin-top:10px" class="form-group">
