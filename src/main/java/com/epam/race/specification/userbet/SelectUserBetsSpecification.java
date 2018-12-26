@@ -1,6 +1,6 @@
 package com.epam.race.specification.userbet;
 
-import com.epam.race.exception.RepositoryException;
+import com.epam.race.repository.RepositoryException;
 import com.epam.race.specification.SQLFunction;
 import com.epam.race.specification.SQLSpecification;
 

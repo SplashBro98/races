@@ -4,8 +4,9 @@ package com.epam.race.command.impl;
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.entity.User;
-import com.epam.race.exception.ServiceException;
+import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserService;
+import com.epam.race.util.constant.StringConstant;
 import com.epam.race.util.encryption.Encryption;
 import com.epam.race.util.validation.LoginValidator;
 import org.apache.logging.log4j.LogManager;
@@ -50,8 +51,8 @@ public class LogInCommand implements Command {
                 RaceService raceService = new RaceService(1,5);
                 List<Object> attributes = raceService.mainAttributes();
 
-                req.getSession().setAttribute("currentPage",attributes.get(0));
-                req.getSession().setAttribute("numberOfPages", attributes.get(1));
+                req.getSession().setAttribute(StringConstant.CURRENT_PAGE,attributes.get(0));
+                req.getSession().setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
 
                 req.getSession().setAttribute(StringAttributes.RACES,raceService.findCurrentRaces());
 

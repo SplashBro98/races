@@ -3,13 +3,12 @@ package com.epam.race.command.impl;
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.entity.Race;
-import com.epam.race.exception.ServiceException;
+import com.epam.race.service.ServiceException;
 import com.epam.race.service.BetService;
 import com.epam.race.service.RaceService;
 import com.epam.race.entity.Bet;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 

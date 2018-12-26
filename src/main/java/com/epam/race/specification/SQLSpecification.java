@@ -1,6 +1,6 @@
 package com.epam.race.specification;
 
-import com.epam.race.exception.RepositoryException;
+import com.epam.race.repository.RepositoryException;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

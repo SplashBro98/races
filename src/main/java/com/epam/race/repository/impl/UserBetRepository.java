@@ -1,15 +1,13 @@
-package com.epam.race.repository;
+package com.epam.race.repository.impl;
 
-import com.epam.race.entity.Race;
-import com.epam.race.exception.RepositoryException;
+import com.epam.race.repository.AbstractRepository;
+import com.epam.race.repository.RepositoryException;
 import com.epam.race.specification.userbet.InsertUserBetSpecification;
 import com.epam.race.entity.UserBet;
 import com.epam.race.specification.SQLSpecification;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public class UserBetRepository extends AbstractRepository<UserBet> {

@@ -1,9 +1,8 @@
 package com.epam.race.service;
 
 import com.epam.race.entity.UserBet;
-import com.epam.race.exception.RepositoryException;
-import com.epam.race.exception.ServiceException;
-import com.epam.race.repository.UserBetRepository;
+import com.epam.race.repository.RepositoryException;
+import com.epam.race.repository.impl.UserBetRepository;
 import com.epam.race.specification.userbet.SelectUserBetsSpecification;
 
 import java.util.List;

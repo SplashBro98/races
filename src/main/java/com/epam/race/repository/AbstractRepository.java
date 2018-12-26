@@ -2,7 +2,6 @@ package com.epam.race.repository;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.epam.race.exception.RepositoryException;
 import com.epam.race.pool.ConnectionPool;
 import com.epam.race.specification.SQLSpecification;
 

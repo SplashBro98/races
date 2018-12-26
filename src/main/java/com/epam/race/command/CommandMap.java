@@ -36,6 +36,7 @@ public enum CommandMap {
         commandMap.put(CommandType.TO_ADD_BET, new ToAddBetCommand());
         commandMap.put(CommandType.ADD_BET, new AddBetCommand());
         commandMap.put(CommandType.PAGINATION, new PaginationCommand());
+        commandMap.put(CommandType.SELECT_RACE_HORSES, new SelectRaceHorsesCommand());
     }
     public Command getCommand(CommandType type){
         Command result = commandMap.get(type);

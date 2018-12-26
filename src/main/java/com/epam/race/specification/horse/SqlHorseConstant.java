@@ -16,6 +16,6 @@ public final class SqlHorseConstant {
     //language=sql
     public static final String SQL_HORSES_DELETE_BY_NAME = "DELETE from horses where name=?";
     //language=sql
-    public static final String SQL_HORSES_SELECT_BY_RACE_ID = "SELECT * from horses JOIN horse_list" +
-            " on (horses.horse_id = horse_list.horse_id) where race_id = ?";
+    public static final String SQL_HORSES_SELECT_BY_RACE_ID = "SELECT * from horses h JOIN horse_list hl" +
+            " on (h.horse_id = hl.horse_id) where hl.race_id = ?";
 }

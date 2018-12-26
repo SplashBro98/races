@@ -1,10 +1,8 @@
 package com.epam.race.service;
 
-import com.epam.race.exception.RepositoryException;
-import com.epam.race.exception.ServiceException;
-import com.epam.race.repository.UserRepository;
+import com.epam.race.repository.RepositoryException;
+import com.epam.race.repository.impl.UserRepository;
 import com.epam.race.specification.user.SelectAllUsersSpecification;
-import com.epam.race.util.validation.SignUpValidator;
 import com.epam.race.entity.User;
 import com.epam.race.specification.SQLSpecification;
 import com.epam.race.specification.user.SelectUserByLoginAndPasswordSpecification;
@@ -16,8 +14,6 @@ import java.util.Optional;
 public class UserService {
 
     public Optional<User> findUser(String login, String password) throws ServiceException {
-
-        //TODO когда и где помещать в req все аттрибуты, которые нужны для страницы
         try {
             SQLSpecification specification = new SelectUserByLoginAndPasswordSpecification(login, password);
             List<User> users = UserRepository.getInstance().query(specification);
@@ -30,15 +26,9 @@ public class UserService {
         }
     }
 
-    public boolean addUser(User user) throws ServiceException {
+    public void addUser(User user) throws ServiceException {
         try {
-            SignUpValidator validator = new SignUpValidator();
-            boolean result = false;
-            if (validator.checkLoginIsPresent(user.getLogin())) {
-                UserRepository.getInstance().add(user);
-                result = true;
-            }
-            return result;
+            UserRepository.getInstance().add(user);
         }catch (RepositoryException e){
             throw new ServiceException(e);
         }

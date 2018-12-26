@@ -15,8 +15,8 @@
     <title>Header</title>
 
     <link href="/css/header.css" rel="stylesheet" type="text/css">
-    <link href="/vendors/bootstrap/js/bootstrap.min.js">
-    <link href="/vendors/jquery/jquery.min.js">
+    <%--<link href="/vendors/bootstrap/js/bootstrap.min.js">--%>
+    <%--<link href="/vendors/jquery/jquery.min.js">--%>
     <%--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>--%>
     <%--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
 </head>
@@ -33,23 +33,45 @@
                     <fmt:message key="main" bundle="${var}"/></h2></a>
             </li>
             <li class="nav-item navbar-brand">
-                <div class="btn-group">
-                    <a data-toggle="dropdown" href="#">
-                        <h2><fmt:message key="header.actions" bundle="${var}"/></h2>
-                    </a>
-                    <ul class="dropdown-menu">
+                <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                        Actions
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <c:choose>
                             <c:when test="${role eq 'admin'}">
-                                <li><a href="/main?command=to add race">Add Race</a></li>
-                                <li class="divider"></li>
-                                <li><a href="/main?command=to add race">Enter Results</a></li>
+                                <a class="dropdown-item" href="/main?command=to add race"><h4>Add Race</h4></a>
+                                <a class="divider"></a>
+                                <a class="dropdown-item" href="#"><h4>Enter Results</h4></a>
                             </c:when>
                             <c:when test="${role eq 'bookmaker'}">
-                                <li><a href="/main?command=to add bet">Add Bet</a></li>
+                                <a class="dropdown-item" href="/main?command=to add bet"><h4>Add Bet</h4></a>
+                                <a class="divider"></a>
                             </c:when>
+
+
                         </c:choose>
-                    </ul>
+                    </div>
                 </div>
+                <%--<div class="btn-group">--%>
+                    <%--<a data-toggle="dropdown" href="/main?command=to add race">--%>
+                        <%--<h2><fmt:message key="header.actions" bundle="${var}"/></h2>--%>
+                    <%--</a>--%>
+                    <%--<ul class="dropdown-menu">--%>
+                        <%--<c:choose>--%>
+                            <%--<c:when test="${role eq 'admin'}">--%>
+                                <%--<li><a href="/main?command=to add race"><h3>Add Race</h3></a></li>--%>
+                                <%--<li class="divider"></li>--%>
+                                <%--<li><a href="/main?command=to add race"><h3>Enter Results</h3></a></li>--%>
+                            <%--</c:when>--%>
+                            <%--<c:when test="${role eq 'bookmaker'}">--%>
+                                <%--<li><a href="/main?command=to add bet"><h3>Add Bet</h3></a></li>--%>
+                                <%--<li class="divider"></li>--%>
+                            <%--</c:when>--%>
+                        <%--</c:choose>--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
             </li>
         </ul>
 
@@ -85,8 +107,6 @@
 
             </ul>
         </div>
-
-
     </nav>
 </div>
 

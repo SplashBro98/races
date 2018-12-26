@@ -45,20 +45,21 @@
                                     <form id="signupform">
                                         <input type="hidden" name="command" value="sign up">
 
-                                        <label class="col-md-6 control-label">First Name:
-
+                                        <label class="col-md-6 control-label">First Name*:
                                             <input type="text" class="form-control" name="name"
-                                                   pattern="[A-Za-zА-Яа-я ]{1,30}" value="${name}"
+                                                   pattern="[A-Za-zА-Яа-я -]{1,30}" value="${name}"
                                                    placeholder="First Name" required>
+                                            ${incorrect_name}
                                         </label>
 
-                                        <label class="col-md-6 control-label">Last Name:
+                                        <label class="col-md-6 control-label">Last Name*:
                                             <input type="text" class="form-control" name="surname"
                                                    pattern="[A-Za-zА-Яа-я -]{1,30}" value="${surname}"
                                                    placeholder="Last Name" required>
+                                            ${incorrect_surname}
                                         </label>
 
-                                        <label class="col-md-6 control-label">Login:
+                                        <label class="col-md-6 control-label">Login*:
                                             <input type="text" class="form-control" name="login"
                                                    pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${login}"
                                                    placeholder="Login" required>
@@ -66,20 +67,23 @@
                                         </label>
 
 
-                                        <label class="col-md-6 control-label">Password:
+                                        <label class="col-md-6 control-label">Password*:
                                             <input type="password" class="form-control" name="password"
                                                    pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
-                                                   placeholder="Password" required>
+                                                   placeholder="Password" value="${password}" required>
+                                            ${incorrect_password}
                                         </label>
-                                        <label class="col-md-6 control-label">ConfirmPassword:
+                                        <label class="col-md-6 control-label">ConfirmPassword*:
                                             <input type="password" class="form-control" name="confirmedPassword"
                                                    pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
                                                    placeholder="Password" value="${confirmedPassword}" required>
+                                            ${not_confirmed}
                                         </label>
-                                        <label class="col-md-6 control-label">Email:
+                                        <label class="col-md-6 control-label">Email*:
                                             <input type="email" class="form-control" name="email"
                                                    placeholder="Email Address" value="${email}"
                                                    required>
+                                            ${incorrect_email}
                                         </label>
 
                                         <div style="margin-top:10px" class="form-group">

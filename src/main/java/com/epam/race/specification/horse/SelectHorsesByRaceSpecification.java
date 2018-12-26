@@ -1,4 +1,4 @@
-package com.epam.race.specification.bet;
+package com.epam.race.specification.horse;
 
 import com.epam.race.repository.RepositoryException;
 import com.epam.race.specification.SQLFunction;
@@ -7,19 +7,19 @@ import com.epam.race.specification.SQLSpecification;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class RemoveBetByIdSpecification implements SQLSpecification {
+public class SelectHorsesByRaceSpecification implements SQLSpecification {
 
-    private int betId;
+    private int raceId;
 
-    public RemoveBetByIdSpecification(int betId) {
-        this.betId = betId;
+    public SelectHorsesByRaceSpecification(int raceId) {
+        this.raceId = raceId;
     }
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement, SQLException> function)
             throws RepositoryException {
-        try{
-            PreparedStatement statement = function.apply(SqlBetConstant.SQL_BETS_REMOVE_BY_ID);
+        try {
+            PreparedStatement statement = function.apply(SqlHorseConstant.SQL_HORSES_SELECT_BY_RACE_ID);
             fillStatement(statement);
             return statement;
         }catch (SQLException e){
@@ -30,7 +30,7 @@ public class RemoveBetByIdSpecification implements SQLSpecification {
     @Override
     public void fillStatement(PreparedStatement statement) throws RepositoryException {
         try {
-            statement.setInt(1, betId);
+            statement.setInt(1, raceId);
         }catch (SQLException e){
             throw new RepositoryException(e);
         }

@@ -1,7 +1,8 @@
-package com.epam.race.repository;
+package com.epam.race.repository.impl;
 
-import com.epam.race.exception.RepositoryException;
 import com.epam.race.entity.Bet;
+import com.epam.race.repository.AbstractRepository;
+import com.epam.race.repository.RepositoryException;
 import com.epam.race.specification.SQLSpecification;
 import com.epam.race.specification.bet.InsertBetSpecification;
 

@@ -11,7 +11,6 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Title</title>
     <link href="/css/header.css" rel="stylesheet" type="text/css">
 </head>
 <body>

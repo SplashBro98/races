@@ -1,4 +1,4 @@
-package com.epam.race.exception;
+package com.epam.race.service;
 
 //TODO поработать с эксепшнами
 public class ServiceException extends Exception {

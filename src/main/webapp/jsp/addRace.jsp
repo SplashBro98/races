@@ -31,30 +31,68 @@
                         <div style="margin-bottom: 25px" class="control-group">
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" class="form-control" name="name"
-                                   placeholder="Name">
+                            <input type="text" class="form-control" name="name" value="${name}"
+                                   pattern="[a-zA-Z0-9А-Яа-я_ -]{4,30}"
+                                   placeholder="Name*" required>
+                            <div class="text-center"> ${incorrect_name}</div>
                         </div>
 
                         <div style="margin-bottom: 25px" class="control-group">
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                             <input type="text" class="form-control"
-                                   name="place"
-                                   placeholder="Place">
+                                   name="place"  value="${place}"
+                                   pattern="[a-zA-Z0-9А-Яа-я_ -]{4,30}"
+                                   placeholder="Place*" required>
+                            <div class="text-center"> ${incorrect_place}</div>
                         </div>
                         <div style="margin-bottom: 25px" class="control-group">
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                             <input type="time" class="form-control"
-                                   name="time"
-                                   placeholder="Time">
+                                   name="time" value="${time}"
+                                   placeholder="Time*" required>
+                            <div class="text-center"> ${incorrect_time}</div>
                         </div>
                         <div style="margin-bottom: 25px" class="control-group">
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                             <input type="date" class="form-control"
-                                   name="date"
-                                   placeholder="Date">
+                                   name="date" value="${date}"
+                                   placeholder="Date*" required>
+                            <div class="text-center"> ${incorrect_date}</div>
+                        </div>
+                        <div style="margin-bottom: 25px" class="control-group">
+                            <select class="selectpicker form-control" required name="horse№1">
+                                <option value="" disabled selected>Horse№1*</option>
+                                <c:forEach items="${horseNames}" var="name">
+                                    <option>${name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 25px" class="control-group">
+                            <select class="selectpicker form-control" required name="horse№2">
+                                <option value="" disabled selected>Horse№2*</option>
+                                <c:forEach items="${horseNames}" var="name">
+                                    <option>${name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 25px" class="control-group">
+                            <select class="selectpicker form-control" required>
+                                <option value="" disabled selected>Horse№3*</option>
+                                <c:forEach items="${horseNames}" var="name">
+                                    <option>${name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 25px" class="control-group">
+                            <select class="selectpicker form-control" required>
+                                <option value="" disabled selected>Horse№4*</option>
+                                <c:forEach items="${horseNames}" var="name">
+                                    <option>${name}</option>
+                                </c:forEach>
+                            </select>
                         </div>
 
 

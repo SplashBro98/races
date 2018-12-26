@@ -1,7 +1,7 @@
 package com.epam.race.specification.bet;
 
 import com.epam.race.entity.Bet;
-import com.epam.race.exception.RepositoryException;
+import com.epam.race.repository.RepositoryException;
 import com.epam.race.specification.SQLFunction;
 import com.epam.race.specification.SQLSpecification;
 

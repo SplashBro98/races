@@ -1,8 +1,9 @@
-package com.epam.race.repository;
+package com.epam.race.repository.impl;
 
 import com.epam.race.entity.User;
 import com.epam.race.entity.UserType;
-import com.epam.race.exception.RepositoryException;
+import com.epam.race.repository.AbstractRepository;
+import com.epam.race.repository.RepositoryException;
 import com.epam.race.specification.SQLSpecification;
 import com.epam.race.specification.user.InsertUserSpecification;
 import com.epam.race.specification.user.DeleteUserSpecification;

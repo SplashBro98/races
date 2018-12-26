@@ -1,12 +1,10 @@
 package com.epam.race.service;
 
 import com.epam.race.entity.Bet;
-import com.epam.race.exception.RepositoryException;
-import com.epam.race.exception.ServiceException;
-import com.epam.race.repository.BetRepository;
+import com.epam.race.repository.RepositoryException;
+import com.epam.race.repository.impl.BetRepository;
 import com.epam.race.specification.bet.SelectBetsByRaceIdSpecification;
 
-import javax.sql.rowset.serial.SerialException;
 import java.util.List;
 
 public class BetService {

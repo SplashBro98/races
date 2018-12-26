@@ -18,10 +18,11 @@
     <link href="/css/main.css" rel="stylesheet" type="text/css">
 
     <%--<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"--%>
-          <%--id="bootstrap-css">--%>
+    <%--id="bootstrap-css">--%>
     <%----%>
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-cs">
+    <%--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"--%>
+          <%--id="bootstrap-cs">--%>
     <link href="/vendors/bootstrap/css/bootstrap_main.min.css">
 </head>
 <body>
@@ -35,9 +36,9 @@
         <div class="container container-pad" id="property-listings">
 
             <div class="row">
-                    <div class="col-md-12 my-header" style="color: white;">
-                        <h1>List of Races</h1>
-                    </div>
+                <div class="col-md-12 my-header" style="color: white;">
+                    <h1>List of Races</h1>
+                </div>
             </div>
 
             <div class="row">

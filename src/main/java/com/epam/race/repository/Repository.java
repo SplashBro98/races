@@ -1,6 +1,5 @@
 package com.epam.race.repository;
 
-import com.epam.race.exception.RepositoryException;
 import com.epam.race.specification.SQLSpecification;
 
 import java.util.List;

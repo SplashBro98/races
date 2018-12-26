@@ -13,9 +13,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Login_JSP</title>
+    <title><fmt:message key="label.signin" bundle="${var}"/> </title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
-          id="bootstrap-css">
+          id="bootstrap-cs">
     <link href="/css/login.css" rel="stylesheet" type="text/css">
 
     <link href="/vendors/jquery/jquery.min.js">
@@ -37,7 +37,8 @@
                     <div id="loginbox"  style="margin-right: auto; margin-left: auto" class="mainbox col-md-4 col-sm-8">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <div class="panel-title"><h3>Sign In Form</h3></div>
+                                <div class="panel-title">
+                                    <h3><fmt:message key="form.signin" bundle="${var}"/> </h3></div>
                             </div>
 
                             <div style="padding-top:40px" class="panel-body">
@@ -49,9 +50,10 @@
 
                                     <div style="margin-bottom: 25px" class="form-group">
 
-                                        <input id="login-username" type="text" class="form-control"
+                                        <input id="login-username" type="text"
+                                               class="form-control" oninvalid="InvalidMsg(this);"
                                                name="login" placeholder="Login"
-                                               pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" required>
+                                               pattern="[a-zA-Z0-9А-Яа-я_`-]{4,30}" required>
                                     </div>
 
                                     <div style="margin-bottom: 25px" class="form-group">
@@ -64,7 +66,8 @@
                                     <div style="margin-top:10px" class="form-group">
                                         <!-- Button -->
                                         <div class="col-md-12 controls">
-                                            <input type="submit" class="btn btn-success" value="Sign In">
+                                            <input type="submit" class="btn btn-success"
+                                                   value="<fmt:message key="label.signin" bundle="${var}"/>">
                                         </div>
                                     </div>
 
@@ -72,9 +75,9 @@
                                     <div class="form-group">
                                         <div class="col-md-12 control">
                                             <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                                Don't have an account!
+                                                <fmt:message key="form.describe" bundle="${var}"/>
                                                 <a href="/main?command=to sign up">
-                                                    Sign Up Here
+                                                    <fmt:message key="form.signuphere" bundle="${var}"/>
                                                 </a>
                                             </div>
                                         </div>

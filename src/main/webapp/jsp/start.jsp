@@ -5,7 +5,7 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="label.start" bundle="${var}"/> </title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
     <link href="/css/header.css" rel="stylesheet" type="text/css">
@@ -25,9 +25,12 @@
             <div class="col-lg-12">
                 <div class="text-center">
                     <h1 class="mt-5"><fmt:message key="welcome" bundle="${var}"/> </h1>
-                    <p>Here you can make bets</p>
-                    <button class="btn btn-outline-primary  mt-5"><a href="/main?command=to log in">Sign In</a></button>
-                    <button class="btn btn-outline-primary  mt-5"><a href="/main?command=to sign up">Sign Up</a>
+                    <p><fmt:message key="start.describe" bundle="${var}"/> </p>
+                    <button class="btn btn-outline-primary  mt-5">
+                        <a href="/main?command=to log in"><fmt:message key="label.signin" bundle="${var}"/> </a>
+                    </button>
+                    <button class="btn btn-outline-primary  mt-5">
+                        <a href="/main?command=to sign up"><fmt:message key="label.signup" bundle="${var}"/></a>
                     </button>
                 </div>
             </div>

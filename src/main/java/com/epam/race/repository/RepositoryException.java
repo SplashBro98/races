@@ -1,4 +1,4 @@
-package com.epam.race.exception;
+package com.epam.race.repository;
 
 import java.sql.SQLException;
 

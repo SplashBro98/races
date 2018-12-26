@@ -1,9 +1,8 @@
 package com.epam.race.service;
 
 import com.epam.race.entity.Race;
-import com.epam.race.exception.RepositoryException;
-import com.epam.race.exception.ServiceException;
-import com.epam.race.repository.RaceRepository;
+import com.epam.race.repository.RepositoryException;
+import com.epam.race.repository.impl.RaceRepository;
 import com.epam.race.specification.race.SelectAllRacesSpecification;
 import com.epam.race.specification.race.SelectRaceByNameSpecification;
 import com.epam.race.specification.race.SelectRaceIdSpecification;
@@ -38,12 +37,18 @@ public class RaceService {
         return result;
     }
 
+
     public List<Race> findAllRaces() throws ServiceException {
 
         try {
             List<Race> races = RaceRepository.getInstance().query(new SelectAllRacesSpecification());
             allRaces = races;
-            numberOfPages = allRaces.size() / recordsPerPage + 1;
+            if(recordsPerPage != 0) {
+                numberOfPages = allRaces.size() / recordsPerPage;
+                if (allRaces.size() % recordsPerPage != 0) {
+                    numberOfPages += 1;
+                }
+            }
             return races;
         } catch (RepositoryException e) {
             throw new ServiceException(e);
@@ -84,6 +89,14 @@ public class RaceService {
         } catch (RepositoryException e) {
             throw new ServiceException(e);
         }
+    }
+
+    public List<String> findRacesNames() throws ServiceException {
+
+        List<Race> races = findAllRaces();
+        List<String> names = new ArrayList<>();
+        races.forEach(r -> names.add(r.getName()));
+        return names;
     }
 
     public static List<Race> getAllRaces() {

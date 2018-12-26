@@ -3,7 +3,7 @@ package com.epam.race.command.impl;
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.entity.Bet;
-import com.epam.race.exception.ServiceException;
+import com.epam.race.service.ServiceException;
 import com.epam.race.service.BetService;
 import com.epam.race.service.RaceService;
 

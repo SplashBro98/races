@@ -9,7 +9,7 @@ public class EncryptionTest {
 
     @Test
     public void checkEncrypt(){
-        String test = "96Emudes";
+        String test = "Osipenko98";
         String actual = Encryption.encrypt(test);
         System.out.println(actual);
 

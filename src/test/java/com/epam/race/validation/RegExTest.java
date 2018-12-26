@@ -53,5 +53,21 @@ public class RegExTest {
         Assert.assertEquals(actual, expected);
     }
 
+    @DataProvider(name = "date")
+    public Object[][] dataForCheckDate(){
+        return new Object[][]{
+                {"1963-04-21",true},
+
+        };
+    }
+
+    @Test(dataProvider = "date")
+    public void checkDateTest(String password, boolean expected){
+
+        String regex = "\\d\\d\\d\\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])";
+        boolean actual = password.matches(regex);
+        Assert.assertEquals(actual, expected);
+    }
+
 
 }

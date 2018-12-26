@@ -13,6 +13,7 @@ public class Race implements Entity {
     private LocalTime time;
 
     private List<Bet> bets;
+    private List<Horse> horses;
 
     public Race() {
     }
