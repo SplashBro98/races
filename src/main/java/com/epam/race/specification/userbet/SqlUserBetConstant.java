@@ -12,10 +12,11 @@ public final class SqlUserBetConstant {
 
     //language=sql
     public static final String SQL_USER_BETS_SELECT_BY_LOGIN = "SELECT u.user_login, u.betid," +
-            "u.sum, b.describe, b.coeff, r.name, r.place, r.time, r.date" +
-            " from user_bets u " +
-            " join bets b on(u.betid = b.betid) " +
-            " join races r on (b.raceid = r.race_id)" +
+            "u.sum, h.name, b.position, b.coeff, r.name, r.place, r.time, r.date " +
+            "from user_bets u " +
+            "join bets b on(u.betid = b.bet_id) " +
+            "join races r on (b.race_id = r.race_id)" +
+            "join horses h on(h.horse_id = b.horse_id)" +
             " where user_login = ?";
     //language=sql
     public static final String SQL_USER_BETS_SELECT_BY_BET_ID = "SELECT * from user_bets where " +

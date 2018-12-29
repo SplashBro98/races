@@ -30,6 +30,7 @@ public class SelectRaceHorsesCommand implements Command {
             horses.forEach(h -> horseNames.add(h.getName()));
 
             req.getSession().setAttribute("horseNames",horseNames);
+            req.getSession().setAttribute("raceName", raceName);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
 
         }catch (ServiceException e){

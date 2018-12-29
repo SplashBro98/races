@@ -1,6 +1,8 @@
 package com.epam.race.repository.impl;
 
 import com.epam.race.entity.Bet;
+import com.epam.race.entity.Horse;
+import com.epam.race.entity.Race;
 import com.epam.race.repository.AbstractRepository;
 import com.epam.race.repository.RepositoryException;
 import com.epam.race.specification.SQLSpecification;
@@ -29,9 +31,15 @@ public class BetRepository extends AbstractRepository<Bet> {
     public Bet createItem(ResultSet resultSet) throws RepositoryException {
         Bet newBet = new Bet();
         try {
-            newBet.setDescribe(resultSet.getString(2));
             newBet.setBetId(resultSet.getInt(1));
-            newBet.setCoeff(resultSet.getFloat(4));
+            Race race = new Race();
+            race.setRaceId(resultSet.getInt(2));
+            newBet.setRace(race);
+            Horse horse = new Horse();
+            horse.setHorseId(resultSet.getInt(3));
+            newBet.setHorse(horse);
+            newBet.setPosition(resultSet.getInt(4));
+            newBet.setCoeff(resultSet.getFloat(5));
             return newBet;
         }catch (SQLException e){
             throw new RepositoryException(e);
@@ -49,7 +57,7 @@ public class BetRepository extends AbstractRepository<Bet> {
     }
 
     @Override
-    public void update(Bet bet) throws RepositoryException {
+    public void update(SQLSpecification specification) throws RepositoryException {
 
     }
 

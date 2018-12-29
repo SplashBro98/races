@@ -25,7 +25,7 @@ public abstract class AbstractRepository<T> implements Repository<T>{
             statement.execute();
 
         } catch (SQLException e) {
-            logger.error("Problem with connection with database",e);
+            logger.error("sql exception in non-select query",e);
             throw new RepositoryException(e);
         }
     }
@@ -40,7 +40,7 @@ public abstract class AbstractRepository<T> implements Repository<T>{
             }
             return result;
         } catch (SQLException e) {
-           logger.error("Problem with connection with database",e);
+           logger.error("sql exception in select query",e);
            throw new RepositoryException(e);
         }
     }

@@ -7,7 +7,6 @@
 <html>
 <head>
     <title><fmt:message key="label.addRace" bundle="${var}"/></title>
-
 </head>
 <body>
 <c:import url="header.jsp"/>
@@ -17,13 +16,11 @@
         <div style="margin-top:120px; margin-left: 30%" class="mainbox col-md-4 col-sm-8">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <div class="panel-title" style="color: white"><h3>Add Race Form</h3></div>
+                    <div class="panel-title text-center" style="color: white"><h3>Add Race Form</h3></div>
                 </div>
 
                 <div style="padding-top:40px" class="panel-body">
 
-                    <div style="display:none" id="login-alert"
-                         class="alert alert-danger col-sm-12"></div>
 
                     <form id="loginform" class="form-horizontal" action="/main" method="post">
                         <input type="hidden" name="command" value="add race">
@@ -79,7 +76,7 @@
                             </select>
                         </div>
                         <div style="margin-bottom: 25px" class="control-group">
-                            <select class="selectpicker form-control" required>
+                            <select class="selectpicker form-control" required name="horse№3">
                                 <option value="" disabled selected>Horse№3*</option>
                                 <c:forEach items="${horseNames}" var="name">
                                     <option>${name}</option>
@@ -87,7 +84,7 @@
                             </select>
                         </div>
                         <div style="margin-bottom: 25px" class="control-group">
-                            <select class="selectpicker form-control" required>
+                            <select class="selectpicker form-control" required name="horse№4">
                                 <option value="" disabled selected>Horse№4*</option>
                                 <c:forEach items="${horseNames}" var="name">
                                     <option>${name}</option>

@@ -5,10 +5,12 @@ import com.epam.race.repository.RepositoryException;
 import com.epam.race.repository.impl.HorseRepository;
 import com.epam.race.specification.horse.SelectAllHorsesSpecification;
 import com.epam.race.specification.horse.SelectHorseByNameSpecification;
+import com.epam.race.specification.horse.SelectHorseIdSpecification;
 import com.epam.race.specification.horse.SelectHorsesByRaceSpecification;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class HorseService {
 
@@ -31,16 +33,34 @@ public class HorseService {
         }
     }
 
-    public void addHorseToHorseList(String horseName) throws ServiceException {
+    public void addHorseToHorseList(int raceId, int horseId) throws ServiceException {
         try{
-            Horse horse = HorseRepository.getInstance().query(new SelectHorseByNameSpecification(horseName)).get(0);
-
+            HorseRepository.getInstance().addHorseToHorseList(raceId, horseId);
 
         }catch (RepositoryException e){
             throw new ServiceException(e);
         }
     }
 
+    public Optional<Horse> findHorse(String horseName) throws ServiceException {
+        try {
+            List<Horse> horses = HorseRepository.getInstance().query(new SelectHorseByNameSpecification(horseName));
+            if (horses.isEmpty()) {
+                return Optional.empty();
+            }
+            return Optional.of(horses.get(0));
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    public int findHorseId(String horseName) throws ServiceException {
+        try{
+            return HorseRepository.getInstance().findHorseId(new SelectHorseIdSpecification(horseName));
+        }catch (RepositoryException e){
+            throw new ServiceException(e);
+        }
+    }
     public List<Horse> findHorsesByRace(int raceId) throws ServiceException {
         try{
             return HorseRepository.getInstance().query(new SelectHorsesByRaceSpecification(raceId));

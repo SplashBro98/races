@@ -1,16 +1,23 @@
 package com.epam.race.repository.impl;
 
 import com.epam.race.entity.Horse;
+import com.epam.race.pool.ConnectionPool;
 import com.epam.race.repository.AbstractRepository;
 import com.epam.race.repository.RepositoryException;
 import com.epam.race.specification.SQLSpecification;
 import com.epam.race.specification.horse.InsertHorseSpecification;
+import com.epam.race.specification.horse.InsertHorseToHorseListSpecification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class HorseRepository extends AbstractRepository<Horse> {
+    private static Logger logger = LogManager.getLogger(HorseRepository.class);
     private static HorseRepository instance;
 
     private HorseRepository(){
@@ -36,7 +43,7 @@ public class HorseRepository extends AbstractRepository<Horse> {
     }
 
     @Override
-    public void update(Horse horse) throws RepositoryException {
+    public void update(SQLSpecification specification) throws RepositoryException {
 
     }
 
@@ -57,6 +64,25 @@ public class HorseRepository extends AbstractRepository<Horse> {
         }catch (SQLException e){
             throw new RepositoryException(e);
         }
-
     }
+
+    public void addHorseToHorseList(int raceId, int horseId) throws RepositoryException{
+        nonSelectQuery(new InsertHorseToHorseListSpecification(horseId,raceId));
+    }
+
+    public int findHorseId(SQLSpecification specification) throws RepositoryException {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = specification.getStatement(connection::prepareStatement)) {
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+            return 0;
+
+        } catch (SQLException e) {
+            logger.error("Problem with connection with database",e);
+            throw new RepositoryException(e);
+        }
+    }
+
 }

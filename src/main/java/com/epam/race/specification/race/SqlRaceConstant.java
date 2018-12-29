@@ -15,4 +15,7 @@ public final class SqlRaceConstant {
             "(?,?,?,?)";
     //language=sql
     public static final String SQL_RACES_DELETE_BY_NAME = "DELETE from races where name = ?";
+
+    //language=sql
+    public static final String SQL_BETS_HORSE_LIST_SELECT_BETS_AND_HORSES = "";
 }

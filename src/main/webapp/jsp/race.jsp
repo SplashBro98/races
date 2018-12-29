@@ -66,6 +66,7 @@
 
                     </div>
                 </div>
+                <c:import url="horseTable.jsp"/>
                 <c:import url="betTable.jsp"/>
             </div>
         </div>

@@ -8,6 +8,7 @@ import com.epam.race.specification.SQLSpecification;
 import com.epam.race.specification.user.InsertUserSpecification;
 import com.epam.race.specification.user.DeleteUserSpecification;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -38,6 +39,7 @@ public class UserRepository extends AbstractRepository<User> {
             newUser.setLogin(resultSet.getString("login"));
             newUser.setPassword(resultSet.getString("password"));
             newUser.setEmail(resultSet.getString("email"));
+            newUser.setAmount(resultSet.getBigDecimal("amount"));
             int type = resultSet.getInt("userType_id");
             switch (type) {
                 case 3:
@@ -70,14 +72,17 @@ public class UserRepository extends AbstractRepository<User> {
     }
 
     @Override
-    public void update(User user) throws RepositoryException {
-
+    public void update(SQLSpecification specification) throws RepositoryException {
+        nonSelectQuery(specification);
     }
 
     @Override
     public List<User> query(SQLSpecification specification) throws RepositoryException {
         return selectQuery(specification);
     }
+
+
+
 
 
 }

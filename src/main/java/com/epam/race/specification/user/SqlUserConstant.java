@@ -20,4 +20,7 @@ public final class SqlUserConstant {
             "values (?,?,?,?,?,?)";
     //language=sql
     public static final String SQL_USERS_REMOVE_BY_ID = "DELETE from users where user_id = ?";
+
+    //language=sql
+    public static final String SQL_USERS_UPDATE_AMOUNT = "update users set amount = ? where login = ?";
 }

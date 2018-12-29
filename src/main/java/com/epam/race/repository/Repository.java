@@ -8,7 +8,7 @@ public interface Repository<T> {
 
     void add(T t) throws RepositoryException;
     void remove(T t) throws RepositoryException;
-    void update(T t) throws RepositoryException;
+    void update(SQLSpecification specification) throws RepositoryException;
 
     List<T> query(SQLSpecification specification) throws RepositoryException;
 }

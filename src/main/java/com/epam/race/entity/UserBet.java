@@ -14,8 +14,14 @@ public class UserBet extends Bet {
         this.sum = sum;
     }
 
-    public UserBet(int betId, int raceId, String describe, double coeff, String userLogin, BigDecimal sum) {
-        super(betId, raceId, describe, coeff);
+    public UserBet(int betId, Race race, Horse horse, double coeff, String userLogin, BigDecimal sum) {
+        super(betId, race, horse, coeff);
+        this.userLogin = userLogin;
+        this.sum = sum;
+    }
+
+    public UserBet(int betId, String userLogin, BigDecimal sum){
+        this.setBetId(betId);
         this.userLogin = userLogin;
         this.sum = sum;
     }

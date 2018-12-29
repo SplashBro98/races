@@ -17,7 +17,11 @@ public class UserBetService {
         }
     }
 
-    public boolean addUserBet(UserBet userBet){
-        return false;
+    public void addUserBet(UserBet userBet) throws ServiceException {
+        try {
+            UserBetRepository.getInstance().add(userBet);
+        }catch (RepositoryException e){
+            throw new ServiceException(e);
+        }
     }
 }

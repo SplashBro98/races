@@ -3,6 +3,7 @@ package com.epam.race.command.impl;
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.entity.Race;
+import com.epam.race.service.HorseService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
 import com.epam.race.util.constant.StringAttributes;
@@ -73,7 +74,20 @@ public class AddRaceCommand implements Command {
                 String fourthHorseName = req.getParameter("horse№4");
 
                 RaceService raceService = new RaceService();
+                HorseService horseService = new HorseService();
                 raceService.addRace(race);
+                int raceId = raceService.findRaceId(race.getName());
+                int firstHorseId = horseService.findHorseId(firstHorseName);
+                int secondHorseId = horseService.findHorseId(secondHorseName);
+                int thirdHorseId = horseService.findHorseId(thirdHorseName);
+                int fourthHorseId = horseService.findHorseId(fourthHorseName);
+
+                horseService.addHorseToHorseList(raceId, firstHorseId);
+                horseService.addHorseToHorseList(raceId, secondHorseId);
+                horseService.addHorseToHorseList(raceId, thirdHorseId);
+                horseService.addHorseToHorseList(raceId, fourthHorseId);
+
+
 
                 RaceService service = new RaceService(1, 5);
                 service.findAllRaces();

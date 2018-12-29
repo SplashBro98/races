@@ -13,6 +13,7 @@ public class User implements Entity{
     private String password;
     private String email;
     private UserType userType;
+    private BigDecimal amount;
 
     public User() {
     }
@@ -29,13 +30,14 @@ public class User implements Entity{
     }
 
     public User(String name, String surname, String login,
-                String password, String email, UserType userType, BigDecimal account) {
+                String password, String email, UserType userType, BigDecimal amount) {
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
         this.email = email;
         this.userType = userType;
+        this.amount = amount;
     }
 
     public String getName() {
@@ -93,5 +95,13 @@ public class User implements Entity{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 }

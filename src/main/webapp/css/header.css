@@ -16,6 +16,21 @@ body{
     min-height:100%;
     padding-top: 2px;
 }
+.thumb-dropdown .dropdown-menu > li {
+    position: relative;
+}
+.thumb-dropdown .dropdown-menu > li > a .thumbnail {
+    position: absolute;
+    left: 100%;
+    top: -10px;
+    display: none;
+    width: 350px;
+    height: auto;
+    margin-left: 5px;
+}
+.thumb-dropdown .dropdown-menu > li > a:hover .thumbnail  {
+    display: block;
+}
 #up{
     border-bottom:0px solid transparent;
     box-shadow: 0 0 transparent;

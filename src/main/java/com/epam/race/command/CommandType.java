@@ -22,5 +22,9 @@ public enum CommandType {
     ADD_BET,
     TO_ADD_BET,
     PAGINATION,
-    SELECT_RACE_HORSES
+    SELECT_RACE_HORSES,
+    TO_ENTER_SUM,
+    ENTER_SUM,
+    TO_HOLD_RACE,
+    HOLD_RACE
 }

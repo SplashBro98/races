@@ -2,34 +2,40 @@ package com.epam.race.entity;
 
 public class Bet implements Entity {
     private int betId;
-    private int raceId;
-    private String describe;
+    private Race race;
+    private Horse horse;
+    private int position;
     private double coeff;
 
     public Bet() {
     }
 
-    public Bet(int betId, int raceId, double coeff) {
+
+
+    public Bet(Race race, double coeff) {
+        this.race = race;
+        this.coeff = coeff;
+    }
+
+    public Bet(int betId, Race race, Horse horse, double coeff) {
         this.betId = betId;
-        this.raceId = raceId;
+        this.race = race;
+        this.horse = horse;
         this.coeff = coeff;
     }
 
-    public Bet(int raceId, double coeff) {
-        this.raceId = raceId;
-        this.coeff = coeff;
-    }
-
-    public Bet(int raceId, String describe, double coeff) {
-        this.raceId = raceId;
-        this.describe = describe;
-        this.coeff = coeff;
-    }
-
-    public Bet(int betId, int raceId, String describe, double coeff) {
+    public Bet(int betId, Race race, Horse horse, int position, double coeff) {
         this.betId = betId;
-        this.raceId = raceId;
-        this.describe = describe;
+        this.race = race;
+        this.horse = horse;
+        this.position = position;
+        this.coeff = coeff;
+    }
+    public Bet(Race race, Horse horse, int position, double coeff) {
+        this.betId = betId;
+        this.race = race;
+        this.horse = horse;
+        this.position = position;
         this.coeff = coeff;
     }
 
@@ -41,12 +47,12 @@ public class Bet implements Entity {
         this.betId = betId;
     }
 
-    public int getRaceId() {
-        return raceId;
+    public Race getRace() {
+        return race;
     }
 
-    public void setRaceId(int raceId) {
-        this.raceId = raceId;
+    public void setRace(Race race) {
+        this.race = race;
     }
 
     public double getCoeff() {
@@ -57,12 +63,19 @@ public class Bet implements Entity {
         this.coeff = coeff;
     }
 
-    public String getDescribe() {
-        return describe;
+    public Horse getHorse() {
+        return horse;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setHorse(Horse horse) {
+        this.horse = horse;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }

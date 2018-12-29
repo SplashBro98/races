@@ -35,10 +35,25 @@
                         <input type="hidden" name="command" value="add bet">
 
                         <div style="margin-bottom: 25px" class="control-group">
-                            <select class="selectpicker form-control" required>
-                                <option value="" disabled selected>Name of the Race*</option>
+                            <select class="selectpicker form-control" name="raceName"
+                                    required onchange="location = this.value;">
+
+
+                                <c:choose>
+                                    <c:when test="${empty raceName}">
+                                        <option value="" disabled selected>
+                                            Name of the Race*
+                                        </option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option selected>
+                                                ${raceName}
+                                        </option>
+                                    </c:otherwise>
+                                </c:choose>
+
                                 <c:forEach items="${raceNames}" var="name">
-                                    <option href="/main?command=select race horses&name=${name}">
+                                    <option value="/main?command=select race horses&name=${name}">
                                             ${name}</option>
                                 </c:forEach>
                             </select>
@@ -46,7 +61,7 @@
 
                         <div style="margin-bottom: 25px" class="control-group">
 
-                            <select class="selectpicker form-control" required>
+                            <select class="selectpicker form-control" name="horseName" required>
                                 <option value="" disabled selected>Horse Name*</option>
                                 <c:forEach items="${horseNames}" var="name">
                                     <option>${name}</option>
@@ -56,7 +71,7 @@
 
                         <div style="margin-bottom: 25px" class="control-group">
 
-                            <select class="selectpicker form-control" required>
+                            <select class="selectpicker form-control" name="position" required>
                                 <option value="" disabled selected>Position*</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -69,8 +84,9 @@
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                             <input type="text" class="form-control"
-                                   name="coeff"
+                                   name="coeff" pattern="^[0-9]*[.,]?[0-9]+$"
                                    placeholder="Coefficient*" required>
+                            <div class="text-center"> ${incorrect_coeff}</div>
                         </div>
 
 

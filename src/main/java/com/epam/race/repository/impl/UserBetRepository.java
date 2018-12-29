@@ -1,5 +1,7 @@
 package com.epam.race.repository.impl;
 
+import com.epam.race.entity.Horse;
+import com.epam.race.entity.Race;
 import com.epam.race.repository.AbstractRepository;
 import com.epam.race.repository.RepositoryException;
 import com.epam.race.specification.userbet.InsertUserBetSpecification;
@@ -8,6 +10,8 @@ import com.epam.race.specification.SQLSpecification;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class UserBetRepository extends AbstractRepository<UserBet> {
@@ -31,14 +35,20 @@ public class UserBetRepository extends AbstractRepository<UserBet> {
             newUserBet.setUserLogin(resultSet.getString(1));
             newUserBet.setSum(resultSet.getBigDecimal(3));
             newUserBet.setBetId(resultSet.getInt(2));
-            newUserBet.setDescribe(resultSet.getString(4));
-            newUserBet.setCoeff(resultSet.getDouble(5));
-//            Race race = new Race();
-//            race.setName(resultSet.getString(6));
-//            race.setPlace(resultSet.getString(7));
-//            race.setTime(LocalTime.parse(resultSet.getString(8)));
-//            race.setDate(LocalDate.parse(resultSet.getString(9)));
-//            newUserBet.setRace(race);
+            Race race  = new Race();
+            race.setName(resultSet.getString(7));
+            race.setPlace(resultSet.getString(8));
+            race.setTime(LocalTime.parse(resultSet.getString(9)));
+            race.setDate(LocalDate.parse(resultSet.getString(10)));
+
+            newUserBet.setRace(race);
+            Horse horse = new Horse();
+            horse.setName(resultSet.getString(4));
+            newUserBet.setHorse(horse);
+            newUserBet.setPosition(resultSet.getInt(5));
+            newUserBet.setCoeff(resultSet.getDouble(6));
+
+
         }catch (SQLException e){
             throw new RepositoryException(e);
         }
@@ -56,7 +66,7 @@ public class UserBetRepository extends AbstractRepository<UserBet> {
     }
 
     @Override
-    public void update(UserBet userBet) throws RepositoryException {
+    public void update(SQLSpecification specification) throws RepositoryException {
 
     }
 
