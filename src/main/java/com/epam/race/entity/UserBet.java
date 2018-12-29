@@ -20,10 +20,11 @@ public class UserBet extends Bet {
         this.sum = sum;
     }
 
-    public UserBet(int betId, String userLogin, BigDecimal sum){
+    public UserBet(int betId, String userLogin, BigDecimal sum, double coeff){
         this.setBetId(betId);
         this.userLogin = userLogin;
         this.sum = sum;
+        this.setCoeff(coeff);
     }
 
     public String getUserLogin() {

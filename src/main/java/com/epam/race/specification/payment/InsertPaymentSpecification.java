@@ -1,27 +1,26 @@
-package com.epam.race.specification.userbet;
+package com.epam.race.specification.payment;
 
+import com.epam.race.entity.Payment;
 import com.epam.race.repository.RepositoryException;
-import com.epam.race.entity.UserBet;
 import com.epam.race.specification.SQLFunction;
 import com.epam.race.specification.SQLSpecification;
-import com.epam.race.specification.user.SqlUserConstant;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertUserBetSpecification implements SQLSpecification {
+public class InsertPaymentSpecification implements SQLSpecification {
 
-    private UserBet userBet;
+    private Payment payment;
 
-    public InsertUserBetSpecification(UserBet userBet) {
-        this.userBet = userBet;
+    public InsertPaymentSpecification(Payment payment) {
+        this.payment = payment;
     }
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement, SQLException> function)
             throws RepositoryException {
         try{
-            PreparedStatement statement = function.apply(SqlUserBetConstant.SQL_USER_BETS_INSERT);
+            PreparedStatement statement = function.apply(SqlPaymentConstant.SQL_PAYMENTS_INSERT);
             fillStatement(statement);
             return statement;
         }catch (SQLException e){
@@ -32,12 +31,12 @@ public class InsertUserBetSpecification implements SQLSpecification {
     @Override
     public void fillStatement(PreparedStatement statement) throws RepositoryException {
         try{
-            statement.setString(1,userBet.getUserLogin());
-            statement.setInt(2,userBet.getBetId());
-            statement.setBigDecimal(3,userBet.getSum());
-            statement.setDouble(4,userBet.getCoeff());
+            statement.setString(1,payment.getPaymentId());
+            statement.setBigDecimal(2,payment.getSum());
         }catch (SQLException e){
             throw new RepositoryException(e);
         }
     }
 }
+
+

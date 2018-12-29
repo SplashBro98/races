@@ -2,6 +2,7 @@ package com.epam.race.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,8 +13,8 @@ public class Race implements Entity {
     private LocalDate date;
     private LocalTime time;
 
-    private List<Bet> bets;
-    private List<Horse> horses;
+    private List<Bet> bets = new ArrayList<>();
+    private List<Horse> horses = new ArrayList<>();
 
     public Race() {
     }
@@ -85,6 +86,15 @@ public class Race implements Entity {
     public List<Bet> getBets() {
         return Collections.unmodifiableList(bets);
     }
+
+    public List<Horse> getHorses() {
+        return Collections.unmodifiableList(horses);
+    }
+
+    public void addHorse(Horse horse){
+        horses.add(horse);
+    }
+
 
     @Override
     public String toString() {

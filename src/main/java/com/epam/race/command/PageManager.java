@@ -19,6 +19,12 @@ public enum PageManager {
     public static final String PATH_RACE_PAGE = "PATH_RACE_PAGE";
     public static final String PATH_ENTER_SUM_PAGE = "PATH_ENTER_SUM_PAGE";
     public static final String PATH_HOLD_RACE_PAGE = "PATH_HOLD_RACE_PAGE";
+    public static final String PATH_ADD_PAYMENT_PAGE = "PATH_ADD_PAYMENT_PAGE";
+    public static final String PATH_TOP_UP_BALANCE_PAGE = "PATH_TOP_UP_BALANCE_PAGE";
+    public static final String PATH_ADD_ADMIN_PAGE = "PATH_ADD_ADMIN_PAGE";
+    public static final String PATH_ADD_BOOKMAKER_PAGE = "PATH_ADD_BOOKMAKER_PAGE";
+    public static final String PATH_EDIT_BET_PAGE = "PATH_EDIT_BET_PAGE";
+    public static final String PATH_EDIT_PROFILE_PAGE = "PATH_EDIT_PROFILE_PAGE";
 
     public String getProperty(String key){
         return bundle.getString(key);

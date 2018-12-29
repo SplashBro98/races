@@ -11,6 +11,8 @@ public class ToEnterSumCommand implements Command {
     public String execute(HttpServletRequest req) {
         String betId =  req.getParameter("betId");
         req.getSession().setAttribute("betId",betId);
+        String betCoeff = req.getParameter("coeff");
+        req.getSession().setAttribute("coeff",betCoeff);
         return PageManager.INSTANCE.getProperty(PageManager.PATH_ENTER_SUM_PAGE);
     }
 }

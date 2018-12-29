@@ -6,6 +6,9 @@ import com.epam.race.entity.Race;
 import com.epam.race.pool.ConnectionPool;
 import com.epam.race.repository.AbstractRepository;
 import com.epam.race.repository.RepositoryException;
+import com.epam.race.specification.bet.SqlBetConstant;
+import com.epam.race.specification.horse.SqlHorseConstant;
+import com.epam.race.specification.race.SqlRaceConstant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.epam.race.specification.SQLSpecification;
@@ -84,34 +87,47 @@ public class RaceRepository extends AbstractRepository<Race> {
         }
     }
 
-    public List<String> findRaceBetsAndHorses(SQLSpecification betSpecification, SQLSpecification horseSpecification,
-                                      List<Bet> bets, List<Horse> horses)
-            throws RepositoryException {
+    public Race findRaceWithBetsAndHorses(String raceName)  throws RepositoryException {
 
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement betStatement = betSpecification.getStatement(connection::prepareStatement);
-             PreparedStatement horseStatement = horseSpecification.getStatement(connection::prepareStatement)) {
-            List<String> horseNames = new ArrayList<>();
+        try (Connection connection = ConnectionPool.getInstance().takeConnection()){
+            PreparedStatement raceStatement = connection.prepareStatement(SqlRaceConstant.SQL_RACES_SELECT_BY_NAME);
+            raceStatement.setString(1,raceName);
+            ResultSet raceResultSet = raceStatement.executeQuery();
+            if(!raceResultSet.next()) {
+                throw new RepositoryException("resultSet was empty");
+            }
+            Race race = createItem(raceResultSet);
+
+            PreparedStatement betStatement = connection.prepareStatement(SqlBetConstant.SQL_BETS_SELECT_BY_RACE_ID);
+            betStatement.setInt(1,race.getRaceId());
+
             ResultSet betResultSet = betStatement.executeQuery();
             while (betResultSet.next()){
                 Bet bet = new Bet();
                 bet.setBetId(betResultSet.getInt(1));
-                Race race = new Race();
-                race.setRaceId(betResultSet.getInt(2));
+                bet.setPosition(betResultSet.getInt(2));
+                bet.setCoeff(betResultSet.getFloat(3));
+
+                Horse horse = new Horse();
+                horse.setName(betResultSet.getString(4));
+                horse.setAge(betResultSet.getInt(5));
+                horse.setWins(betResultSet.getInt(6));
+                bet.setHorse(horse);
+
+                race.addBet(bet);
                 bet.setRace(race);
-                bet.setPosition(betResultSet.getInt(3));
-                bet.setCoeff(betResultSet.getFloat(4));
-                horseNames.add(betResultSet.getString(5));
-                bets.add(bet);
             }
+
+            PreparedStatement horseStatement = connection.prepareStatement(SqlHorseConstant.SQL_HORSES_SELECT_BY_RACE_ID);
+            horseStatement.setInt(1,race.getRaceId());
 
             ResultSet horseResultSet = horseStatement.executeQuery();
             while (horseResultSet.next()){
                 Horse horse = HorseRepository.getInstance().createItem(horseResultSet);
-                horses.add(horse);
+                race.addHorse(horse);
             }
 
-            return horseNames;
+            return race;
         } catch (SQLException e) {
             logger.error("Problem with connection with database",e);
             throw new RepositoryException(e);

@@ -1,6 +1,7 @@
 package com.epam.race.validation;
 
 
+import com.epam.race.util.validation.PaymentValidator;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -44,8 +45,6 @@ public class RegExTest {
 
     @Test(dataProvider = "password")
     public void checkPasswordTest(String password, boolean expected){
-        //String regex = "[0-9a-zA-Z!@#$%^&*]{6,}";
-        //String regex = "(?=.*[A-Z])";
         String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,}";
 
         boolean actual = password.matches(regex);
@@ -67,6 +66,17 @@ public class RegExTest {
         String regex = "\\d\\d\\d\\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])";
         boolean actual = password.matches(regex);
         Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void checkPaymentIdTest(){
+        String regex = "^\\d\\d-\\d\\d\\d-\\d\\d\\d$";
+
+        PaymentValidator validator = new PaymentValidator();
+        boolean actual = validator.isCorrectPaymentId("22-655-001");
+
+        Assert.assertTrue(actual);
+
     }
 
 

@@ -23,24 +23,16 @@ public class SelectRaceCommand implements Command {
         String page;
         String raceName = req.getParameter(StringAttributes.NAME);
         try {
-            Optional<Race> maybeRace = new RaceService().findRace(raceName);
-            if(maybeRace.isPresent()){
-                Race race = maybeRace.get();
-                RaceService service = new RaceService();
-                List<Bet> bets = new ArrayList<>();
-                List<Horse> horses = new ArrayList<>();
-                List<String> horseNames = service.findRaceBetsAndHorses(race.getRaceId(), bets, horses);
+            RaceService service = new RaceService();
+            Race race = service.findRaceWithBetsAndHorses(raceName);
 
-                req.getSession().setAttribute(StringAttributes.RACE,race);
-                req.getSession().setAttribute(StringAttributes.BETS,bets);
-                req.getSession().setAttribute(StringAttributes.HORSES,horses);
-                req.getSession().setAttribute(StringAttributes.HORSE_NAMES,horseNames);
-            }else {
-                req.setAttribute("nothing","race with this name doesn`t exist");
-            }
+            req.getSession().setAttribute(StringAttributes.RACE, race);
+            req.getSession().setAttribute(StringAttributes.BETS, race.getBets());
+            req.getSession().setAttribute(StringAttributes.HORSES, race.getHorses());
+
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_RACE_PAGE);
-        }catch (ServiceException e){
+        } catch (ServiceException e) {
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

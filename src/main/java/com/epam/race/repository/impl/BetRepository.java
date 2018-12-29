@@ -58,7 +58,7 @@ public class BetRepository extends AbstractRepository<Bet> {
 
     @Override
     public void update(SQLSpecification specification) throws RepositoryException {
-
+        nonSelectQuery(specification);
     }
 
     @Override

@@ -10,8 +10,6 @@ import java.sql.SQLException;
 
 public class InsertUserSpecification implements SQLSpecification {
 
-
-
     private User user;
 
     public InsertUserSpecification(User user) {

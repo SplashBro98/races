@@ -23,15 +23,15 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        trustTheProcess(req, resp);
+        processRequest(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        trustTheProcess(req, resp);
+        processRequest(req, resp);
     }
 
-    private void trustTheProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         logger.log(Level.INFO, "Command: " + req.getParameter(StringConstant.COMMAND));
         Command command = ActionFactory.INSTANCE.getCommand(req);

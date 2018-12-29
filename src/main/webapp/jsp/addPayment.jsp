@@ -16,16 +16,25 @@
         <div style="margin-top:120px; margin-left: 30%" class="mainbox col-md-4 col-sm-8">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <div class="panel-title text-center" style="color: white"><h4>Please, enter the Sum of Bet</h4>
-                    </div>
+                    <div class="panel-title text-center" style="color: white"><h4>Add Payment Form </h4></div>
                 </div>
 
                 <div style="padding-top:40px" class="panel-body">
 
 
                     <form class="form-horizontal" action="/main" method="post">
-                        <input type="hidden" name="command" value="enter sum">
+                        <input type="hidden" name="command" value="add payment">
 
+
+                        <div style="margin-bottom: 25px" class="control-group">
+                                            <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-lock"></i></span>
+                            <input type="text" class="form-control"
+                                   name="paymentId"
+                                   pattern="^\d\d-\d\d\d-\d\d\d$"
+                                   placeholder="**-***-***" required>
+                            <div class="text-center"> ${incorrect_id}</div>
+                        </div>
 
                         <div style="margin-bottom: 25px" class="control-group">
                                             <span class="input-group-addon"><i
@@ -41,21 +50,11 @@
                         <div style="margin-top:10px" class="form-group">
                             <!-- Button -->
                             <div class="col-md-12 controls">
-                                <input type="submit" class="btn btn-success text-center" value="Make Bet">
+                                <input type="submit" class="btn btn-success text-center" value="Add Payment">
                             </div>
                         </div>
 
                     </form>
-                    <form class="form-horizontal" action="/main" method="post">
-                        <input type="hidden" name="command" value="to top up balance">
-                        <div style="margin-top:10px" class="form-group">
-                            <!-- Button -->
-                            <div class="col-md-12 controls">
-                                <input type="submit" class="btn btn-success text-center" value="Top Up Balance">
-                            </div>
-                        </div>
-                    </form>
-
                 </div>
             </div>
         </div>

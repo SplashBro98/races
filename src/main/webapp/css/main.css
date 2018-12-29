@@ -2,18 +2,18 @@
 /*body {*/
     /*color: #888;*/
 /*}*/
-html{
-    background:transparent url("/img/back.jpg") repeat 0 0;
-    width:100%;
-}
-body{
-    background: transparent url("/img/back.jpg") no-repeat 0 100%;
-    width:100%;
-}
-a {
-    color: #03a1d1;
-    text-decoration: none!important;
-}
+/*html{*/
+    /*background:transparent url("/img/back.jpg") repeat 0 0;*/
+    /*width:100%;*/
+/*}*/
+/*body{*/
+    /*background: transparent url("/img/back.jpg") no-repeat 0 100%;*/
+    /*width:100%;*/
+/*}*/
+/*a {*/
+    /*color: #03a1d1;*/
+    /*text-decoration: none!important;*/
+/*}*/
 
 /**** LAYOUT ****/
 .list-inline>li {

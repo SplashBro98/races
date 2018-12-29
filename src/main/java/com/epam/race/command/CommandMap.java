@@ -40,7 +40,19 @@ public enum CommandMap {
         commandMap.put(CommandType.TO_ENTER_SUM, new ToEnterSumCommand());
         commandMap.put(CommandType.ENTER_SUM, new EnterSumCommand());
         commandMap.put(CommandType.TO_HOLD_RACE, new ToHoldRaceCommand());
-        commandMap.put(CommandType.ENTER_SUM, new EnterSumCommand());
+        commandMap.put(CommandType.HOLD_RACE, new HoldRaceCommand());
+        commandMap.put(CommandType.TO_ADD_PAYMENT, new ToAddPaymentCommand());
+        commandMap.put(CommandType.ADD_PAYMENT, new AddPaymentCommand());
+        commandMap.put(CommandType.TO_TOP_UP_BALANCE, new ToTopUpBalanceCommand());
+        commandMap.put(CommandType.TOP_UP_BALANCE, new TopUpBalanceCommand());
+        commandMap.put(CommandType.TO_ADD_ADMIN, new ToAddAdminCommand());
+        commandMap.put(CommandType.TO_ADD_BOOKMAKER, new ToAddBookmakerCommand());
+        commandMap.put(CommandType.ADD_ADMIN, new AddAdminCommand());
+        commandMap.put(CommandType.ADD_BOOKMAKER, new AddBookmakerCommand());
+        commandMap.put(CommandType.TO_EDIT_BET, new ToEditBetCommand());
+        commandMap.put(CommandType.EDIT_BET, new EditBetCommand());
+        commandMap.put(CommandType.TO_EDIT_PROFILE, new ToEditProfileCommand());
+        commandMap.put(CommandType.EDIT_PROFILE, new EditProfileCommand());
     }
     public Command getCommand(CommandType type){
         Command result = commandMap.get(type);

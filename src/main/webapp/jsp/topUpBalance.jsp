@@ -16,34 +16,29 @@
         <div style="margin-top:120px; margin-left: 30%" class="mainbox col-md-4 col-sm-8">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <div class="panel-title text-center" style="color: white"><h4>Please, select race </h4></div>
+                    <div class="panel-title text-center" style="color: white"><h4>Please, enter the payment ID </h4></div>
                 </div>
 
                 <div style="padding-top:40px" class="panel-body">
 
 
                     <form class="form-horizontal" action="/main" method="post">
-                        <input type="hidden" name="command" value="hold race">
+                        <input type="hidden" name="command" value="top up balance">
 
                         <div style="margin-bottom: 25px" class="control-group">
-                            <select class="selectpicker form-control" name="raceName"
-                                    required>
-                                <option value="" disabled selected>
-                                    Name of the Race*
-                                </option>
-
-                                <c:forEach items="${raceNames}" var="name">
-                                    <option> ${name} </option>
-                                </c:forEach>
-                            </select>
+                                            <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-lock"></i></span>
+                            <input type="text" class="form-control"
+                                   name="paymentId"
+                                   placeholder="**-***-***" required>
+                            <div class="text-center"> ${incorrect_id}</div>
                         </div>
-
 
 
                         <div style="margin-top:10px" class="form-group">
                             <!-- Button -->
                             <div class="col-md-12 controls">
-                                <input type="submit" class="btn btn-success text-center" value="Hold Race">
+                                <input type="submit" class="btn btn-success text-center" value="Make Payment">
                             </div>
                         </div>
 

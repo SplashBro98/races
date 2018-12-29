@@ -5,9 +5,11 @@ import com.epam.race.entity.Horse;
 import com.epam.race.entity.Race;
 import com.epam.race.repository.RepositoryException;
 import com.epam.race.repository.impl.RaceRepository;
+import com.epam.race.specification.SQLSpecification;
 import com.epam.race.specification.bet.SelectBetsByRaceIdSpecification;
 import com.epam.race.specification.horse.SelectHorsesByRaceSpecification;
 import com.epam.race.specification.race.SelectAllRacesSpecification;
+import com.epam.race.specification.race.SelectRaceBetsSpecification;
 import com.epam.race.specification.race.SelectRaceByNameSpecification;
 import com.epam.race.specification.race.SelectRaceIdSpecification;
 
@@ -79,17 +81,6 @@ public class RaceService {
         }
     }
 
-    public List<String> findRaceBetsAndHorses(int raceId, List<Bet> bets, List<Horse> horses)
-            throws ServiceException {
-        try{
-            return RaceRepository.getInstance().findRaceBetsAndHorses(new SelectBetsByRaceIdSpecification(raceId),
-                    new SelectHorsesByRaceSpecification(raceId),bets, horses);
-
-        }catch (RepositoryException e){
-            throw new ServiceException(e);
-        }
-    }
-
     public void addRace(Race race) throws ServiceException {
         try {
             RaceRepository.getInstance().add(race);
@@ -102,6 +93,14 @@ public class RaceService {
         try {
             return RaceRepository.getInstance().findRaceId(new SelectRaceIdSpecification(raceName));
         } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    public Race findRaceWithBetsAndHorses(String raceName) throws ServiceException {
+        try {
+            return RaceRepository.getInstance().findRaceWithBetsAndHorses(raceName);
+        }catch (RepositoryException e){
             throw new ServiceException(e);
         }
     }

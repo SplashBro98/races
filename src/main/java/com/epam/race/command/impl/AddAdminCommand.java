@@ -5,7 +5,7 @@ import com.epam.race.command.PageManager;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class HoldRaceCommand implements Command {
+public class AddAdminCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest req) {

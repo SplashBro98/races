@@ -25,7 +25,7 @@
 </head>
 <body>
 
-<c:import url="withoutLoginHeader.jsp"/>
+<c:import url="header.jsp"/>
 
 <section class="wrapper fixed-top">
     <div class="overlays"></div><!--Mascara de imagen-->
@@ -39,27 +39,11 @@
                              class="mainbox col-md-8  col-sm-8">
                             <div class="panel panel-info">
                                 <div class="panel-heading" style="margin-bottom: 20px">
-                                    <div class="panel-title text-center"><h3>Sign Up Form</h3></div>
+                                    <div class="panel-title text-center"><h3>Add Bookmaker Form</h3></div>
                                 </div>
                                 <div class="panel-body">
-                                    <form id="signupform">
-                                        <input type="hidden" name="command" value="sign up">
-
-
-                                        <label class="col-md-6 control-label" style="margin-bottom: 15px">
-                                            <input type="text" class="form-control" name="name"
-                                                   pattern="[A-Za-zА-Яа-я -]{1,30}" value="${name}"
-                                                   placeholder="First Name*" required>
-                                            <div class="text-center">${incorrect_name}</div>
-                                        </label>
-
-
-                                        <label class="col-md-6 control-label" style="margin-bottom: 15px">
-                                            <input type="text" class="form-control" name="surname"
-                                                   pattern="[A-Za-zА-Яа-я -]{1,30}" value="${surname}"
-                                                   placeholder="Last Name*" required>
-                                            ${incorrect_surname}
-                                        </label>
+                                    <form>
+                                        <input type="hidden" name="command" value="add bookmaker">
 
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
@@ -97,20 +81,10 @@
                                             <!-- Button -->
                                             <div class="col-md-12">
                                                 <input type="submit" class="btn btn-success"
-                                                       value="Sign Up">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                                    <a href="/main?command=to log in">
-                                                        Sign In
-                                                    </a>
-                                                </div>
+                                                       value="Add Bookmaker">
                                             </div>
                                         </div>
                                     </form>
-
                                 </div>
                             </div>
                         </div>
@@ -120,6 +94,7 @@
         </div>
     </div>
 </section>
+<c:import url="footer.jsp"/>
 
 
 </body>

@@ -9,12 +9,13 @@
 <head>
     <title>Profile</title>
     <link href="/css/profile.css" rel="stylesheet" type="text/css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
     <%--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>--%>
     <%--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--%>
-    <link href="/vendors/jquery/jquery-1.11.1.min.js">
-    <link href="/vendors/jquery/jquery.min.js">
-    <link href="/vendors/bootstrap/js/bootstrap.min.js">
-    <link href="/vendors/bootstrap/css/bootstrap_main.min.css">
+    <%--<link href="/vendors/jquery/jquery-1.11.1.min.js">--%>
+    <%--<link href="/vendors/jquery/jquery.min.js">--%>
+    <%--<link href="/vendors/bootstrap/js/bootstrap.min.js">--%>
+    <%--<link href="/vendors/bootstrap/css/bootstrap_main.min.css">--%>
 
 </head>
 <body>
@@ -45,8 +46,13 @@
                                         <td>Email:</td>
                                         <td>${user.email}</td>
                                     </tr>
+                                    <c:if test="${role eq 'client'}">
+                                        <tr>
+                                            <td>Amount:</td>
+                                            <td>${user.amount}</td>
+                                        </tr>
+                                    </c:if>
 
-                                    <tr>
                                     </tbody>
                                 </table>
 

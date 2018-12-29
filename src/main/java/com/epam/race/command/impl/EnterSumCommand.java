@@ -42,9 +42,10 @@ public class EnterSumCommand implements Command {
 
             UserBetService userBetService = new UserBetService();
             int betId = Integer.parseInt(req.getSession().getAttribute("betId").toString());
+            double coeff = Double.parseDouble(req.getSession().getAttribute("coeff").toString());
 
             service.updateUserAmount(login,userAmount.subtract(sumOfBet));
-            userBetService.addUserBet(new UserBet(betId,login,sumOfBet));
+            userBetService.addUserBet(new UserBet(betId,login,sumOfBet,coeff));
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
 

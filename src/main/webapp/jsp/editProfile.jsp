@@ -25,7 +25,7 @@
 </head>
 <body>
 
-<c:import url="withoutLoginHeader.jsp"/>
+<c:import url="header.jsp"/>
 
 <section class="wrapper fixed-top">
     <div class="overlays"></div><!--Mascara de imagen-->
@@ -97,16 +97,7 @@
                                             <!-- Button -->
                                             <div class="col-md-12">
                                                 <input type="submit" class="btn btn-success"
-                                                       value="Sign Up">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                                    <a href="/main?command=to log in">
-                                                        Sign In
-                                                    </a>
-                                                </div>
+                                                       value="Save Changes">
                                             </div>
                                         </div>
                                     </form>
@@ -120,7 +111,7 @@
         </div>
     </div>
 </section>
-
+<c:import url="footer.jsp"/>
 
 </body>
 </html>

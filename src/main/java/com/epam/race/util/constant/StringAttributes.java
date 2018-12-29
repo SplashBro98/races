@@ -22,6 +22,7 @@ public final class StringAttributes {
     public static final String PAGE = "page";
     public static final String LOCALE = "locale";
     public static final String ROLE = "role";
+    public static final String BET = "bet";
     public static final String INCORRECT = "incorrect";
     public static final String TYPE = "type";
     public static final String RACE_NAME = "raceName";

@@ -3,7 +3,7 @@ package com.epam.race.entity;
 import java.math.BigDecimal;
 
 public class Payment implements Entity {
-    private int paymentId;
+    private String paymentId;
     private BigDecimal sum;
 
     public Payment() {
@@ -13,16 +13,16 @@ public class Payment implements Entity {
         this.sum = sum;
     }
 
-    public Payment(int paymentId, BigDecimal sum) {
+    public Payment(String paymentId, BigDecimal sum) {
         this.paymentId = paymentId;
         this.sum = sum;
     }
 
-    public int getPaymentId() {
+    public String getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(int paymentId) {
+    public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
     }
 

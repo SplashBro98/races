@@ -34,38 +34,41 @@
             </li>
 
             <c:if test="${role eq 'admin'}">
-                <li class="nav-item navbar-brand dropdown thumb-dropdown">
-                    <a href="#" class="dropdown-toggle"
-                       data-toggle="dropdown">Actions <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="#">
-                                Preview carousel indicators
-                            </a>
-                        </li>
-                    </ul>
-
-                        <%--<button class="btn btn-success dropdown-toggle" type="button"--%>
-                                <%--data-toggle="dropdown" aria-expanded="false">--%>
-                            <%--Actions--%>
-                        <%--</button>--%>
-                        <%--<a class="dropdown-item" href="/main?command=to add race"><h4>Add Race</h4></a>--%>
-                        <%--<a class="divider"></a>--%>
-                        <%--<a class="dropdown-item" href="/main?command=to hold race"><h4>Hold Horse Race</h4></a>--%>
-                        <%--<a class="divider"></a>--%>
-                        <%--<a class="dropdown-item" href="/main?command=to add payment"><h4>Add Payment</h4></a>--%>
-
+                <li class="nav-item navbar-brand">
+                    <select class="selectpicker form-control" style="background-color: dimgray; color: white"
+                            onchange="location = this.value;">
+                        <option value="" disabled selected>
+                            Actions
+                        </option>
+                        <option value="/main?command=to add race">
+                            Add Race
+                        </option>
+                        <option value="/main?command=to hold race">
+                            Hold Race
+                        </option>
+                        <option value="/main?command=to add payment">
+                            Add Payment
+                        </option>
+                        <option value="/main?command=to add admin">
+                            Add Admin
+                        </option>
+                        <option value="/main?command=to add bookmaker">
+                            Add Bookmaker
+                        </option>
+                    </select>
                 </li>
             </c:if>
             <c:if test="${role eq 'bookmaker'}">
                 <li class="nav-item navbar-brand">
-                    <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle" type="button"
-                                data-toggle="dropdown" aria-expanded="false">
+                    <select class="selectpicker form-control" style="background-color: dimgray; color: white"
+                            onchange="location = this.value;">
+                        <option value="" disabled selected>
                             Actions
-                        </button>
-                        <a class="dropdown-item" href="/main?command=to add bet"><h4>Add Bet</h4></a>
-                    </div>
+                        </option>
+                        <option value="/main?command=to add bet">
+                            Add Bet
+                        </option>
+                    </select>
                 </li>
             </c:if>
             <c:if test="${role eq 'client'}">
@@ -75,7 +78,7 @@
                         Your Bets</h2></a>
                 </li>
                 <li class="nav-item navbar-brand">
-                    <a href="/main?command=top up balance"><h2>
+                    <a href="/main?command=to top up balance"><h2>
                         Top up the balance</h2></a>
                 </li>
 
@@ -83,48 +86,50 @@
         </ul>
 
         <%--<li class="dropdown thumb-dropdown">--%>
-            <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">My Snippets <span class="caret"></span></a>--%>
-            <%--<ul class="dropdown-menu" role="menu">--%>
-                <%--<li role="presentation" class="dropdown-header">Simple thumbnail</li>--%>
-                <%--<li>--%>
-                    <%--<a href="#">--%>
-                        <%--Preview carousel indicators--%>
-                        <%--<div class="thumbnail">--%>
-                            <%--<img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/1.jpg">--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<a href="#">--%>
-                        <%--Simple subscribe form--%>
-                        <%--<div class="thumbnail">--%>
-                            <%--<img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/2.jpg">--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<a href="#">--%>
-                        <%--Flat user profile--%>
-                        <%--<div class="thumbnail">--%>
-                            <%--<img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/3.jpg">--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li class="divider"></li>--%>
-                <%--<li role="presentation" class="dropdown-header">Thumbnail with caption</li>--%>
-                <%--<li>--%>
-                    <%--<a href="#">--%>
-                        <%--Discount labels--%>
-                        <%--<div class="thumbnail">--%>
-                            <%--<img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/4.jpg">--%>
-                            <%--<div class="caption">--%>
-                                <%--<p>You can add any text for describe thumbnail here.</p>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-            <%--</ul>--%>
+        <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">My Snippets <span class="caret"></span></a>--%>
+        <%--<ul class="dropdown-menu" role="menu">--%>
+        <%--<li role="presentation" class="dropdown-header">Simple thumbnail</li>--%>
+        <%--<li>--%>
+        <%--<a href="#">--%>
+        <%--Preview carousel indicators--%>
+        <%--<div class="thumbnail">--%>
+        <%--<img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/1.jpg">--%>
+        <%--</div>--%>
+        <%--</a>--%>
         <%--</li>--%>
+        <%--<li>--%>
+        <%--<a href="#">--%>
+        <%--Simple subscribe form--%>
+        <%--<div class="thumbnail">--%>
+        <%--<img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/2.jpg">--%>
+        <%--</div>--%>
+        <%--</a>--%>
+        <%--</li>--%>
+        <%--<li>--%>
+        <%--<a href="#">--%>
+        <%--Flat user profile--%>
+        <%--<div class="thumbnail">--%>
+        <%--<img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/3.jpg">--%>
+        <%--</div>--%>
+        <%--</a>--%>
+        <%--</li>--%>
+        <%--<li class="divider"></li>--%>
+        <%--<li role="presentation" class="dropdown-header">Thumbnail with caption</li>--%>
+        <%--<li>--%>
+        <%--<a href="#">--%>
+        <%--Discount labels--%>
+        <%--<div class="thumbnail">--%>
+        <%--<img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/4.jpg">--%>
+        <%--<div class="caption">--%>
+        <%--<p>You can add any text for describe thumbnail here.</p>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</a>--%>
+        <%--</li>--%>
+        <%--</ul>--%>
+        <%--</li>--%>
+
+
 
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
