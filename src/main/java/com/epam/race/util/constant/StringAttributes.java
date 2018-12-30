@@ -37,6 +37,9 @@ public final class StringAttributes {
     public static final String INCORRECT_TIME = "incorrect_time";
     public static final String INCORRECT_DATE = "incorrect_date";
     public static final String PASSWORDS_NOT_MATCH = "not_confirmed";
+    public static final String ADMIN_LOGIN = "admin_login";
+    public static final String BOOKMAKER_LOGIN = "bookmaker_login";
+    public static final String BLOCKED = "blocked";
 
 
 
@@ -51,5 +54,6 @@ public final class StringAttributes {
     public static final String ATTRIBUTE_INCORRECT_TIME = "Incorrect time";
     public static final String ATTRIBUTE_INCORRECT_DATE = "Incorrect date";
     public static final String ATTRIBUTE_PASSWORDS_NOT_MATCH = "Passwords don`t match";
+    public static final String ATTRIBUTE_BLOCKED = "You are blocked";
 
 }

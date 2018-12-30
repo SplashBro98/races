@@ -12,7 +12,9 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <link href="/css/table.css" rel="stylesheet" type="text/css">
+    <%--<link href="/css/table.css" rel="stylesheet" type="text/css">--%>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+              rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
@@ -22,9 +24,6 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Horses</h3>
-                </div>
-                <div class="panel-body">
-                    <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
                 </div>
                 <table class="table table-hover" id="dev-table">
                     <thead>

@@ -1,17 +1,11 @@
 package com.epam.race.service;
 
-import com.epam.race.entity.Bet;
-import com.epam.race.entity.Horse;
 import com.epam.race.entity.Race;
-import com.epam.race.repository.RepositoryException;
-import com.epam.race.repository.impl.RaceRepository;
-import com.epam.race.specification.SQLSpecification;
-import com.epam.race.specification.bet.SelectBetsByRaceIdSpecification;
-import com.epam.race.specification.horse.SelectHorsesByRaceSpecification;
-import com.epam.race.specification.race.SelectAllRacesSpecification;
-import com.epam.race.specification.race.SelectRaceBetsSpecification;
-import com.epam.race.specification.race.SelectRaceByNameSpecification;
-import com.epam.race.specification.race.SelectRaceIdSpecification;
+import com.epam.race.database.repository.RepositoryException;
+import com.epam.race.database.repository.impl.RaceRepository;
+import com.epam.race.database.specification.race.SelectAllRacesSpecification;
+import com.epam.race.database.specification.race.SelectRaceByNameSpecification;
+import com.epam.race.database.specification.race.SelectRaceIdSpecification;
 
 import java.util.ArrayList;
 import java.util.Collections;

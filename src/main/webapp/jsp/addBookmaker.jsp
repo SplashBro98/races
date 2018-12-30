@@ -48,7 +48,7 @@
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="text" class="form-control" name="login"
-                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${login}"
+                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${bookmaker_login}"
                                                    placeholder="Login*" required>
                                             ${incorrect_login}
                                         </label>

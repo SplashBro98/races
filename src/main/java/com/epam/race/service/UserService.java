@@ -1,13 +1,10 @@
 package com.epam.race.service;
 
-import com.epam.race.repository.RepositoryException;
-import com.epam.race.repository.impl.UserRepository;
-import com.epam.race.specification.user.SelectAllUsersSpecification;
+import com.epam.race.database.repository.RepositoryException;
+import com.epam.race.database.repository.impl.UserRepository;
+import com.epam.race.database.specification.user.*;
 import com.epam.race.entity.User;
-import com.epam.race.specification.SQLSpecification;
-import com.epam.race.specification.user.SelectUserByLoginAndPasswordSpecification;
-import com.epam.race.specification.user.SelectUserByLoginSpecification;
-import com.epam.race.specification.user.UpdateAmountSpecification;
+import com.epam.race.database.specification.SQLSpecification;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -44,6 +41,24 @@ public class UserService {
         }
     }
 
+    public void blockUser(String login) throws ServiceException {
+        try{
+            SQLSpecification sqlSpecification = new BlockUserSpecification(login);
+            UserRepository.getInstance().update(sqlSpecification);
+        }catch (RepositoryException e){
+            throw new ServiceException(e);
+        }
+    }
+
+    public void unlockUser(String login) throws ServiceException {
+        try{
+            SQLSpecification sqlSpecification = new UnlockUserSpecification(login);
+            UserRepository.getInstance().update(sqlSpecification);
+        }catch (RepositoryException e){
+            throw new ServiceException(e);
+        }
+    }
+
     public List<User> findAllUsers() throws ServiceException {
         try {
             return UserRepository.getInstance().query(new SelectAllUsersSpecification());
@@ -59,6 +74,15 @@ public class UserService {
     public void updateUserAmount(String login, BigDecimal amount) throws ServiceException {
         try {
             UserRepository.getInstance().update(new UpdateAmountSpecification(amount, login));
+        }catch (RepositoryException e){
+            throw new ServiceException(e);
+        }
+    }
+
+    public void updateUser(User user) throws ServiceException {
+        try{
+            SQLSpecification updateSpecification = new UpdateUserSpecification(user);
+            UserRepository.getInstance().update(updateSpecification);
         }catch (RepositoryException e){
             throw new ServiceException(e);
         }

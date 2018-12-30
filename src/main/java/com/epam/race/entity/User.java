@@ -14,8 +14,10 @@ public class User implements Entity{
     private String email;
     private UserType userType;
     private BigDecimal amount;
+    private boolean isLocked;
 
     public User() {
+        this.isLocked = false;
     }
 
     public User(int userId, String name, String surname, String login,
@@ -27,6 +29,7 @@ public class User implements Entity{
         this.password = password;
         this.email = email;
         this.userType = userType;
+        this.isLocked = false;
     }
 
     public User(String name, String surname, String login,
@@ -38,6 +41,7 @@ public class User implements Entity{
         this.email = email;
         this.userType = userType;
         this.amount = amount;
+        this.isLocked = false;
     }
 
     public String getName() {
@@ -103,5 +107,13 @@ public class User implements Entity{
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public boolean getIsLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 }

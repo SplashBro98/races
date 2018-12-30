@@ -24,7 +24,7 @@ public class ToProfileCommand implements Command {
             String login = req.getSession().getAttribute(StringAttributes.LOGIN).toString();
             User user = new UserService().findUserByLogin(login);
             req.getSession().setAttribute(StringAttributes.USER,user);
-            List<UserBet> userBets = new UserBetService().findUserBets(login);
+            List<UserBet> userBets = new UserBetService().findUserBetsByLogin(login);
 
             if(userBets.isEmpty()){
                 req.setAttribute("nothing","You haven`t any bets at the moment");

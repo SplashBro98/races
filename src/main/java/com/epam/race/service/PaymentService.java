@@ -1,10 +1,10 @@
 package com.epam.race.service;
 
 import com.epam.race.entity.Payment;
-import com.epam.race.repository.RepositoryException;
-import com.epam.race.repository.impl.PaymentRepository;
-import com.epam.race.specification.SQLSpecification;
-import com.epam.race.specification.payment.SelectPaymentByIdSpecification;
+import com.epam.race.database.repository.RepositoryException;
+import com.epam.race.database.repository.impl.PaymentRepository;
+import com.epam.race.database.specification.SQLSpecification;
+import com.epam.race.database.specification.payment.SelectPaymentByIdSpecification;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +27,16 @@ public class PaymentService {
                 return Optional.empty();
             }
             return Optional.of(paymentList.get(0));
+        }catch (RepositoryException e){
+            throw new ServiceException(e);
+        }
+    }
+
+    public void deletePayment(String paymentId) throws ServiceException {
+        try{
+            Payment payment = new Payment();
+            payment.setPaymentId(paymentId);
+            PaymentRepository.getInstance().remove(payment);
         }catch (RepositoryException e){
             throw new ServiceException(e);
         }

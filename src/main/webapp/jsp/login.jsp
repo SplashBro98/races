@@ -44,15 +44,15 @@
                             <div style="padding-top:40px" class="panel-body">
 
                                 <h6>${incorrect}</h6>
+                                <h6>${blocked}</h6>
                                 <form id="loginform" role="form" class="form-horizontal" action="/main"
                                       method="post">
                                     <input type="hidden" name="command" value="log in">
 
                                     <div style="margin-bottom: 25px" class="form-group">
-
                                         <input id="login-username" type="text"
-                                               class="form-control" oninvalid="InvalidMsg(this);"
-                                               name="login" placeholder="Login"
+                                               class="form-control"
+                                               name="login" placeholder="Login*"
                                                pattern="[a-zA-Z0-9А-Яа-я_`-]{4,30}" required>
                                     </div>
 
@@ -60,7 +60,7 @@
                                         <input id="login-password" type="password" class="form-control"
                                                name="password"
                                                pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
-                                               placeholder="Password" required>
+                                               placeholder="Password*" required>
                                     </div>
 
                                     <div style="margin-top:10px" class="form-group">

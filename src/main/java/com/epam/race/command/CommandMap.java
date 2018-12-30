@@ -2,10 +2,8 @@ package com.epam.race.command;
 
 import com.epam.race.command.impl.*;
 import com.epam.race.command.impl.page.*;
-import com.epam.race.command.impl.*;
 import com.epam.race.command.impl.LogInCommand;
 import com.epam.race.command.impl.SignUpCommand;
-import com.epam.race.command.impl.page.*;
 
 import java.util.EnumMap;
 
@@ -19,12 +17,11 @@ public enum CommandMap {
         commandMap.put(CommandType.ERROR, new NoCommand());
         commandMap.put(CommandType.TO_SIGN_UP, new ToSignUpCommand());
         commandMap.put(CommandType.TO_ADD_HORSE, new ToAddHorseCommand());
-        commandMap.put(CommandType.TO_LOG_IN, new ToLoginCommand());
+        commandMap.put(CommandType.TO_LOG_IN, new ToLogInCommand());
         commandMap.put(CommandType.SIGN_UP, new SignUpCommand());
         //commandMap.put(CommandType.ADD_HORSE, new AddHorseCommand());
         //commandMap.put(CommandType.DELETE_HORSE, new DeleteHorseCommand());
         commandMap.put(CommandType.TO_DELETE_HORSE, new ToDeleteHorseCommand());
-        //commandMap.put(CommandType.SELECT_HORSE, new SelectHorseCommand());
         commandMap.put(CommandType.SELECT_RACE, new SelectRaceCommand());
         commandMap.put(CommandType.ADD_RACE, new AddRaceCommand());
         commandMap.put(CommandType.TO_ADD_RACE, new ToAddRaceCommand());
@@ -53,6 +50,11 @@ public enum CommandMap {
         commandMap.put(CommandType.EDIT_BET, new EditBetCommand());
         commandMap.put(CommandType.TO_EDIT_PROFILE, new ToEditProfileCommand());
         commandMap.put(CommandType.EDIT_PROFILE, new EditProfileCommand());
+        commandMap.put(CommandType.TO_RACE_RESULTS, new ToRaceResultsCommand());
+        commandMap.put(CommandType.TO_USER_LIST, new ToUserListCommand());
+        commandMap.put(CommandType.TO_USER_BETS, new ToUserBetsCommand());
+        commandMap.put(CommandType.BLOCK_USER, new BlockUserCommand());
+        commandMap.put(CommandType.UNLOCK_USER, new UnlockUserCommand());
     }
     public Command getCommand(CommandType type){
         Command result = commandMap.get(type);

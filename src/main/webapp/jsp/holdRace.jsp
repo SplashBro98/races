@@ -39,14 +39,12 @@
                         </div>
 
 
-
                         <div style="margin-top:10px" class="form-group">
                             <!-- Button -->
                             <div class="col-md-12 controls">
                                 <input type="submit" class="btn btn-success text-center" value="Hold Race">
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>

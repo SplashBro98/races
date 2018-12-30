@@ -116,7 +116,7 @@ public class SignUpCommand implements Command {
             if (flag) {
 
                 req.getSession().setAttribute(StringAttributes.LOGIN, user.getLogin());
-                req.getSession().setAttribute(StringAttributes.ROLE, user.getUserType().toString());
+                req.getSession().setAttribute(StringAttributes.ROLE, user.getUserType().toString().toLowerCase());
                 req.getSession().setAttribute(StringAttributes.LOCALE, Locale.getDefault());
 
                 new UserService().addUser(user);

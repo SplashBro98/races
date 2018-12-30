@@ -33,9 +33,9 @@
         <div class="row h-100 justify-content-between align-items-center">
             <div class="col-lg-12">
                 <div class="text-center">
-                    <%--Sign up form--%>
+
                     <div class="container">
-                        <div id="signupbox" style="margin-right: auto; margin-left: auto"
+                        <div style="margin-right: auto; margin-left: auto"
                              class="mainbox col-md-8  col-sm-8">
                             <div class="panel panel-info">
                                 <div class="panel-heading" style="margin-bottom: 20px">
@@ -43,14 +43,14 @@
                                 </div>
                                 <div class="panel-body">
                                     <form>
-                                        <input type="hidden" name="command" value="sign up">
+                                        <input type="hidden" name="command" value="add admin">
 
 
 
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="text" class="form-control" name="login"
-                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${login}"
+                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${admin_login}"
                                                    placeholder="Login*" required>
                                             ${incorrect_login}
                                         </label>

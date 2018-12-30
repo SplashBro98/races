@@ -25,6 +25,10 @@ public enum PageManager {
     public static final String PATH_ADD_BOOKMAKER_PAGE = "PATH_ADD_BOOKMAKER_PAGE";
     public static final String PATH_EDIT_BET_PAGE = "PATH_EDIT_BET_PAGE";
     public static final String PATH_EDIT_PROFILE_PAGE = "PATH_EDIT_PROFILE_PAGE";
+    public static final String PATH_RESULTS_PAGE = "PATH_RESULTS_PAGE";
+    public static final String PATH_RACE_RESULTS_PAGE = "PATH_RACE_RESULTS_PAGE";
+    public static final String PATH_USER_LIST_PAGE = "PATH_USER_LIST_PAGE";
+    public static final String PATH_USER_BETS_PAGE = "PATH_USER_BETS_PAGE";
 
     public String getProperty(String key){
         return bundle.getString(key);

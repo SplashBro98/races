@@ -55,6 +55,9 @@
                         <option value="/main?command=to add bookmaker">
                             Add Bookmaker
                         </option>
+                        <option value="/main?command=to user list">
+                            List of users
+                        </option>
                     </select>
                 </li>
             </c:if>
@@ -83,6 +86,10 @@
                 </li>
 
             </c:if>
+            <li class="nav-item navbar-brand">
+                <a href="/main?command=to race results"><h2>
+                    Race Results</h2></a>
+            </li>
         </ul>
 
         <%--<li class="dropdown thumb-dropdown">--%>

@@ -30,7 +30,7 @@ public class LogInCommand implements Command {
 
 
         LoginValidator loginValidator = new LoginValidator();
-        if(!loginValidator.checkLogInInfo(login, password)){
+        if (!loginValidator.checkLogInInfo(login, password)) {
             req.setAttribute(StringAttributes.INCORRECT, StringAttributes.ATTRIBUTE_WRONG_EMAIL_OR_PASSWORD);
             return PageManager.INSTANCE.getProperty(PageManager.PATH_LOGIN_PAGE);
         }
@@ -38,27 +38,32 @@ public class LogInCommand implements Command {
         password = Encryption.encrypt(password);
         String page;
         try {
-           Optional<User> maybeUser = new UserService().findUser(login, password);
+            Optional<User> maybeUser = new UserService().findUser(login, password);
 
             if (maybeUser.isPresent()) {
 
-                String role = maybeUser.get().getUserType().toString().toLowerCase();
+                User user = maybeUser.get();
+                if (user.getIsLocked()) {
+                    req.setAttribute(StringAttributes.BLOCKED, StringAttributes.ATTRIBUTE_BLOCKED);
+                    return PageManager.INSTANCE.getProperty(PageManager.PATH_LOGIN_PAGE);
+                }
 
-                req.getSession().setAttribute(StringAttributes.ROLE,role);
+                String role = user.getUserType().toString().toLowerCase();
+
+                req.getSession().setAttribute(StringAttributes.ROLE, role);
                 req.getSession().setAttribute(StringAttributes.LOCALE, Locale.getDefault());
-                req.getSession().setAttribute(StringAttributes.LOGIN,login);
+                req.getSession().setAttribute(StringAttributes.LOGIN, login);
 
-                RaceService raceService = new RaceService(1,5);
+                RaceService raceService = new RaceService(1, 5);
                 List<Object> attributes = raceService.mainAttributes();
 
-                req.getSession().setAttribute(StringConstant.CURRENT_PAGE,attributes.get(0));
+                req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
                 req.getSession().setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
 
-                req.getSession().setAttribute(StringAttributes.RACES,raceService.findCurrentRaces());
+                req.getSession().setAttribute(StringAttributes.RACES, raceService.findCurrentRaces());
 
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
-            }
-            else {
+            } else {
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_LOGIN_PAGE);
                 req.setAttribute(StringAttributes.INCORRECT, StringAttributes.ATTRIBUTE_WRONG_EMAIL_OR_PASSWORD);
             }

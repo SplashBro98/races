@@ -39,16 +39,16 @@
                              class="mainbox col-md-8  col-sm-8">
                             <div class="panel panel-info">
                                 <div class="panel-heading" style="margin-bottom: 20px">
-                                    <div class="panel-title text-center"><h3>Sign Up Form</h3></div>
+                                    <div class="panel-title text-center"><h3>Edit Profile Form</h3></div>
                                 </div>
                                 <div class="panel-body">
                                     <form id="signupform">
-                                        <input type="hidden" name="command" value="sign up">
+                                        <input type="hidden" name="command" value="edit profile">
 
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="text" class="form-control" name="name"
-                                                   pattern="[A-Za-zА-Яа-я -]{1,30}" value="${name}"
+                                                   pattern="[A-Za-zА-Яа-я -]{1,30}" value="${user.name}"
                                                    placeholder="First Name*" required>
                                             <div class="text-center">${incorrect_name}</div>
                                         </label>
@@ -56,7 +56,7 @@
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="text" class="form-control" name="surname"
-                                                   pattern="[A-Za-zА-Яа-я -]{1,30}" value="${surname}"
+                                                   pattern="[A-Za-zА-Яа-я -]{1,30}" value="${user.surname}"
                                                    placeholder="Last Name*" required>
                                             ${incorrect_surname}
                                         </label>
@@ -64,7 +64,7 @@
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="text" class="form-control" name="login"
-                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${login}"
+                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${user.login}"
                                                    placeholder="Login*" required>
                                             ${incorrect_login}
                                         </label>
@@ -73,7 +73,7 @@
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="password" class="form-control" name="password"
                                                    pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
-                                                   placeholder="Password*" value="${password}" required>
+                                                   placeholder="Password*" value="${user.password}" required>
                                             ${incorrect_password}
                                         </label>
 
@@ -82,13 +82,13 @@
                                                    name="confirmedPassword"
                                                    pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
                                                    placeholder="Confirm Password*"
-                                                   value="${confirmedPassword}" required>
+                                                   value="${user.password}" required>
                                             ${not_confirmed}
                                         </label>
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="email" class="form-control" name="email"
-                                                   placeholder="Email Address*" value="${email}"
+                                                   placeholder="Email Address*" value="${user.email}"
                                                    required>
                                             ${incorrect_email}
                                         </label>

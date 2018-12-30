@@ -10,7 +10,6 @@ public enum CommandType {
     TO_ADD_HORSE,
     DELETE_HORSE,
     TO_DELETE_HORSE,
-    SELECT_HORSE,
     SELECT_RACE,
     ADD_RACE,
     TO_ADD_RACE,
@@ -38,5 +37,10 @@ public enum CommandType {
     TO_EDIT_BET,
     EDIT_BET,
     TO_EDIT_PROFILE,
-    EDIT_PROFILE
+    EDIT_PROFILE,
+    TO_RACE_RESULTS,
+    TO_USER_LIST,
+    TO_USER_BETS,
+    BLOCK_USER,
+    UNLOCK_USER
 }

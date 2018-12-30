@@ -55,9 +55,9 @@
 
                                     </tbody>
                                 </table>
-
-
-                                <a href="/main?command=edit profile" class="btn btn-primary">Edit Profile</a>
+                                <c:if test="${role eq 'client'}">
+                                    <a href="/main?command=to edit profile" class="btn btn-primary">Edit Profile</a>
+                                </c:if>
                             </div>
                         </div>
                     </div>

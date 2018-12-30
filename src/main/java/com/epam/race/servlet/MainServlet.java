@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.epam.race.command.Command;
-import com.epam.race.pool.ConnectionPool;
+import com.epam.race.database.pool.ConnectionPool;
 import com.epam.race.util.constant.StringConstant;
 
 import javax.servlet.ServletException;

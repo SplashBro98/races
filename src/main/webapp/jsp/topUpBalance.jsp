@@ -29,7 +29,7 @@
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                             <input type="text" class="form-control"
-                                   name="paymentId"
+                                   name="paymentId"  pattern="^\d\d-\d\d\d-\d\d\d$"
                                    placeholder="**-***-***" required>
                             <div class="text-center"> ${incorrect_id}</div>
                         </div>

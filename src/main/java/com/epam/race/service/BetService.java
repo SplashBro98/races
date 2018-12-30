@@ -1,10 +1,10 @@
 package com.epam.race.service;
 
 import com.epam.race.entity.Bet;
-import com.epam.race.repository.RepositoryException;
-import com.epam.race.repository.impl.BetRepository;
-import com.epam.race.specification.bet.EditBetSpecification;
-import com.epam.race.specification.bet.SelectBetsByRaceIdSpecification;
+import com.epam.race.database.repository.RepositoryException;
+import com.epam.race.database.repository.impl.BetRepository;
+import com.epam.race.database.specification.bet.EditBetSpecification;
+import com.epam.race.database.specification.bet.SelectBetsByRaceIdSpecification;
 
 import java.util.List;
 
