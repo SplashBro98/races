@@ -1,6 +1,6 @@
 package com.epam.race.database.specification.race;
 
-import com.epam.race.entity.Race;
+import com.epam.race.entity.common.Race;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.specification.SQLFunction;
 import com.epam.race.database.specification.SQLSpecification;

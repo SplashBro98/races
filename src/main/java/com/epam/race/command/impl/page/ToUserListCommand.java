@@ -2,7 +2,7 @@ package com.epam.race.command.impl.page;
 
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
-import com.epam.race.entity.User;
+import com.epam.race.entity.user.User;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserService;
 import org.apache.logging.log4j.LogManager;

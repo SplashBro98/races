@@ -1,6 +1,6 @@
 package com.epam.race.service;
 
-import com.epam.race.entity.Bet;
+import com.epam.race.entity.common.Bet;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.repository.impl.BetRepository;
 import com.epam.race.database.specification.bet.EditBetSpecification;

@@ -1,6 +1,6 @@
 package com.epam.race.service;
 
-import com.epam.race.entity.Payment;
+import com.epam.race.entity.common.Payment;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.repository.impl.PaymentRepository;
 import com.epam.race.database.specification.SQLSpecification;

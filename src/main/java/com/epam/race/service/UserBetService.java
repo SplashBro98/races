@@ -1,6 +1,6 @@
 package com.epam.race.service;
 
-import com.epam.race.entity.UserBet;
+import com.epam.race.entity.user.UserBet;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.repository.impl.UserBetRepository;
 import com.epam.race.database.specification.userbet.SelectUserBetsSpecification;

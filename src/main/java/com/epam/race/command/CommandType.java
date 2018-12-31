@@ -15,7 +15,6 @@ public enum CommandType {
     TO_ADD_RACE,
     LOG_OUT,
     TO_PROFILE,
-    PROFILE,
     CHANGE_LANGUAGE,
     TO_MAIN,
     ADD_BET,

@@ -1,6 +1,6 @@
 package com.epam.race.service;
 
-import com.epam.race.entity.Horse;
+import com.epam.race.entity.common.Horse;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.repository.impl.HorseRepository;
 import com.epam.race.database.specification.horse.SelectAllHorsesSpecification;

@@ -1,9 +1,14 @@
 package com.epam.race.command;
 
-import com.epam.race.command.impl.*;
+import com.epam.race.command.impl.admin.*;
+import com.epam.race.command.impl.bookmaker.AddBetCommand;
+import com.epam.race.command.impl.bookmaker.EditBetCommand;
+import com.epam.race.command.impl.client.EditProfileCommand;
+import com.epam.race.command.impl.client.EnterSumCommand;
+import com.epam.race.command.impl.client.TopUpBalanceCommand;
+import com.epam.race.command.impl.common.*;
 import com.epam.race.command.impl.page.*;
-import com.epam.race.command.impl.LogInCommand;
-import com.epam.race.command.impl.SignUpCommand;
+import com.epam.race.command.impl.client.SignUpCommand;
 
 import java.util.EnumMap;
 
@@ -27,7 +32,6 @@ public enum CommandMap {
         commandMap.put(CommandType.TO_ADD_RACE, new ToAddRaceCommand());
         commandMap.put(CommandType.LOG_OUT, new LogOutCommand());
         commandMap.put(CommandType.TO_PROFILE, new ToProfileCommand());
-        commandMap.put(CommandType.PROFILE, new ProfileCommand());
         commandMap.put(CommandType.CHANGE_LANGUAGE, new ChangeLanguageCommand());
         commandMap.put(CommandType.TO_MAIN, new ToMainCommand());
         commandMap.put(CommandType.TO_ADD_BET, new ToAddBetCommand());

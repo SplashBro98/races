@@ -1,6 +1,6 @@
 package com.epam.race.database.repository.impl;
 
-import com.epam.race.entity.Horse;
+import com.epam.race.entity.common.Horse;
 import com.epam.race.database.pool.ConnectionPool;
 import com.epam.race.database.repository.AbstractRepository;
 import com.epam.race.database.repository.RepositoryException;

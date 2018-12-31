@@ -1,6 +1,8 @@
 package com.epam.race.service;
 
-import com.epam.race.entity.Race;
+import com.epam.race.database.specification.SQLSpecification;
+import com.epam.race.database.specification.race.UpdateRaceHeldSpecification;
+import com.epam.race.entity.common.Race;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.repository.impl.RaceRepository;
 import com.epam.race.database.specification.race.SelectAllRacesSpecification;
@@ -30,7 +32,7 @@ public class RaceService {
 
     public List<Object> mainAttributes() throws ServiceException {
 
-        this.findAllRaces();
+        findAllUpcomingRaces();
         ArrayList<Object> result = new ArrayList<>();
         result.add(this.currentPage);
         result.add(this.numberOfPages);
@@ -38,7 +40,7 @@ public class RaceService {
     }
 
 
-    public List<Race> findAllRaces() throws ServiceException {
+    public List<Race> findAllUpcomingRaces() throws ServiceException {
 
         try {
             List<Race> races = RaceRepository.getInstance().query(new SelectAllRacesSpecification());
@@ -51,6 +53,15 @@ public class RaceService {
             }
             return races;
         } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    public void updateRaceState(int raceId) throws ServiceException {
+        try{
+            SQLSpecification sqlSpecification = new UpdateRaceHeldSpecification(raceId);
+            RaceRepository.getInstance().update(sqlSpecification);
+        }catch (RepositoryException e){
             throw new ServiceException(e);
         }
     }
@@ -101,7 +112,7 @@ public class RaceService {
 
     public List<String> findRacesNames() throws ServiceException {
 
-        List<Race> races = findAllRaces();
+        List<Race> races = findAllUpcomingRaces();
         List<String> names = new ArrayList<>();
         races.forEach(r -> names.add(r.getName()));
         return names;

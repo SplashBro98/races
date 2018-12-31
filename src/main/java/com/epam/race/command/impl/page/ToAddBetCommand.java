@@ -2,7 +2,7 @@ package com.epam.race.command.impl.page;
 
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
-import com.epam.race.entity.Race;
+import com.epam.race.entity.common.Race;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +24,7 @@ public class ToAddBetCommand implements Command {
 
         try{
 
-            List<Race> races = new RaceService().findAllRaces();
+            List<Race> races = new RaceService().findAllUpcomingRaces();
             List<String> raceNames = new ArrayList<>();
             Map<String, Integer> raceNameIdMap = new TreeMap<>();
             races.forEach(new Consumer<Race>() {

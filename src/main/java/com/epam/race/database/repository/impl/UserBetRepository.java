@@ -1,14 +1,13 @@
 package com.epam.race.database.repository.impl;
 
-import com.epam.race.entity.Horse;
-import com.epam.race.entity.Race;
+import com.epam.race.entity.common.Horse;
+import com.epam.race.entity.common.Race;
 import com.epam.race.database.pool.ConnectionPool;
 import com.epam.race.database.repository.AbstractRepository;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.specification.userbet.InsertUserBetSpecification;
-import com.epam.race.entity.UserBet;
+import com.epam.race.entity.user.UserBet;
 import com.epam.race.database.specification.SQLSpecification;
-import com.epam.race.database.specification.userbet.SqlUserBetConstant;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +20,11 @@ import java.util.List;
 
 public class UserBetRepository extends AbstractRepository<UserBet> {
     private static UserBetRepository instance;
+    //language=sql
+    private static final String SQL_USER_BETS_SELECT_BY_RACE_ID = "select u.user_login, u.sum, u.coeff, b.position, " +
+            "b.horse_id, h.name, h.age, h.wins from user_bets u " +
+            "join bets b on (u.betid = b.bet_id)" +
+            "join horses h on (h.horse_id = b.horse_id) where b.race_id = ?";
 
     private UserBetRepository() {
 
@@ -84,7 +88,7 @@ public class UserBetRepository extends AbstractRepository<UserBet> {
     public List<UserBet> findUserBetsByRaceId(int raceId) throws RepositoryException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection()) {
             PreparedStatement statement = connection.prepareStatement
-                    (SqlUserBetConstant.SQL_USER_BETS_SELECT_BY_RACE_ID);
+                    (SQL_USER_BETS_SELECT_BY_RACE_ID);
             statement.setInt(1,raceId);
             List<UserBet> userBets = new ArrayList<>();
             ResultSet resultSet = statement.executeQuery();

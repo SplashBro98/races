@@ -1,7 +1,7 @@
 package com.epam.race.util.validation;
 
 import com.epam.race.service.ServiceException;
-import com.epam.race.entity.User;
+import com.epam.race.entity.user.User;
 import com.epam.race.service.UserService;
 
 import java.util.ArrayList;
