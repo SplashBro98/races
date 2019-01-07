@@ -1,16 +1,76 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Иван
-  Date: 30.12.2018
-  Time: 14:48
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title><fmt:message key="label.raceResults" bundle="${var}"/></title>
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
 </head>
-<body>
 
+<body>
+<c:import url="header.jsp"/>
+
+<div class="parallax" style="height: max-content">
+    <div class="overlays"></div>
+    <div class="container h-100">
+        <div class="col-lg-12 text-center">
+
+            <div class="container colortext" style="margin-top: auto">
+
+                <c:forEach items="${raceResults}" var="result">
+                    <div class="container-fluid"
+                         style="background-color:dimgray; margin-top: 10%; margin-bottom: 10%">
+
+                        <div class="container container-pad">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                Race : ${result.race.name}</h3><br>
+                                            <h5 class="panel-title">
+                                                Place : ${result.race.place}</h5>
+                                        </div>
+                                        <table class="table table-hover">
+                                            <thead class="colortext">
+                                            <tr>
+                                                <th><fmt:message key="holder.position" bundle="${var}"/></th>
+                                                <th><fmt:message key="holder.name" bundle="${var}"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="colortext">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>${result.firstHorseName}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>${result.secondHorseName}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>${result.thirdHorseName}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>${result.fourthHorseName}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+</div>
+
+<c:import url="footer.jsp"/>
 </body>
 </html>

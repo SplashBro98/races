@@ -6,5 +6,4 @@ import java.io.IOException;
 
 public interface Command {
     String execute(HttpServletRequest req);
-
 }

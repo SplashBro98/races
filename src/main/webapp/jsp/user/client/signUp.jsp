@@ -15,17 +15,13 @@
     <title>SignUp_JSP</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
-    <%--<link href="/css/login.css" rel="stylesheet" type="text/css">--%>
-    <%--<link href="/css/header.css" rel="stylesheet" type="text/css">--%>
-
-
 </head>
 <body>
 
 <c:import url="../../common/withoutLoginHeader.jsp"/>
 
 <section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
+    <div class="overlays"></div>
     <div class="container h-100">
         <div class="row h-100 justify-content-between align-items-center">
             <div class="col-lg-12">
@@ -64,7 +60,7 @@
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="text" class="form-control" name="login"
-                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${login}"
+                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,100}" value="${login}"
                                                    placeholder="<fmt:message key="holder.login" bundle="${var}"/>*"
                                                    required>
                                             ${incorrect_login}

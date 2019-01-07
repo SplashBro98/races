@@ -1,5 +1,6 @@
 package com.epam.race.database.repository.impl;
 
+import com.epam.race.database.DbCols;
 import com.epam.race.entity.user.User;
 import com.epam.race.entity.user.UserType;
 import com.epam.race.database.repository.AbstractRepository;
@@ -33,11 +34,11 @@ public class UserRepository extends AbstractRepository<User> {
         try {
             User newUser = new User();
             newUser.setUserId(resultSet.getInt("userId"));
-            newUser.setName(resultSet.getString("name"));
-            newUser.setSurname(resultSet.getString("surname"));
-            newUser.setLogin(resultSet.getString("login"));
-            newUser.setPassword(resultSet.getString("password"));
-            newUser.setEmail(resultSet.getString("email"));
+            newUser.setName(resultSet.getString(DbCols.NAME));
+            newUser.setSurname(resultSet.getString(DbCols.SURNAME));
+            newUser.setLogin(resultSet.getString(DbCols.LOGIN));
+            newUser.setPassword(resultSet.getString(DbCols.PASSWORD));
+            newUser.setEmail(resultSet.getString(DbCols.EMAIL));
             newUser.setAmount(resultSet.getBigDecimal("amount"));
             newUser.setLocked(resultSet.getBoolean("is_locked"));
             int type = resultSet.getInt("userType_id");
@@ -57,7 +58,7 @@ public class UserRepository extends AbstractRepository<User> {
             }
             return newUser;
         }catch (SQLException e){
-            throw new RepositoryException(e);
+            throw new RepositoryException("SQL Exception in createItem method", e);
         }
     }
 

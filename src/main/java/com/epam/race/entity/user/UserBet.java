@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 public class UserBet extends Bet {
     private String userLogin;
     private BigDecimal sum;
+    private boolean isSuccessful;
 
     public UserBet() {
     }
@@ -45,5 +46,13 @@ public class UserBet extends Bet {
 
     public void setSum(BigDecimal sum) {
         this.sum = sum;
+    }
+
+    public boolean isSuccessful() {
+        return isSuccessful;
+    }
+
+    public void setSuccessful(boolean successful) {
+        isSuccessful = successful;
     }
 }

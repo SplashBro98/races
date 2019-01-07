@@ -3,6 +3,7 @@ package com.epam.race.command;
 import com.epam.race.command.impl.admin.*;
 import com.epam.race.command.impl.bookmaker.AddBetCommand;
 import com.epam.race.command.impl.bookmaker.EditBetCommand;
+import com.epam.race.command.impl.bookmaker.SelectRaceHorsesCommand;
 import com.epam.race.command.impl.client.EditProfileCommand;
 import com.epam.race.command.impl.client.EnterSumCommand;
 import com.epam.race.command.impl.client.TopUpBalanceCommand;
@@ -24,9 +25,7 @@ public enum CommandMap {
         commandMap.put(CommandType.TO_ADD_HORSE, new ToAddHorseCommand());
         commandMap.put(CommandType.TO_LOG_IN, new ToLogInCommand());
         commandMap.put(CommandType.SIGN_UP, new SignUpCommand());
-        //commandMap.put(CommandType.ADD_HORSE, new AddHorseCommand());
-        //commandMap.put(CommandType.DELETE_HORSE, new DeleteHorseCommand());
-        commandMap.put(CommandType.TO_DELETE_HORSE, new ToDeleteHorseCommand());
+        commandMap.put(CommandType.ADD_HORSE, new AddHorseCommand());
         commandMap.put(CommandType.SELECT_RACE, new SelectRaceCommand());
         commandMap.put(CommandType.ADD_RACE, new AddRaceCommand());
         commandMap.put(CommandType.TO_ADD_RACE, new ToAddRaceCommand());

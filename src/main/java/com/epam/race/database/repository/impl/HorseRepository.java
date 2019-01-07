@@ -1,5 +1,6 @@
 package com.epam.race.database.repository.impl;
 
+import com.epam.race.database.DbCols;
 import com.epam.race.entity.common.Horse;
 import com.epam.race.database.pool.ConnectionPool;
 import com.epam.race.database.repository.AbstractRepository;
@@ -38,13 +39,13 @@ public class HorseRepository extends AbstractRepository<Horse> {
     }
 
     @Override
-    public void remove(Horse horse) throws RepositoryException {
-
+    public void remove(Horse horse){
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void update(SQLSpecification specification) throws RepositoryException {
-
+        nonSelectQuery(specification);
     }
 
     @Override
@@ -56,13 +57,13 @@ public class HorseRepository extends AbstractRepository<Horse> {
     public Horse createItem(ResultSet resultSet) throws RepositoryException{
         Horse newHorse = new Horse();
         try {
-            newHorse.setHorseId(resultSet.getInt("horse_id"));
-            newHorse.setName(resultSet.getString("name"));
-            newHorse.setAge(resultSet.getInt("age"));
-            newHorse.setWins(resultSet.getInt("wins"));
+            newHorse.setHorseId(resultSet.getInt(DbCols.HORSE_ID));
+            newHorse.setName(resultSet.getString(DbCols.NAME));
+            newHorse.setAge(resultSet.getInt(DbCols.AGE));
+            newHorse.setWins(resultSet.getInt(DbCols.WINS));
             return newHorse;
         }catch (SQLException e){
-            throw new RepositoryException(e);
+            throw new RepositoryException("SQL Exception in createItem method",e);
         }
     }
 

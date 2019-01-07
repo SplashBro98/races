@@ -1,6 +1,5 @@
-package com.epam.race.database.specification.horse;
+package com.epam.race.database.specification.userbet;
 
-import com.epam.race.entity.common.Horse;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.specification.SQLFunction;
 import com.epam.race.database.specification.SQLSpecification;
@@ -8,21 +7,22 @@ import com.epam.race.database.specification.SQLSpecification;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertHorseSpecification implements SQLSpecification {
+public class SelectCurrentUserBetsSpecification implements SQLSpecification {
 
-    private Horse horse;
+    private String login;
 
-    public InsertHorseSpecification(Horse horse) {
-        this.horse = horse;
+    public SelectCurrentUserBetsSpecification(String login) {
+        this.login = login;
     }
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement, SQLException> function)
             throws RepositoryException {
-        try {
-            PreparedStatement statement = function.apply(SqlHorseConstant.SQL_HORSES_INSERT);
+        try{
+            PreparedStatement statement = function.apply(SqlUserBetConstant.SQL_USER_BETS_SELECT_CURRENT_BY_LOGIN);
             fillStatement(statement);
             return statement;
+
         }catch (SQLException e){
             throw new RepositoryException(e);
         }
@@ -30,9 +30,8 @@ public class InsertHorseSpecification implements SQLSpecification {
 
     @Override
     public void fillStatement(PreparedStatement statement) throws RepositoryException {
-        try {
-            statement.setString(1, horse.getName());
-            statement.setInt(2, horse.getAge());
+        try{
+            statement.setString(1,login);
         }catch (SQLException e){
             throw new RepositoryException(e);
         }

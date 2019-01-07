@@ -1,9 +1,8 @@
-package com.epam.race.util.constant;
+package com.epam.race.util;
 
 public final class StringConstant {
 
     public static final String COMMAND = "command";
-
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
     public static final String DB = "db";
@@ -12,4 +11,6 @@ public final class StringConstant {
     public static final String CURRENT_PAGE = "currentPage";
     public static final String NUMBER_OF_PAGES = "numberOfPages";
 
+    private StringConstant() {
+    }
 }

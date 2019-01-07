@@ -12,6 +12,10 @@ public class RepositoryException extends SQLException {
         super(reason);
     }
 
+    public RepositoryException(String reason, Throwable cause) {
+        super(reason, cause);
+    }
+
     public RepositoryException() {
         super();
     }

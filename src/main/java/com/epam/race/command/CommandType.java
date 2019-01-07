@@ -8,7 +8,6 @@ public enum CommandType {
     SIGN_UP,
     ADD_HORSE,
     TO_ADD_HORSE,
-    DELETE_HORSE,
     TO_DELETE_HORSE,
     SELECT_RACE,
     ADD_RACE,

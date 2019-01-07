@@ -5,13 +5,9 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title><fmt:message key="label.addRace" bundle="${var}"/></title>
-
+    <meta charset="UTF-8">
+    <title><fmt:message key="label.ho" bundle="${var}"/></title>
     <link href="/css/main.css" rel="stylesheet" type="text/css">
-    <link href="/vendors/bootstrap/css/bootstrap_main.min.css">
-
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
-          id="bootstrap-css">
 
 </head>
 <body>
@@ -59,7 +55,7 @@
     </div>
 </section>
 
-
 <c:import url="../../common/footer.jsp"/>
+
 </body>
 </html>

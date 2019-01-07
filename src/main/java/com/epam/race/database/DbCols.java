@@ -1,4 +1,4 @@
-package com.epam.race.util.constant;
+package com.epam.race.database;
 
 public final class DbCols {
 
@@ -16,4 +16,11 @@ public final class DbCols {
     public static final String COEFF = "coeff";
     public static final String SUM = "sum";
     public static final String DESCRIBE = "describe";
+    public static final String HORSE_ID = "horse_id";
+    public static final String AGE = "age";
+    public static final String WINS = "wins";
+    public static final String PAYMENT_ID = "payment_id";
+
+    private DbCols() {
+    }
 }

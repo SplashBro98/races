@@ -1,12 +1,9 @@
 package com.epam.race.service;
 
+import com.epam.race.database.specification.horse.*;
 import com.epam.race.entity.common.Horse;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.repository.impl.HorseRepository;
-import com.epam.race.database.specification.horse.SelectAllHorsesSpecification;
-import com.epam.race.database.specification.horse.SelectHorseByNameSpecification;
-import com.epam.race.database.specification.horse.SelectHorseIdSpecification;
-import com.epam.race.database.specification.horse.SelectHorsesByRaceSpecification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +61,14 @@ public class HorseService {
     public List<Horse> findHorsesByRace(int raceId) throws ServiceException {
         try{
             return HorseRepository.getInstance().query(new SelectHorsesByRaceSpecification(raceId));
+        }catch (RepositoryException e){
+            throw new ServiceException(e);
+        }
+    }
+
+    public void addWin(int horseId) throws ServiceException {
+        try{
+            HorseRepository.getInstance().update(new SetWinSpecification(horseId));
         }catch (RepositoryException e){
             throw new ServiceException(e);
         }

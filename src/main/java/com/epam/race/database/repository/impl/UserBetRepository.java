@@ -1,5 +1,6 @@
 package com.epam.race.database.repository.impl;
 
+import com.epam.race.database.specification.userbet.DeleteUserBetSpecification;
 import com.epam.race.entity.common.Horse;
 import com.epam.race.entity.common.Race;
 import com.epam.race.database.pool.ConnectionPool;
@@ -20,8 +21,9 @@ import java.util.List;
 
 public class UserBetRepository extends AbstractRepository<UserBet> {
     private static UserBetRepository instance;
+
     //language=sql
-    private static final String SQL_USER_BETS_SELECT_BY_RACE_ID = "select u.user_login, u.sum, u.coeff, b.position, " +
+    private static final String SQL_USER_BETS_SELECT_BY_RACE_ID = "select u.user_login, u.betid, u.sum, u.coeff, b.position, " +
             "b.horse_id, h.name, h.age, h.wins from user_bets u " +
             "join bets b on (u.betid = b.bet_id)" +
             "join horses h on (h.horse_id = b.horse_id) where b.race_id = ?";
@@ -56,10 +58,11 @@ public class UserBetRepository extends AbstractRepository<UserBet> {
             newUserBet.setHorse(horse);
             newUserBet.setPosition(resultSet.getInt(5));
             newUserBet.setCoeff(resultSet.getDouble(6));
+            newUserBet.setSuccessful(resultSet.getBoolean(11));
 
 
         }catch (SQLException e){
-            throw new RepositoryException(e);
+            throw new RepositoryException("SQL Exception in createItem method", e);
         }
         return newUserBet;
     }
@@ -71,12 +74,12 @@ public class UserBetRepository extends AbstractRepository<UserBet> {
 
     @Override
     public void remove(UserBet userBet) throws RepositoryException {
-
+        nonSelectQuery(new DeleteUserBetSpecification(userBet.getBetId()));
     }
 
     @Override
     public void update(SQLSpecification specification) throws RepositoryException {
-
+        nonSelectQuery(specification);
     }
 
     @Override
@@ -95,20 +98,21 @@ public class UserBetRepository extends AbstractRepository<UserBet> {
             while (resultSet.next()){
                 UserBet userBet = new UserBet();
                 userBet.setUserLogin(resultSet.getString(1));
-                userBet.setSum(resultSet.getBigDecimal(2));
-                userBet.setCoeff(resultSet.getDouble(3));
-                userBet.setPosition(resultSet.getInt(4));
+                userBet.setBetId(Integer.parseInt(resultSet.getString(2)));
+                userBet.setSum(resultSet.getBigDecimal(3));
+                userBet.setCoeff(resultSet.getDouble(4));
+                userBet.setPosition(resultSet.getInt(5));
                 Horse horse = new Horse();
-                horse.setHorseId(resultSet.getInt(5));
-                horse.setName(resultSet.getString(6));
-                horse.setAge(resultSet.getInt(7));
-                horse.setWins(resultSet.getInt(8));
+                horse.setHorseId(resultSet.getInt(6));
+                horse.setName(resultSet.getString(7));
+                horse.setAge(resultSet.getInt(8));
+                horse.setWins(resultSet.getInt(9));
                 userBet.setHorse(horse);
                 userBets.add(userBet);
             }
             return userBets;
         } catch (SQLException e) {
-            throw new RepositoryException(e);
+            throw new RepositoryException("SQL Exception in findUserBetsByRaceId method",e);
         }
     }
 }

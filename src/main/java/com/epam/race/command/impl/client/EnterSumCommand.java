@@ -6,7 +6,7 @@ import com.epam.race.entity.user.UserBet;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserBetService;
 import com.epam.race.service.UserService;
-import com.epam.race.util.constant.StringAttributes;
+import com.epam.race.command.StringAttributes;
 import com.epam.race.util.validation.BetValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,7 +36,7 @@ public class EnterSumCommand implements Command {
             BigDecimal sumOfBet = new BigDecimal(strSum);
             BigDecimal userAmount = service.findUserAmount(login);
             if(userAmount.compareTo(sumOfBet) == -1){
-                req.setAttribute("incorrect_sum","you have insufficient funds");
+                req.setAttribute("is_incorrect_sum","true");
                 return PageManager.INSTANCE.getProperty(PageManager.PATH_ENTER_SUM_PAGE);
             }
 

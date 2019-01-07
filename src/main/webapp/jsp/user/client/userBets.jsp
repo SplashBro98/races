@@ -9,8 +9,6 @@
 
     <link href="/css/main.css" rel="stylesheet" type="text/css">
     <link href="/vendors/bootstrap/css/bootstrap_main.min.css">
-    <%--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"--%>
-    <%--rel="stylesheet">--%>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           rel="stylesheet" id="bootstrap-css">
 </head>
@@ -23,16 +21,17 @@
             <div class="col-lg-12">
                 <div class="text-center">
                     <div class="container">
-                        <div class="container-fluid" style="background-color: dimgray">
+                        <div class="container-fluid" style="background-color: dimgray; margin-bottom: 10%">
 
                             <div class="container container-pad" style="margin-top: 10%">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="panel panel-primary">
                                             <div class="panel-heading" style="margin-bottom: 30px">
-                                                <h3 class="panel-title"><fmt:message key="list.userbets" bundle="${var}"/></h3>
+                                                <h3 class="panel-title"><fmt:message key="list.userbets"
+                                                                                     bundle="${var}"/></h3>
                                             </div>
-                                            <table class="table table-hover" id="dev-table">
+                                            <table class="table table-hover">
                                                 <thead>
                                                 <tr>
                                                     <th>#</th>
@@ -44,13 +43,14 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <c:forEach items="${userBets}" var="userBet" varStatus="counter">
+                                                <c:forEach items="${currentUserBets}" var="userBet" varStatus="counter">
 
                                                     <input type="hidden" name="raceName" value="${race.raceId}">
                                                     <tr>
                                                         <td>${counter.count}</td>
-                                                        <td> <a href="/main?command=select race&name=${userBet.getRace().getName()}"
-                                                                target="_parent">${userBet.getRace().getName()}</a></td>
+                                                        <td>
+                                                            <a href="/main?command=select race&name=${userBet.getRace().getName()}"
+                                                               target="_parent">${userBet.getRace().getName()}</a></td>
                                                         <td>${userBet.getHorse().getName()}</td>
                                                         <td>${userBet.getPosition()}</td>
                                                         <td>${userBet.getCoeff()}</td>
@@ -67,6 +67,62 @@
                                 </div>
                             </div>
                         </div>
+
+                        <c:if test="${ not empty previousUserBets}">
+                            <div class="container-fluid" style="background-color: dimgray; margin-bottom: 10%">
+
+                                <div class="container container-pad" style="margin-top: 10%">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading" style="margin-bottom: 30px">
+                                                    <h3 class="panel-title"><fmt:message key="list.userbets"
+                                                                                         bundle="${var}"/></h3>
+                                                </div>
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Race Name</th>
+                                                        <th>Horse Name</th>
+                                                        <th>Position</th>
+                                                        <th>Coefficient</th>
+                                                        <th>Sum of the Bet</th>
+                                                        <th>Result</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <c:forEach items="${previousUserBets}" var="userBet"
+                                                               varStatus="counter">
+                                                        <input type="hidden" name="raceName" value="${race.raceId}">
+                                                        <tr>
+                                                            <td>${counter.count}</td>
+                                                            <td>
+                                                                <a href="/main?command=select race&name=${userBet.getRace().getName()}"
+                                                                   target="_parent">${userBet.getRace().getName()}</a>
+                                                            </td>
+                                                            <td>${userBet.getHorse().getName()}</td>
+                                                            <td>${userBet.getPosition()}</td>
+                                                            <td>${userBet.getCoeff()}</td>
+                                                            <td>${userBet.getSum()}</td>
+                                                            <c:choose>
+                                                                <c:when test="${userBet.isSuccessful() eq true}">
+                                                                    <td>Successful</td>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <td>Not Successful</td>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>

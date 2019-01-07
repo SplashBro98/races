@@ -13,8 +13,7 @@ public class SelectAllHorsesSpecification implements SQLSpecification {
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement, SQLException> function)
             throws RepositoryException {
         try {
-            PreparedStatement statement = function.apply(SqlHorseConstant.SQL_HORSES_SELECT_ALL);
-            return statement;
+            return function.apply(SqlHorseConstant.SQL_HORSES_SELECT_ALL);
         }catch (SQLException e){
             throw new RepositoryException(e);
         }

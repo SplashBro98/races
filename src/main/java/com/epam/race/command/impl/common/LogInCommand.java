@@ -6,17 +6,16 @@ import com.epam.race.command.PageManager;
 import com.epam.race.entity.user.User;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserService;
-import com.epam.race.util.constant.StringConstant;
-import com.epam.race.util.encryption.Encryption;
+import com.epam.race.util.StringConstant;
+import com.epam.race.util.Encryption;
 import com.epam.race.util.validation.LoginValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.epam.race.service.RaceService;
-import com.epam.race.util.constant.StringAttributes;
+import com.epam.race.command.StringAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 
@@ -31,7 +30,7 @@ public class LogInCommand implements Command {
 
         LoginValidator loginValidator = new LoginValidator();
         if (!loginValidator.checkLogInInfo(login, password)) {
-            req.setAttribute(StringAttributes.INCORRECT, StringAttributes.ATTRIBUTE_WRONG_EMAIL_OR_PASSWORD);
+            req.setAttribute(StringAttributes.INCORRECT, StringAttributes.TRUE);
             return PageManager.INSTANCE.getProperty(PageManager.PATH_LOGIN_PAGE);
         }
 
@@ -44,17 +43,17 @@ public class LogInCommand implements Command {
 
                 User user = maybeUser.get();
                 if (user.getIsLocked()) {
-                    req.setAttribute(StringAttributes.BLOCKED, StringAttributes.ATTRIBUTE_BLOCKED);
+                    req.setAttribute(StringAttributes.BLOCKED, StringAttributes.TRUE);
                     return PageManager.INSTANCE.getProperty(PageManager.PATH_LOGIN_PAGE);
                 }
 
                 String role = user.getUserType().toString().toLowerCase();
 
                 req.getSession().setAttribute(StringAttributes.ROLE, role);
-                req.getSession().setAttribute(StringAttributes.LOCALE, Locale.getDefault());
+                req.getSession().setAttribute(StringAttributes.LOCALE, req.getParameter(StringAttributes.LOCALE));
                 req.getSession().setAttribute(StringAttributes.LOGIN, login);
 
-                RaceService raceService = new RaceService(1, 5);
+                RaceService raceService = new RaceService(1, 8);
                 List<Object> attributes = raceService.mainAttributes();
 
                 req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
@@ -64,32 +63,16 @@ public class LogInCommand implements Command {
 
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
             } else {
+                req.setAttribute(StringAttributes.INCORRECT, StringAttributes.TRUE);
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_LOGIN_PAGE);
-                req.setAttribute(StringAttributes.INCORRECT, StringAttributes.ATTRIBUTE_WRONG_EMAIL_OR_PASSWORD);
+
             }
 
         } catch (ServiceException e) {
-            logger.error("problem with service layer or lower", e);
+            logger.error("Service Exception in LogInCommand", e);
+            req.setAttribute("exception",e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;
-//        SQLSpecification specification = new SelectUserByLoginAndPasswordSpecification(login, password);
-//
-//        String page;
-//        try {
-//            List<User> users = UserRepository.getInstance().query(specification);
-//            if(!users.isEmpty()){
-//                new MainPageService().setAttributes(req);
-//                page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
-//            }else {
-//                req.setAttribute("incorrect","Incorrect login or password");
-//                page = PageManager.INSTANCE.getProperty(PageManager.PATH_LOGIN_PAGE);
-//            }
-//        } catch (SQLException e) {
-//            //req.setAttribute();
-//            e.printStackTrace();
-//            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
-//        }
-//        return page;
     }
 }

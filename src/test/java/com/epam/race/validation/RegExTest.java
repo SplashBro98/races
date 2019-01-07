@@ -79,5 +79,16 @@ public class RegExTest {
 
     }
 
+    @Test
+    public void checkSumTest(){
+        String regex = "^[0-9]*([.,][0-9]{2})?$";
+
+
+       String sum = "1.62";
+
+        Assert.assertTrue(sum.matches(regex));
+
+    }
+
 
 }

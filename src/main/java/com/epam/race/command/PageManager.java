@@ -15,7 +15,6 @@ public enum PageManager {
     public static final String PATH_ADD_HORSE_PAGE = "PATH_ADD_HORSE_PAGE";
     public static final String PATH_ADD_RACE_PAGE = "PATH_ADD_RACE_PAGE";
     public static final String PATH_ADD_BET_PAGE = "PATH_ADD_BET_PAGE";
-    public static final String PATH_DELETE_HORSE_PAGE = "PATH_DELETE_HORSE_PAGE";
     public static final String PATH_RACE_PAGE = "PATH_RACE_PAGE";
     public static final String PATH_ENTER_SUM_PAGE = "PATH_ENTER_SUM_PAGE";
     public static final String PATH_HOLD_RACE_PAGE = "PATH_HOLD_RACE_PAGE";

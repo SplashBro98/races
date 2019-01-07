@@ -1,6 +1,5 @@
 package com.epam.race.command.impl.client;
 
-
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.entity.user.User;
@@ -8,9 +7,9 @@ import com.epam.race.entity.user.UserType;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
 import com.epam.race.service.UserService;
-import com.epam.race.util.constant.StringAttributes;
-import com.epam.race.util.constant.StringConstant;
-import com.epam.race.util.encryption.Encryption;
+import com.epam.race.command.StringAttributes;
+import com.epam.race.util.StringConstant;
+import com.epam.race.util.Encryption;
 import com.epam.race.util.validation.SignUpValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -120,7 +119,7 @@ public class SignUpCommand implements Command {
                 req.getSession().setAttribute(StringAttributes.LOCALE, Locale.getDefault());
 
                 new UserService().addUser(user);
-                RaceService raceService = new RaceService(1, 5);
+                RaceService raceService = new RaceService(1, 8);
                 List<Object> attributes = raceService.mainAttributes();
 
                 req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
@@ -135,7 +134,8 @@ public class SignUpCommand implements Command {
 
 
         } catch (ServiceException e) {
-            logger.error("Problem with command or lower", e);
+            logger.error("Service Exception in SignUpCommand", e);
+            req.setAttribute("e",e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

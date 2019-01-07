@@ -3,7 +3,7 @@ package com.epam.race.command.impl.page;
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.entity.user.User;
-import com.epam.race.util.encryption.Encryption;
+import com.epam.race.util.Encryption;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -6,13 +6,15 @@ import com.epam.race.entity.common.Race;
 import com.epam.race.service.HorseService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
-import com.epam.race.util.constant.StringAttributes;
-import com.epam.race.util.constant.StringConstant;
+import com.epam.race.command.StringAttributes;
+import com.epam.race.util.StringConstant;
 import com.epam.race.util.validation.RaceValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddRaceCommand implements Command {
 
@@ -75,21 +77,26 @@ public class AddRaceCommand implements Command {
 
                 RaceService raceService = new RaceService();
                 HorseService horseService = new HorseService();
-                raceService.addRace(race);
-                int raceId = raceService.findRaceId(race.getName());
-                int firstHorseId = horseService.findHorseId(firstHorseName);
-                int secondHorseId = horseService.findHorseId(secondHorseName);
-                int thirdHorseId = horseService.findHorseId(thirdHorseName);
-                int fourthHorseId = horseService.findHorseId(fourthHorseName);
 
-                horseService.addHorseToHorseList(raceId, firstHorseId);
-                horseService.addHorseToHorseList(raceId, secondHorseId);
-                horseService.addHorseToHorseList(raceId, thirdHorseId);
-                horseService.addHorseToHorseList(raceId, fourthHorseId);
+                List<Integer> idList = new ArrayList<>();
+                idList.add(horseService.findHorseId(firstHorseName));
+                idList.add(horseService.findHorseId(secondHorseName));
+                idList.add(horseService.findHorseId(thirdHorseName));
+                idList.add(horseService.findHorseId(fourthHorseName));
+
+                if(raceValidator.isDifferentHorses(idList)){
+                    raceService.addRace(race);
+                    int raceId = raceService.findRaceId(race.getName());
+                    for(int id : idList){
+                        horseService.addHorseToHorseList(raceId,id);
+                    }
+                }else {
+                    req.setAttribute("not_different_horses","true");
+                    return PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_RACE_PAGE);
+                }
 
 
-
-                RaceService service = new RaceService(1, 5);
+                RaceService service = new RaceService(1, 8);
                 service.findAllUpcomingRaces();
                 req.getSession().setAttribute(StringConstant.CURRENT_PAGE, service.getCurrentPage());
                 req.getSession().setAttribute(StringConstant.NUMBER_OF_PAGES, service.getNumberOfPages());

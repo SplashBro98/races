@@ -8,9 +8,9 @@ import com.epam.race.entity.user.UserType;
 import com.epam.race.service.RaceService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserService;
-import com.epam.race.util.constant.StringAttributes;
-import com.epam.race.util.constant.StringConstant;
-import com.epam.race.util.encryption.Encryption;
+import com.epam.race.command.StringAttributes;
+import com.epam.race.util.StringConstant;
+import com.epam.race.util.Encryption;
 import com.epam.race.util.validation.SignUpValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +43,6 @@ public class AddBookmakerCommand implements Command {
         try {
             SignUpValidator validator = new SignUpValidator();
 
-            //TODO Надо ли проверять поля на наличие инфы на сервере
             boolean flag = true;
             boolean loginIsPresent = validator.checkLoginIsPresent(user.getLogin());
             boolean loginIsCorrect = validator.checkLoginIsCorrect(user.getLogin());
@@ -109,7 +108,8 @@ public class AddBookmakerCommand implements Command {
 
 
         } catch (ServiceException e) {
-            logger.error("Problem with command or lower", e);
+            logger.error("Service Exception in AddBookmakerCommand", e);
+            req.setAttribute("e",e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

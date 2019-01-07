@@ -4,7 +4,7 @@ import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
-import com.epam.race.util.constant.StringAttributes;
+import com.epam.race.command.StringAttributes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -3,7 +3,7 @@ package com.epam.race.command.impl.page;
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.entity.common.Bet;
-import com.epam.race.util.constant.StringAttributes;
+import com.epam.race.command.StringAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

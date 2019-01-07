@@ -19,8 +19,8 @@ public class RaceResultRepository extends AbstractRepository<RaceResult> {
 
     }
 
-    public static RaceResultRepository getInstance(){
-        if(instance == null){
+    public static RaceResultRepository getInstance() {
+        if (instance == null) {
             instance = new RaceResultRepository();
         }
         return instance;
@@ -28,7 +28,7 @@ public class RaceResultRepository extends AbstractRepository<RaceResult> {
 
     @Override
     public RaceResult createItem(ResultSet resultSet) throws RepositoryException {
-        try{
+        try {
             RaceResult raceResult = new RaceResult();
             Race race = new Race();
             race.setName(resultSet.getString(1));
@@ -41,8 +41,8 @@ public class RaceResultRepository extends AbstractRepository<RaceResult> {
             raceResult.setFourthHorseName(resultSet.getString(6));
 
             return raceResult;
-        }catch (SQLException e){
-            throw new RepositoryException(e);
+        } catch (SQLException e) {
+            throw new RepositoryException("SQL Exception in createItem method", e);
         }
     }
 
@@ -52,12 +52,12 @@ public class RaceResultRepository extends AbstractRepository<RaceResult> {
     }
 
     @Override
-    public void remove(RaceResult raceResult) throws RepositoryException {
+    public void remove(RaceResult raceResult) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void update(SQLSpecification specification) throws RepositoryException {
+    public void update(SQLSpecification specification) {
         throw new UnsupportedOperationException();
     }
 

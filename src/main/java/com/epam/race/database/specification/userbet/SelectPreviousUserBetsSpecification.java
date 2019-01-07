@@ -7,11 +7,11 @@ import com.epam.race.database.specification.SQLSpecification;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SelectUserBetsSpecification implements SQLSpecification {
+public class SelectPreviousUserBetsSpecification implements SQLSpecification {
 
     private String login;
 
-    public SelectUserBetsSpecification(String login) {
+    public SelectPreviousUserBetsSpecification(String login) {
         this.login = login;
     }
 
@@ -19,7 +19,7 @@ public class SelectUserBetsSpecification implements SQLSpecification {
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement, SQLException> function)
             throws RepositoryException {
         try{
-            PreparedStatement statement = function.apply(SqlUserBetConstant.SQL_USER_BETS_SELECT_BY_LOGIN);
+            PreparedStatement statement = function.apply(SqlUserBetConstant.SQL_USER_BETS_SELECT_NOT_CURRENT_BY_LOGIN);
             fillStatement(statement);
             return statement;
 

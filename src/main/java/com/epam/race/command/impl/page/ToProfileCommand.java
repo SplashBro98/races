@@ -7,7 +7,7 @@ import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.epam.race.util.constant.StringAttributes;
+import com.epam.race.command.StringAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 

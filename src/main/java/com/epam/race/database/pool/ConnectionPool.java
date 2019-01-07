@@ -50,10 +50,9 @@ public class ConnectionPool {
     }
 
     public Connection takeConnection(){
-        ProxyConnection connection = null;
+        ProxyConnection connection;
         try {
             connection = avaliableConnections.take();
-            //logger.log(Level.INFO, "takeConnection: size of avaliable: " + avaliableConnections.size());
             usedConnections.put(connection);
         } catch (InterruptedException e) {
             logger.error("Error while take connection",e);
@@ -64,15 +63,11 @@ public class ConnectionPool {
     public void returnConnection(Connection connection){
         if(connection instanceof ProxyConnection){
             try {
-                if(!connection.getAutoCommit()) {
-                    connection.setAutoCommit(true);
-                }
                 ProxyConnection realConnection = (ProxyConnection) connection;
                 avaliableConnections.put(realConnection);
-                //logger.log(Level.INFO, "returnConnection: size of avaliable: " + avaliableConnections.size());
                 usedConnections.remove(realConnection);
-            } catch (InterruptedException | SQLException e) {
-                logger.error("Interrupted or SQLException in connection pool",e);
+            } catch (InterruptedException e) {
+                logger.error("Interrupted Exception in connection pool",e);
                 throw new RuntimeException(e);
             }
         }

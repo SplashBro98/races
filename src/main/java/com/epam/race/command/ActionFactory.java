@@ -3,7 +3,7 @@ package com.epam.race.command;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.epam.race.util.constant.StringConstant;
+import com.epam.race.util.StringConstant;
 
 import javax.servlet.http.HttpServletRequest;
 

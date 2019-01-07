@@ -1,13 +1,10 @@
 package com.epam.race.service;
 
 import com.epam.race.database.specification.SQLSpecification;
-import com.epam.race.database.specification.race.UpdateRaceHeldSpecification;
+import com.epam.race.database.specification.race.*;
 import com.epam.race.entity.common.Race;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.repository.impl.RaceRepository;
-import com.epam.race.database.specification.race.SelectAllRacesSpecification;
-import com.epam.race.database.specification.race.SelectRaceByNameSpecification;
-import com.epam.race.database.specification.race.SelectRaceIdSpecification;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,9 +40,9 @@ public class RaceService {
     public List<Race> findAllUpcomingRaces() throws ServiceException {
 
         try {
-            List<Race> races = RaceRepository.getInstance().query(new SelectAllRacesSpecification());
+            List<Race> races = RaceRepository.getInstance().query(new SelectUpcomingRacesSpecification());
             allRaces = races;
-            if(recordsPerPage != 0) {
+            if (recordsPerPage != 0) {
                 numberOfPages = allRaces.size() / recordsPerPage;
                 if (allRaces.size() % recordsPerPage != 0) {
                     numberOfPages += 1;
@@ -58,10 +55,10 @@ public class RaceService {
     }
 
     public void updateRaceState(int raceId) throws ServiceException {
-        try{
+        try {
             SQLSpecification sqlSpecification = new UpdateRaceHeldSpecification(raceId);
             RaceRepository.getInstance().update(sqlSpecification);
-        }catch (RepositoryException e){
+        } catch (RepositoryException e) {
             throw new ServiceException(e);
         }
     }
@@ -70,8 +67,7 @@ public class RaceService {
         int start = (currentPage - 1) * recordsPerPage;
         int end = start + recordsPerPage < allRaces.size() ? start + recordsPerPage : allRaces.size();
         numberOfPages = allRaces.size() / recordsPerPage + 1;
-        List<Race> currentRaces = allRaces.subList(start, end);
-        return currentRaces;
+        return allRaces.subList(start, end);
     }
 
     public Optional<Race> findRace(String raceName) throws ServiceException {
@@ -105,7 +101,7 @@ public class RaceService {
     public Race findRaceWithBetsAndHorses(String raceName) throws ServiceException {
         try {
             return RaceRepository.getInstance().findRaceWithBetsAndHorses(raceName);
-        }catch (RepositoryException e){
+        } catch (RepositoryException e) {
             throw new ServiceException(e);
         }
     }

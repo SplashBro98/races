@@ -9,7 +9,7 @@ import com.epam.race.service.HorseService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.BetService;
 import com.epam.race.service.RaceService;
-import com.epam.race.util.constant.StringAttributes;
+import com.epam.race.command.StringAttributes;
 import com.epam.race.util.validation.BetValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,7 +47,7 @@ public class AddBetCommand implements Command{
             Bet bet = new Bet(race, horse, position, coeff);
             new BetService().addBet(bet);
 
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
+            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
         }catch (ServiceException e){
             logger.error("service or lower", e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);

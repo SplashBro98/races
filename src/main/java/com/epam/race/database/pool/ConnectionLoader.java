@@ -2,7 +2,7 @@ package com.epam.race.database.pool;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.epam.race.util.constant.StringConstant;
+import com.epam.race.util.StringConstant;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;

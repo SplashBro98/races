@@ -6,7 +6,9 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="button.holdrace" bundle="${var}"/></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          rel="stylesheet" id="bootstrap-css">
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>
@@ -23,7 +25,8 @@
                              class="mainbox col-md-4  col-sm-8">
                             <div class="panel panel-info">
                                 <div class="panel-heading" style="margin-bottom: 40px">
-                                    <div class="panel-title text-center"><h3>Please, select race</h3></div>
+                                    <div class="panel-title text-center">
+                                        <h3><fmt:message key="selectrace" bundle="${var}"/></h3></div>
                                 </div>
                                 <div class="panel-body">
                                     <form action="/main" method="post">

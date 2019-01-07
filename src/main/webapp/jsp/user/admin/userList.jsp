@@ -12,29 +12,27 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title><fmt:message key="label.addRace" bundle="${var}"/></title>
+    <title><fmt:message key="label.userlist" bundle="${var}"/></title>
 
     <link href="/css/main.css" rel="stylesheet" type="text/css">
-    <link href="/vendors/bootstrap/css/bootstrap_main.min.css">
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           rel="stylesheet" id="bootstrap-css">
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>
-<section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
-    <div class="container h-100">
-        <div class="row h-100 justify-content-between align-items-center">
-            <div class="col-lg-12 text-center">
+<div class="parallax" style="height: max-content">
+    <div class="overlays"></div>
+    <div class="container h-100" style="margin-top: 7%">
+        <div class="col-lg-12">
+            <div class="text-center">
 
-                <div class="container" style="margin-top: auto">
+                <div class="container colortext">
                     <div class="container-fluid" style="background-color: dimgray">
-                        <div class="container container-pad" style="margin-top: 30%">
+                        <div class="container container-pad">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="panel panel-primary">
-                                        <div class="panel-heading" style="margin-bottom: 30px; margin-top: auto">
+                                        <div class="panel-heading" style="margin-bottom: 30px">
                                             <h2 class="panel-title"><fmt:message key="list.users" bundle="${var}"/></h2>
                                         </div>
                                         <table class="table table-hover" id="dev-table">
@@ -95,7 +93,7 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
 
 <c:import url="../../common/footer.jsp"/>

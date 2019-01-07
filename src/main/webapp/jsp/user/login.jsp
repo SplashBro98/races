@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Иван
-  Date: 01.11.2018
-  Time: 13:15
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -13,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title><fmt:message key="label.signin" bundle="${var}"/> </title>
+    <title><fmt:message key="label.signin" bundle="${var}"/></title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
 
@@ -21,32 +14,38 @@
 <body>
 <c:import url="../common/withoutLoginHeader.jsp"/>
 
-<section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
-    <div class="row h-100 justify-content-between align-items-center">
-        <div class="col-lg-12">
-            <div class="text-center">
-                <%--login form--%>
+<div class="parallax wrapper" style="height: max-content">
+    <div class="overlays"></div>
+    <div class="container h-100">
+        <div class="row h-100 justify-content-between align-items-center ">
+            <div class="col-lg-12 text-center ">
+
                 <div class="container">
-                    <div id="loginbox"  style="margin-right: auto; margin-left: auto" class="mainbox col-md-4 col-sm-8">
+                    <div style="margin-right: auto; margin-left: auto" class="mainbox col-md-4 col-sm-8">
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <div class="panel-title">
-                                    <h3><fmt:message key="form.signin" bundle="${var}"/> </h3></div>
+                                    <h3><fmt:message key="form.signin" bundle="${var}"/></h3></div>
                             </div>
                             <div style="padding-top:40px" class="panel-body">
 
-                                <h6>${incorrect}</h6>
-                                <h6>${blocked}</h6>
+                                <c:if test="${not empty incorrect}">
+                                    <h6><fmt:message key="info.login" bundle="${var}"/></h6>
+                                </c:if>
+                                <c:if test="${not empty blocked}">
+                                    <h6><fmt:message key="info.blocked" bundle="${var}"/></h6>
+                                </c:if>
+
                                 <form id="loginform" role="form" class="form-horizontal" action="/main"
                                       method="post">
                                     <input type="hidden" name="command" value="log in">
+                                    <input type="hidden" name="locale" value="${locale}">
 
                                     <div style="margin-bottom: 25px" class="form-group">
                                         <input id="login-username" type="text"
                                                class="form-control"
                                                name="login"
-                                               placeholder="<fmt:message key="holder.login" bundle="${var}"/>*"
+                                               placeholder="<fmt:message key="holder.login" bundle="${var}"/>* (не больше 30 символов)"
                                                pattern="[a-zA-Z0-9А-Яа-я_`-]{4,30}" required>
                                     </div>
 
@@ -54,7 +53,7 @@
                                         <input id="login-password" type="password" class="form-control"
                                                name="password"
                                                pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
-                                               placeholder="<fmt:message key="holder.password" bundle="${var}"/>*"
+                                               placeholder="<fmt:message key="holder.password" bundle="${var}"/>* (должен содержать не меньше 6 символов, цифру, прописную и строчную буквы"
                                                required>
                                     </div>
 
@@ -81,13 +80,12 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-</section>
 
 </body>
 </html>

@@ -15,8 +15,6 @@
     <title>SignUp_JSP</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
-    <%--<link href="/css/login.css" rel="stylesheet" type="text/css">--%>
-    <%--<link href="/css/header.css" rel="stylesheet" type="text/css">--%>
 
 </head>
 <body>

@@ -1,6 +1,5 @@
-package com.epam.race.database.specification.horse;
+package com.epam.race.database.specification.race;
 
-import com.epam.race.entity.common.Horse;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.specification.SQLFunction;
 import com.epam.race.database.specification.SQLSpecification;
@@ -8,20 +7,13 @@ import com.epam.race.database.specification.SQLSpecification;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertHorseSpecification implements SQLSpecification {
-
-    private Horse horse;
-
-    public InsertHorseSpecification(Horse horse) {
-        this.horse = horse;
-    }
+public class SelectUpcomingRacesSpecification implements SQLSpecification {
 
     @Override
     public PreparedStatement getStatement(SQLFunction<String, PreparedStatement, SQLException> function)
             throws RepositoryException {
         try {
-            PreparedStatement statement = function.apply(SqlHorseConstant.SQL_HORSES_INSERT);
-            fillStatement(statement);
+            PreparedStatement statement = function.apply(SqlRaceConstant.SQL_RACES_SELECT_ALL_UPCOMING);
             return statement;
         }catch (SQLException e){
             throw new RepositoryException(e);
@@ -30,11 +22,6 @@ public class InsertHorseSpecification implements SQLSpecification {
 
     @Override
     public void fillStatement(PreparedStatement statement) throws RepositoryException {
-        try {
-            statement.setString(1, horse.getName());
-            statement.setInt(2, horse.getAge());
-        }catch (SQLException e){
-            throw new RepositoryException(e);
-        }
+        throw new UnsupportedOperationException();
     }
 }

@@ -12,7 +12,7 @@ public final class SqlHorseConstant {
     //language=sql
     static final String SQL_HORSES_SELECT_BY_YEAR = "SELECT name, years, wins from horses where years=?";
     //language=sql
-    static final String SQL_HORSES_INSERT = "INSERT INTO horses(name,age, wins) values(?,?,?) ";
+    static final String SQL_HORSES_INSERT = "INSERT INTO horses(name,age, wins) values(?,?,0) ";
     //language=sql
     static final String SQL_HORSES_DELETE_ALL = "DELETE from horses";
     //language=sql
@@ -24,4 +24,7 @@ public final class SqlHorseConstant {
     //language=sql
     static final String SQL_HORSE_LIST_INSERT = "INSERT INTO horse_list(race_id, horse_id) VALUES " +
             "(?,?)";
+    //language=sql
+    static final String SQL_HORSES_UPDATE_WINS = "update horses set wins = " +
+            "(select wins from horses where horse_id = ?) + 1 where horse_id = ?";
 }

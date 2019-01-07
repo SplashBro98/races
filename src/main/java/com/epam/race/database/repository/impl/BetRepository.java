@@ -42,7 +42,7 @@ public class BetRepository extends AbstractRepository<Bet> {
             newBet.setCoeff(resultSet.getFloat(5));
             return newBet;
         }catch (SQLException e){
-            throw new RepositoryException(e);
+            throw new RepositoryException("SQLException in createItem method",e);
         }
     }
 
@@ -53,7 +53,7 @@ public class BetRepository extends AbstractRepository<Bet> {
 
     @Override
     public void remove(Bet bet) throws RepositoryException {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override

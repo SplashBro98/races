@@ -1,4 +1,4 @@
-package com.epam.race.util.constant;
+package com.epam.race.command;
 
 public final class StringAttributes {
     public static final String NAME = "name";
@@ -10,6 +10,8 @@ public final class StringAttributes {
     public static final String USER = "user";
     public static final String USER_ID = "userId";
     public static final String COEFF = "coeff";
+    public static final String AGE = "age";
+    public static final String WINS = "wins";
     public static final String SUM = "sum";
     public static final String PLACE = "place";
     public static final String DATE = "date";
@@ -36,10 +38,15 @@ public final class StringAttributes {
     public static final String INCORRECT_PLACE = "incorrect_place";
     public static final String INCORRECT_TIME = "incorrect_time";
     public static final String INCORRECT_DATE = "incorrect_date";
+    public static final String INCORRECT_AGE = "incorrect_age";
     public static final String PASSWORDS_NOT_MATCH = "not_confirmed";
     public static final String ADMIN_LOGIN = "admin_login";
     public static final String BOOKMAKER_LOGIN = "bookmaker_login";
+    public static final String PAYMENT_ID = "paymentId";
+
     public static final String BLOCKED = "blocked";
+    public static final String TRUE = "true";
+    public static final String FALSE = "false";
 
 
 
@@ -53,7 +60,10 @@ public final class StringAttributes {
     public static final String ATTRIBUTE_INCORRECT_PLACE = "Incorrect place";
     public static final String ATTRIBUTE_INCORRECT_TIME = "Incorrect time";
     public static final String ATTRIBUTE_INCORRECT_DATE = "Incorrect date";
+    public static final String ATTRIBUTE_INCORRECT_AGE = "Incorrect age";
     public static final String ATTRIBUTE_PASSWORDS_NOT_MATCH = "Passwords don`t match";
     public static final String ATTRIBUTE_BLOCKED = "You are blocked";
 
+    private StringAttributes() {
+    }
 }

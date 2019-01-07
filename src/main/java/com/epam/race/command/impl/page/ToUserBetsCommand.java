@@ -20,16 +20,23 @@ public class ToUserBetsCommand implements Command {
         String login = req.getSession().getAttribute("login").toString();
 
         try {
-            List<UserBet> userBets = new UserBetService().findUserBetsByLogin(login);
+            List<UserBet> currentUserBets = new UserBetService().findCurrentUserBetsByLogin(login);
 
-            if(userBets.isEmpty()){
+            if(currentUserBets.isEmpty()){
                 req.setAttribute("nothing","You haven`t any bets at the moment");
             }
-            req.setAttribute("userBets",userBets);
+            req.setAttribute("currentUserBets",currentUserBets);
+
+            List<UserBet> previousUserBets = new UserBetService().findPreviousUserBetsByLogin(login);
+
+            if(!previousUserBets.isEmpty()){
+                req.setAttribute("previousUserBets",previousUserBets);
+            }
+
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_USER_BETS_PAGE);
         }catch (ServiceException e){
-            logger.error("sdfsf",e);
+            logger.error("service exception in ToUserBetsCommand",e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

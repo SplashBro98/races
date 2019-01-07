@@ -10,11 +10,9 @@
           id="bootstrap-css">
     <link href="/css/header.css" rel="stylesheet" type="text/css">
 
-
 </head>
 <body>
 <c:import url="withoutLoginHeader.jsp"/>
-
 
 <section class="wrapper fixed-top">
     <div class="overlays"></div>

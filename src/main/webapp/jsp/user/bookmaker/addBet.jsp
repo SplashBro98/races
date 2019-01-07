@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Иван
-  Date: 14.12.2018
-  Time: 16:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -12,8 +5,11 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Add Bet</title>
+    <title><fmt:message key="label.addBet" bundle="${var}"/></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          rel="stylesheet" id="bootstrap-css">
 </head>
+
 <body>
 <c:import url="../../common/header.jsp"/>
 
@@ -88,7 +84,7 @@
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         <input type="text" class="form-control"
-                                               name="coeff" pattern="^[0-9]*[.,]?[0-9]+$"
+                                               name="coeff" pattern="^([1-9]\d{0,5})([.,]\d{2})?$"
                                                placeholder="Coefficient*" required>
                                         <div class="text-center"> ${incorrect_coeff}</div>
                                     </div>

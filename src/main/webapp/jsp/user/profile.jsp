@@ -7,18 +7,16 @@
 
 <html>
 <head>
-    <title>Profile</title>
+    <title><fmt:message key="label.profile" bundle="${var}"/></title>
     <link href="/css/profile.css" rel="stylesheet" type="text/css">
     <link href="/css/main.css" rel="stylesheet" type="text/css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          rel="stylesheet" id="bootstrap-css">
 
 </head>
 <body>
 <c:import url="../common/header.jsp"/>
 
 <section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
+    <div class="overlays"></div>
     <div class="container h-100">
         <div class="row h-100 justify-content-between align-items-center">
             <div class="col-lg-12">
@@ -51,7 +49,7 @@
                                             <c:if test="${role eq 'client'}">
                                                 <tr>
                                                     <td><fmt:message key="holder.amount" bundle="${var}"/>:</td>
-                                                    <td>${user.amount}</td>
+                                                    <td>${user.amount} $</td>
                                                 </tr>
                                             </c:if>
                                             <tr>

@@ -13,7 +13,7 @@ public class EncodingFilter implements Filter {
     public static final String ENCODING = "encoding";
 
     @Override
-    public void init(FilterConfig fConfig) throws ServletException {
+    public void init(FilterConfig fConfig) {
         code = fConfig.getInitParameter(ENCODING);
     }
 

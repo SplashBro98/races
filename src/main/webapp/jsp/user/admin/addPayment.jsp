@@ -6,13 +6,15 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title><fmt:message key="label.addPayment" bundle="${var}"/></title>
+
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>
 
 <section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
+    <div class="overlays"></div>
     <div class="container h-100">
         <div class="row h-100 justify-content-between align-items-center">
             <div class="col-lg-12">
@@ -34,7 +36,7 @@
                                                     class="glyphicon glyphicon-lock"></i></span>
                                             <input type="text" class="form-control"
                                                    name="paymentId"
-                                                   pattern="^\d\d-\d\d\d-\d\d\d$"
+                                                   pattern="^\d{2}-\d{3}-\d{3}$"
                                                    placeholder="**-***-***" required>
                                             <div class="text-center"> ${incorrect_id}</div>
                                         </div>
@@ -44,7 +46,7 @@
                                                     class="glyphicon glyphicon-lock"></i></span>
                                             <input type="text" class="form-control"
                                                    name="sum"
-                                                   pattern="^[0-9]*[.,]?[0-9]+$"
+                                                   pattern="^((?!0\.00)(0[.,]\d{2}|([1-9]\d{0,5})([.,]\d{2})?))$"
                                                    placeholder="Sum*" required>
                                             <div class="text-center"> ${incorrect_sum}</div>
                                         </div>

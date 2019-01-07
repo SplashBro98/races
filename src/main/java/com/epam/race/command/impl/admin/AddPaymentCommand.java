@@ -2,6 +2,7 @@ package com.epam.race.command.impl.admin;
 
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
+import com.epam.race.command.StringAttributes;
 import com.epam.race.entity.common.Payment;
 import com.epam.race.service.PaymentService;
 import com.epam.race.service.ServiceException;
@@ -20,16 +21,16 @@ public class AddPaymentCommand implements Command {
         String page;
 
         PaymentValidator validator = new PaymentValidator();
-        String paymentId = req.getParameter("paymentId");
+        String paymentId = req.getParameter(StringAttributes.PAYMENT_ID);
         boolean isCorrectId = validator.isCorrectPaymentId(paymentId);
         if(!isCorrectId){
             req.setAttribute("incorrect_id","incorrect payment ID");
             return PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_PAYMENT_PAGE);
         }
-        String sum = req.getParameter("sum");
+        String sum = req.getParameter(StringAttributes.SUM);
         boolean isCorrectSum = validator.isCorrectSum(sum);
         if(!isCorrectSum){
-            req.setAttribute("incorrect_sum","incorrect Sum");
+            req.setAttribute("incorrect_sum", "incorrect Sum");
             return PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_PAYMENT_PAGE);
         }
 
@@ -39,7 +40,8 @@ public class AddPaymentCommand implements Command {
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
         }catch (ServiceException e){
-            logger.error("sdfsdvds",e);
+            logger.error("Service Exception in AddPaymentCommand",e);
+            req.setAttribute("e",e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
 

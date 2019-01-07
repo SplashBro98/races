@@ -1,5 +1,8 @@
 package com.epam.race.util.validation;
 
+import java.util.List;
+import java.util.function.Consumer;
+
 public class RaceValidator {
 
     private static final String NAME_REGEX = "[a-zA-Z0-9А-Яа-я_ -]{4,30}";
@@ -22,6 +25,15 @@ public class RaceValidator {
 
     public boolean checkDate(String date) {
         return date.matches(DATE_REGEX);
+    }
+
+    public boolean isDifferentHorses(List<Integer> horseIdList) {
+        for(int i : horseIdList){
+            if(horseIdList.stream().filter(id -> id.equals(i)).count() != 1){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

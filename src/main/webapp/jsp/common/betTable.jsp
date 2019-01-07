@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Иван
-  Date: 13.12.2018
-  Time: 14:49
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -13,9 +6,9 @@
 <html>
 <head>
     <%--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" --%>
-          <%--rel="stylesheet" id="bootstrap-css">--%>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-              rel="stylesheet" id="bootstrap-css">
+    <%--rel="stylesheet" id="bootstrap-css">--%>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          rel="stylesheet" id="bootstrap-css">
 </head>
 <body>
 
@@ -33,7 +26,9 @@
                         <th><fmt:message key="holder.name" bundle="${var}"/></th>
                         <th><fmt:message key="holder.position" bundle="${var}"/></th>
                         <th><fmt:message key="holder.coeff" bundle="${var}"/></th>
-                        <th><fmt:message key="holder.action" bundle="${var}"/></th>
+                        <c:if test="${role ne 'admin'}">
+                            <th><fmt:message key="holder.action" bundle="${var}"/></th>
+                        </c:if>
                     </tr>
                     </thead>
                     <tbody style="color: white">

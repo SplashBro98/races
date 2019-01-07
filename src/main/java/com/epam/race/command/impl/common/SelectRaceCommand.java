@@ -5,7 +5,7 @@ import com.epam.race.command.PageManager;
 import com.epam.race.entity.common.Race;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
-import com.epam.race.util.constant.StringAttributes;
+import com.epam.race.command.StringAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 

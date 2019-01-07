@@ -8,9 +8,9 @@ import com.epam.race.entity.user.UserType;
 import com.epam.race.service.RaceService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserService;
-import com.epam.race.util.constant.StringAttributes;
-import com.epam.race.util.constant.StringConstant;
-import com.epam.race.util.encryption.Encryption;
+import com.epam.race.command.StringAttributes;
+import com.epam.race.util.StringConstant;
+import com.epam.race.util.Encryption;
 import com.epam.race.util.validation.SignUpValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,14 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class AddAdminCommand implements Command {
-    private static Logger logger = LogManager.getLogger(SignUpCommand.class);
+    private static Logger logger = LogManager.getLogger(AddAdminCommand.class);
 
     @Override
     public String execute(HttpServletRequest req) {
 
         String page;
         User user = new User();
-
 
         user.setLogin(req.getParameter(StringAttributes.LOGIN));
         user.setEmail(req.getParameter(StringAttributes.EMAIL));
@@ -43,7 +42,6 @@ public class AddAdminCommand implements Command {
         try {
             SignUpValidator validator = new SignUpValidator();
 
-            //TODO Надо ли проверять поля на наличие инфы на сервере
             boolean flag = true;
             boolean loginIsPresent = validator.checkLoginIsPresent(user.getLogin());
             boolean loginIsCorrect = validator.checkLoginIsCorrect(user.getLogin());
@@ -92,9 +90,8 @@ public class AddAdminCommand implements Command {
 
             if (flag) {
 
-
                 new UserService().addUser(user);
-                RaceService raceService = new RaceService(1, 5);
+                RaceService raceService = new RaceService(1, 8);
                 List<Object> attributes = raceService.mainAttributes();
 
                 req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
@@ -109,7 +106,8 @@ public class AddAdminCommand implements Command {
 
 
         } catch (ServiceException e) {
-            logger.error("Problem with command or lower", e);
+            logger.error("Service exception in AddAdminCommand", e);
+            req.setAttribute("exception",e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;
