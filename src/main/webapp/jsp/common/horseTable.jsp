@@ -22,8 +22,8 @@
                 <tr>
                     <th>#</th>
                     <th><fmt:message key="holder.name" bundle="${var}"/></th>
-                    <th>Age</th>
-                    <th>Wins</th>
+                    <th><fmt:message key="column.age" bundle="${var}"/></th>
+                    <th><fmt:message key="column.wins" bundle="${var}"/></th>
                 </tr>
                 </thead>
                 <tbody style="color: white">

@@ -2,25 +2,14 @@ package com.epam.race.entity.common;
 
 import com.epam.race.entity.Entity;
 
+import java.util.Objects;
+
 public class RaceResult implements Entity {
     private Race race;
     private String firstHorseName;
     private String secondHorseName;
     private String thirdHorseName;
     private String fourthHorseName;
-
-
-    public RaceResult() {
-    }
-
-    public RaceResult(Race race, String firstHorseName, String secondHorseName,
-                      String thirdHorseName, String fourthHorseName) {
-        this.race = race;
-        this.firstHorseName = firstHorseName;
-        this.secondHorseName = secondHorseName;
-        this.thirdHorseName = thirdHorseName;
-        this.fourthHorseName = fourthHorseName;
-    }
 
     public Race getRace() {
         return race;
@@ -60,5 +49,33 @@ public class RaceResult implements Entity {
 
     public void setFourthHorseName(String fourthHorseName) {
         this.fourthHorseName = fourthHorseName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RaceResult that = (RaceResult) o;
+        return race.equals(that.race) &&
+                firstHorseName.equals(that.firstHorseName) &&
+                secondHorseName.equals(that.secondHorseName) &&
+                thirdHorseName.equals(that.thirdHorseName) &&
+                fourthHorseName.equals(that.fourthHorseName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(race, firstHorseName, secondHorseName, thirdHorseName, fourthHorseName);
+    }
+
+    @Override
+    public String toString() {
+        return "RaceResult{" +
+                "race=" + race +
+                ", firstHorseName='" + firstHorseName + '\'' +
+                ", secondHorseName='" + secondHorseName + '\'' +
+                ", thirdHorseName='" + thirdHorseName + '\'' +
+                ", fourthHorseName='" + fourthHorseName + '\'' +
+                '}';
     }
 }

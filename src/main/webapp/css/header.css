@@ -9,6 +9,10 @@
 #navbarSupportedContent li a{
     color:white;
 }
+
+.colortext {
+    color: white;
+}
 #up h2{
     color:#00c851!important;
     font-size:1.3rem;

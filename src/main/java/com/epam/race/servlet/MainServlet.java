@@ -41,7 +41,6 @@ public class MainServlet extends HttpServlet {
 
         getServletContext().getRequestDispatcher(page).forward(req, resp);
 
-
     }
 
     @Override

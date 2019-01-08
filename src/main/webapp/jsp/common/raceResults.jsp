@@ -9,8 +9,8 @@
     <title><fmt:message key="label.raceResults" bundle="${var}"/></title>
     <link href="/css/main.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
+
 <c:import url="header.jsp"/>
 
 <div class="parallax" style="height: max-content">
@@ -30,14 +30,14 @@
                                     <div class="panel panel-primary">
                                         <div class="panel-heading">
                                             <h3 class="panel-title">
-                                                Race : ${result.race.name}</h3><br>
-                                            <h5 class="panel-title">
-                                                Place : ${result.race.place}</h5>
+                                                <fmt:message key="column.race" bundle="${var}"/> : ${result.race.name}</h3><br>
+                                            <h4 class="panel-title">
+                                                <fmt:message key="column.place" bundle="${var}"/> : ${result.race.place}</h4>
                                         </div>
                                         <table class="table table-hover">
                                             <thead class="colortext">
                                             <tr>
-                                                <th><fmt:message key="holder.position" bundle="${var}"/></th>
+                                                <th><fmt:message key="column.position" bundle="${var}"/></th>
                                                 <th><fmt:message key="holder.name" bundle="${var}"/></th>
                                             </tr>
                                             </thead>

@@ -57,7 +57,7 @@ public class RaceRepository extends AbstractRepository<Race> {
     }
 
     @Override
-    public void remove(Race race) throws RepositoryException {
+    public void remove(Race race) {
         throw new UnsupportedOperationException();
     }
 

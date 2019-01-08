@@ -49,7 +49,8 @@ public class AddBetCommand implements Command{
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
         }catch (ServiceException e){
-            logger.error("service or lower", e);
+            logger.error("Service Exception in AddBetCommand", e);
+            req.setAttribute("e",e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

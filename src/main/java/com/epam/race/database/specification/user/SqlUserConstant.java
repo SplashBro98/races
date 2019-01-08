@@ -30,7 +30,8 @@ public final class SqlUserConstant {
     //language=sql
     static final String SQL_USERS_UPDATE = "update users set name = ?, surname = ?, " +
             "login = ?, password = ?, email = ?" +
-            "where userid = ?";
+            "where user_id = ?";
+
     //language=sql
     static final String SQL_USERS_BLOCK_USER = "update users set is_locked = true where login = ?";
 

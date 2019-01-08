@@ -1,8 +1,8 @@
 package com.epam.race.entity.common;
 
 import com.epam.race.entity.Entity;
-
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Payment implements Entity {
     private String paymentId;
@@ -34,5 +34,27 @@ public class Payment implements Entity {
 
     public void setSum(BigDecimal sum) {
         this.sum = sum;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Payment payment = (Payment) o;
+        return paymentId.equals(payment.paymentId) &&
+                sum.equals(payment.sum);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(paymentId, sum);
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentId='" + paymentId + '\'' +
+                ", sum=" + sum +
+                '}';
     }
 }

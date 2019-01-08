@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title><fmt:message key="label.addHorse" bundle="${var}"/></title>
+
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>

@@ -2,6 +2,7 @@ package com.epam.race.command.impl.page;
 
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
+import com.epam.race.command.StringAttributes;
 import com.epam.race.entity.user.UserBet;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserBetService;
@@ -17,7 +18,7 @@ public class ToUserBetsCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         String page;
-        String login = req.getSession().getAttribute("login").toString();
+        String login = req.getSession().getAttribute(StringAttributes.LOGIN).toString();
 
         try {
             List<UserBet> currentUserBets = new UserBetService().findCurrentUserBetsByLogin(login);

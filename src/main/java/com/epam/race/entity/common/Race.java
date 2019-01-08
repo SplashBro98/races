@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Race implements Entity {
     private int raceId;
@@ -97,6 +98,23 @@ public class Race implements Entity {
         horses.add(horse);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Race race = (Race) o;
+        return name.equals(race.name) &&
+                place.equals(race.place) &&
+                date.equals(race.date) &&
+                time.equals(race.time) &&
+                bets.equals(race.bets) &&
+                horses.equals(race.horses);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, place, date, time, bets, horses);
+    }
 
     @Override
     public String toString() {

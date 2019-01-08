@@ -22,33 +22,19 @@
 
                 <div class="container">
                     <div class="container-fluid" style="background-color: dimgray">
-                        <div class="container container-pad">
+                        <div class="container container-pad colortext">
                             <div class="row">
-
-                                <div class="col-sm-6 col-md-6 col-xs-6">
-                                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                                        <div class="media">
-                                            <a class="pull-left" href="#" target="_parent">
-                                                <img alt="image" class="img-responsive"
-                                                     src="/img/races.jpg"></a>
-
-                                            <div class="media-body fnt-smaller">
-                                                <a href="#" target="_parent"></a>
-
-                                                <h5 class="media-heading">
-                                                    <a href="/main?command=select race&name=${race.name}"
-                                                       target="_parent">${race.name}</a>
-                                                </h5>
-
-
-                                                <ul class="list-inline" style="color: black">
-                                                    <li>${race.time}</li>
-                                                    <li>${race.date}</li>
-
-                                                </ul>
-
-                                                <p style="color: black">${race.place}</p>
-                                            </div>
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" style="margin-bottom: 50px">
+                                            <h3 class="panel-title">
+                                                <fmt:message key="column.race" bundle="${var}"/> : ${race.name}</h3>
+                                            <h4 class="panel-title">
+                                                <fmt:message key="column.place" bundle="${var}"/> : ${race.place}</h4>
+                                            <h4 class="panel-title">
+                                                <fmt:message key="column.time" bundle="${var}"/> : ${race.time}</h4>
+                                            <h4 class="panel-title">
+                                                <fmt:message key="column.date" bundle="${var}"/> : ${race.date}</h4>
                                         </div>
                                     </div>
                                 </div>

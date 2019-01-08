@@ -5,7 +5,8 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Edit Bet</title>
+    <meta charset="UTF-8">
+    <title><fmt:message key="label.editbet" bundle="${var}"/></title>
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>
@@ -54,7 +55,7 @@
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         <input type="text" class="form-control"
-                                               name="coeff" pattern="^([1-9]\d{0,5})([.,]\d{2})?$"
+                                               name="coeff" pattern="^((?!0\.00)(0[.,]\d{2}|([1-9]\d{0,5})([.,]\d{2})?))$"
                                                placeholder="Coefficient*" value="${bet.coeff}" required>
                                         <div class="text-center"> ${incorrect_coeff}</div>
                                     </div>

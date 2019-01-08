@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title><fmt:message key="label.addRace" bundle="${var}"/></title>
+
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>
@@ -24,7 +25,8 @@
                         <div class="panel panel-info">
                             <div class="panel-heading" style="margin-bottom: 40px">
                                 <div class="panel-title text-center">
-                                    <h3 style="color: white"><fmt:message key="form.addrace" bundle="${var}"/></h3></div>
+                                    <h3 style="color: white"><fmt:message key="form.addrace" bundle="${var}"/></h3>
+                                </div>
                             </div>
                             <div class="panel-body">
                                 <form action="/main" method="post">
@@ -102,7 +104,9 @@
                                     </div>
 
                                     <c:if test="${not empty not_different_horses}">
-                                        <fmt:message key="info.samehorses" bundle="${var}"/>
+                                        <div class="colortext">
+                                            <fmt:message key="info.samehorses" bundle="${var}"/>
+                                        </div>
                                     </c:if>
 
 

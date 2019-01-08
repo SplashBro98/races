@@ -58,7 +58,9 @@ public class UserBetService {
                 userService.updateUserAmount(userBet.getUserLogin(),amount.add(prize));
                 userBet.setSuccessful(true);
             }
-            userBet.setSuccessful(false);
+            else {
+                userBet.setSuccessful(false);
+            }
         }
         updateUserBetsByRace(userBets);
 

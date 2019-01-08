@@ -20,6 +20,8 @@ public final class DbCols {
     public static final String AGE = "age";
     public static final String WINS = "wins";
     public static final String PAYMENT_ID = "payment_id";
+    public static final String AMOUNT = "amount";
+    public static final String USERTYPE_ID = "usertype_id";
 
     private DbCols() {
     }

@@ -26,8 +26,8 @@ public class EditProfileCommand implements Command {
 
         String page;
 
-        User user = (User) req.getSession().getAttribute("user");
-        req.getSession().removeAttribute("user");
+        User user = (User) req.getSession().getAttribute(StringAttributes.USER);
+        req.getSession().removeAttribute(StringAttributes.USER);
 
 
         user.setName(req.getParameter(StringAttributes.NAME));
@@ -97,7 +97,7 @@ public class EditProfileCommand implements Command {
             if (flag) {
 
                 req.getSession().setAttribute(StringAttributes.LOGIN, user.getLogin());
-                req.getSession().setAttribute(StringAttributes.ROLE, user.getUserType().toString());
+                req.getSession().setAttribute(StringAttributes.ROLE, user.getUserType().toString().toLowerCase());
                 req.getSession().setAttribute(StringAttributes.LOCALE, Locale.getDefault());
 
                 new UserService().updateUser(user);

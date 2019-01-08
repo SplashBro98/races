@@ -1,10 +1,8 @@
 package com.epam.race.entity.user;
 
-
-
 import com.epam.race.entity.Entity;
-
 import java.math.BigDecimal;
+import java.util.Objects;
 
 
 public class User implements Entity {
@@ -86,7 +84,6 @@ public class User implements Entity {
         this.userType = userType;
     }
 
-
     public int getUserId() {
         return userId;
     }
@@ -117,5 +114,39 @@ public class User implements Entity {
 
     public void setLocked(boolean locked) {
         isLocked = locked;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return name.equals(user.name) &&
+                surname.equals(user.surname) &&
+                login.equals(user.login) &&
+                password.equals(user.password) &&
+                email.equals(user.email) &&
+                userType == user.userType &&
+                amount.equals(user.amount);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, login, password, email, userType, amount);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", userType=" + userType +
+                ", amount=" + amount +
+                '}';
     }
 }

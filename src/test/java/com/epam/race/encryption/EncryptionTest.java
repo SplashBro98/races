@@ -10,11 +10,12 @@ public class EncryptionTest {
 
     @Test
     public void checkEncrypt(){
-        String test = "Qwerty007";
+        String test = "Va02908902";
         String encrypted = Base64.getEncoder().encodeToString(test.getBytes());
 
-        String decrypted = new String(Base64.getDecoder().decode(encrypted));
+        System.out.println(encrypted);
 
+        String decrypted = new String(Base64.getDecoder().decode(encrypted));
 
         Assert.assertEquals(decrypted, test);
     }

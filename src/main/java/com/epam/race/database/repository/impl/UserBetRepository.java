@@ -10,6 +10,7 @@ import com.epam.race.database.specification.userbet.InsertUserBetSpecification;
 import com.epam.race.entity.user.UserBet;
 import com.epam.race.database.specification.SQLSpecification;
 
+import java.math.MathContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,9 +24,10 @@ public class UserBetRepository extends AbstractRepository<UserBet> {
     private static UserBetRepository instance;
 
     //language=sql
-    private static final String SQL_USER_BETS_SELECT_BY_RACE_ID = "select u.user_login, u.betid, u.sum, u.coeff, b.position, " +
+    private static final String SQL_USER_BETS_SELECT_BY_RACE_ID = "select u.user_login, u.bet_id, u.sum, " +
+            "u.coeff, b.position, " +
             "b.horse_id, h.name, h.age, h.wins from user_bets u " +
-            "join bets b on (u.betid = b.bet_id)" +
+            "join bets b on (u.bet_id = b.bet_id)" +
             "join horses h on (h.horse_id = b.horse_id) where b.race_id = ?";
 
     private UserBetRepository() {

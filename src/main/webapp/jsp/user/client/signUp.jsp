@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Иван
-  Date: 18.11.2018
-  Time: 23:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -12,7 +5,8 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>SignUp_JSP</title>
+    <meta charset="UTF-8">
+    <title><fmt:message key="label.signup" bundle="${var}"/></title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
 </head>
@@ -60,7 +54,7 @@
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="text" class="form-control" name="login"
-                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,100}" value="${login}"
+                                                   pattern="[a-zA-Z0-9А-Яа-я_`]{4,40}" value="${login}"
                                                    placeholder="<fmt:message key="holder.login" bundle="${var}"/>*"
                                                    required>
                                             ${incorrect_login}

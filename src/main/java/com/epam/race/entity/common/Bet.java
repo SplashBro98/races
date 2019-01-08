@@ -2,6 +2,8 @@ package com.epam.race.entity.common;
 
 import com.epam.race.entity.Entity;
 
+import java.util.Objects;
+
 public class Bet implements Entity {
     private int betId;
     private Race race;
@@ -11,8 +13,6 @@ public class Bet implements Entity {
 
     public Bet() {
     }
-
-
 
     public Bet(Race race, double coeff) {
         this.race = race;
@@ -79,5 +79,32 @@ public class Bet implements Entity {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bet bet = (Bet) o;
+        return position == bet.position &&
+                Double.compare(bet.coeff, coeff) == 0 &&
+                race.equals(bet.race) &&
+                horse.equals(bet.horse);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(race, horse, position, coeff);
+    }
+
+    @Override
+    public String toString() {
+        return "Bet{" +
+                "betId=" + betId +
+                ", race=" + race +
+                ", horse=" + horse +
+                ", position=" + position +
+                ", coeff=" + coeff +
+                '}';
     }
 }

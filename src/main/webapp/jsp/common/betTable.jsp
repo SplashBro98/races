@@ -5,8 +5,6 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <%--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" --%>
-    <%--rel="stylesheet" id="bootstrap-css">--%>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           rel="stylesheet" id="bootstrap-css">
 </head>
@@ -63,6 +61,9 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <c:if test="${empty bets}">
+                    <fmt:message key="info.nobets" bundle="${var}"/>
+                </c:if>
             </div>
         </div>
     </div>

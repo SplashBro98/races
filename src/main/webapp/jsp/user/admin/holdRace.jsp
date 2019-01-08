@@ -6,9 +6,10 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title><fmt:message key="button.holdrace" bundle="${var}"/></title>
+    <title><fmt:message key="label.holdrace" bundle="${var}"/></title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           rel="stylesheet" id="bootstrap-css">
+
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>

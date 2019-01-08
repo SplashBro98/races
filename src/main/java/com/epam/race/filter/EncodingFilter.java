@@ -10,7 +10,7 @@ import java.io.IOException;
                 @WebInitParam(name = EncodingFilter.ENCODING, value = "UTF-8")})
 public class EncodingFilter implements Filter {
     private String code;
-    public static final String ENCODING = "encoding";
+    protected static final String ENCODING = "encoding";
 
     @Override
     public void init(FilterConfig fConfig) {

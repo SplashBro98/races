@@ -14,7 +14,7 @@
 <c:import url="../../common/header.jsp"/>
 
 <section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
+    <div class="overlays"></div>
     <div class="container h-100">
         <div class="row h-100 justify-content-between align-items-center">
             <div class="col-lg-12">

@@ -6,7 +6,8 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title><fmt:message key="label.entersum" bundle="${var}"/></title>
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>

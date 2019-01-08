@@ -39,7 +39,7 @@ public class BetRepository extends AbstractRepository<Bet> {
             horse.setHorseId(resultSet.getInt(3));
             newBet.setHorse(horse);
             newBet.setPosition(resultSet.getInt(4));
-            newBet.setCoeff(resultSet.getFloat(5));
+            newBet.setCoeff(resultSet.getDouble(5));
             return newBet;
         }catch (SQLException e){
             throw new RepositoryException("SQLException in createItem method",e);

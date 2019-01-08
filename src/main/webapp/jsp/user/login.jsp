@@ -21,7 +21,7 @@
             <div class="col-lg-12 text-center ">
 
                 <div class="container">
-                    <div style="margin-right: auto; margin-left: auto" class="mainbox col-md-4 col-sm-8">
+                    <div style="margin-right: auto; margin-left: auto; margin-top: 20%" class="mainbox col-md-4 col-sm-8">
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <div class="panel-title">

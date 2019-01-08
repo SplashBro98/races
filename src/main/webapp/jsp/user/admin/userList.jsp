@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Иван
-  Date: 13.12.2018
-  Time: 13:36
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -12,11 +5,13 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title><fmt:message key="label.userlist" bundle="${var}"/></title>
 
     <link href="/css/main.css" rel="stylesheet" type="text/css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           rel="stylesheet" id="bootstrap-css">
+
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>

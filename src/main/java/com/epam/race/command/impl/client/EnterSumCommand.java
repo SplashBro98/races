@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.math.MathContext;
 
 public class EnterSumCommand implements Command {
     private static Logger logger = LogManager.getLogger(EnterSumCommand.class);
@@ -21,7 +22,7 @@ public class EnterSumCommand implements Command {
     public String execute(HttpServletRequest req) {
         String page;
 
-        String strSum = req.getParameter("sum");
+        String strSum = req.getParameter(StringAttributes.SUM);
 
         boolean isCorrectSum = new BetValidator().isCorrectSum(strSum);
 
@@ -33,7 +34,7 @@ public class EnterSumCommand implements Command {
         try{
             UserService service = new UserService();
             String login = req.getSession().getAttribute(StringAttributes.LOGIN).toString();
-            BigDecimal sumOfBet = new BigDecimal(strSum);
+            BigDecimal sumOfBet = new BigDecimal(strSum).round(new MathContext(4));
             BigDecimal userAmount = service.findUserAmount(login);
             if(userAmount.compareTo(sumOfBet) == -1){
                 req.setAttribute("is_incorrect_sum","true");
@@ -42,15 +43,16 @@ public class EnterSumCommand implements Command {
 
             UserBetService userBetService = new UserBetService();
             int betId = Integer.parseInt(req.getSession().getAttribute("betId").toString());
-            double coeff = Double.parseDouble(req.getSession().getAttribute("coeff").toString());
+            double coeff = Double.parseDouble(req.getSession().getAttribute(StringAttributes.COEFF).toString());
 
-            service.updateUserAmount(login,userAmount.subtract(sumOfBet));
+            service.updateUserAmount(login,userAmount.subtract(
+                    sumOfBet).round(new MathContext(4)));
             userBetService.addUserBet(new UserBet(betId,login,sumOfBet,coeff));
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
 
         }catch (ServiceException e){
-            logger.error("service error", e);
+            logger.error("Service Exception in EnterSumCommand", e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
 

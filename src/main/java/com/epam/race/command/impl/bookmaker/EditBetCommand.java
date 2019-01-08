@@ -34,7 +34,8 @@ public class EditBetCommand implements Command {
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
         }catch (ServiceException e){
-            logger.error("service error or lower",e);
+            logger.error("Service",e);
+            req.setAttribute("e",e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

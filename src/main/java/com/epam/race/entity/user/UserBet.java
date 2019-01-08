@@ -1,10 +1,9 @@
 package com.epam.race.entity.user;
 
 import com.epam.race.entity.common.Bet;
-import com.epam.race.entity.common.Horse;
-import com.epam.race.entity.common.Race;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class UserBet extends Bet {
     private String userLogin;
@@ -14,16 +13,6 @@ public class UserBet extends Bet {
     public UserBet() {
     }
 
-    public UserBet(String userLogin, BigDecimal sum) {
-        this.userLogin = userLogin;
-        this.sum = sum;
-    }
-
-    public UserBet(int betId, Race race, Horse horse, double coeff, String userLogin, BigDecimal sum) {
-        super(betId, race, horse, coeff);
-        this.userLogin = userLogin;
-        this.sum = sum;
-    }
 
     public UserBet(int betId, String userLogin, BigDecimal sum, double coeff){
         this.setBetId(betId);
@@ -54,5 +43,30 @@ public class UserBet extends Bet {
 
     public void setSuccessful(boolean successful) {
         isSuccessful = successful;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        UserBet userBet = (UserBet) o;
+        return isSuccessful == userBet.isSuccessful &&
+                userLogin.equals(userBet.userLogin) &&
+                sum.equals(userBet.sum);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), userLogin, sum, isSuccessful);
+    }
+
+    @Override
+    public String toString() {
+        return "UserBet{" +
+                "userLogin='" + userLogin + '\'' +
+                ", sum=" + sum +
+                ", isSuccessful=" + isSuccessful +
+                '}';
     }
 }

@@ -6,7 +6,7 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="label.entersum" bundle="${var}"/></title>
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>
@@ -34,7 +34,7 @@
                                                     class="glyphicon glyphicon-lock"></i></span>
                                             <input type="text" class="form-control"
                                                    name="sum"
-                                                   pattern="^[0-9]*[.,]?[0-9]+$"
+                                                   pattern="^((?!0\.00)(0[.,]\d{2}|([1-9]\d{0,5})([.,]\d{2})?))$"
                                                    placeholder="Sum*" required>
                                             <c:if test="${not empty is_incorrect_sum}">
                                                 <div class="text-center"><fmt:message key="info.sum" bundle="${var}"/></div>

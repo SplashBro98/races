@@ -34,7 +34,8 @@ public class SelectRaceHorsesCommand implements Command {
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
 
         }catch (ServiceException e){
-            logger.error("service problem",e);
+            logger.error("Service Exception in SelectRaceHorsesCommand",e);
+            req.setAttribute("e",e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;
