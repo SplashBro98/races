@@ -61,7 +61,8 @@ public class HoldRaceCommand implements Command {
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_RESULTS_PAGE);
         }catch (ServiceException e){
-            logger.error("Service exception in HoldRaceCommand", e);
+            logger.error("Service Exception in HoldRaceCommand", e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

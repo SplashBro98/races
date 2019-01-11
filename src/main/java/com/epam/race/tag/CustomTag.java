@@ -7,16 +7,16 @@ import java.io.IOException;
 import java.time.LocalTime;
 
 @SuppressWarnings("serial")
-public class InfoTag extends TagSupport {
+public class CustomTag extends TagSupport {
 
     @Override
     public int doStartTag() throws JspException {
-        LocalTime localTime = LocalTime.now();
-        String time = "<hr/>Time : <b> " + localTime.toString() + " </b><hr/>";
 
         try {
             JspWriter out = pageContext.getOut();
-            out.write(time);
+            StringBuilder sb = new StringBuilder();
+            sb.append(" © 2018 Copyright: WhoScored.com");
+            out.write(sb.toString());
         } catch (IOException e) {
             throw new JspException(e.getMessage());
         }

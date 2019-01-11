@@ -19,16 +19,17 @@ public class ToMainCommand implements Command {
     public String execute(HttpServletRequest req) {
         String page;
         try {
-            RaceService service = new RaceService(1, 5);
+            RaceService service = new RaceService(1, 8);
             List<Object> attrs = service.mainAttributes();
 
-            req.getSession().setAttribute("currentPage", attrs.get(0));
-            req.getSession().setAttribute("numberOfPages", attrs.get(1));
+            req.getSession().setAttribute(StringAttributes.CURRENT_PAGE, attrs.get(0));
+            req.getSession().setAttribute(StringAttributes.NUMBER_OF_PAGES, attrs.get(1));
 
             req.getSession().setAttribute(StringAttributes.RACES, service.findCurrentRaces());
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
         }catch (ServiceException e){
-            logger.error("problem with service layer or lower", e);
+            logger.error("Service Exception in ToMainCommand", e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

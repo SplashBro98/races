@@ -26,7 +26,6 @@ public class RaceService {
         this.recordsPerPage = recordsPerPage;
     }
 
-
     public List<Object> mainAttributes() throws ServiceException {
 
         findAllUpcomingRaces();

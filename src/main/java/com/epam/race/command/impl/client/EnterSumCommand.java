@@ -27,7 +27,7 @@ public class EnterSumCommand implements Command {
         boolean isCorrectSum = new BetValidator().isCorrectSum(strSum);
 
         if(!isCorrectSum){
-            req.setAttribute("incorrect_sum","incorrect sum, please, try again");
+            req.setAttribute(StringAttributes.INCORRECT_SUM,StringAttributes.TRUE);
             return PageManager.INSTANCE.getProperty(PageManager.PATH_ENTER_SUM_PAGE);
         }
 
@@ -37,12 +37,12 @@ public class EnterSumCommand implements Command {
             BigDecimal sumOfBet = new BigDecimal(strSum).round(new MathContext(4));
             BigDecimal userAmount = service.findUserAmount(login);
             if(userAmount.compareTo(sumOfBet) == -1){
-                req.setAttribute("is_incorrect_sum","true");
+                req.setAttribute("is_incorrect_sum",StringAttributes.TRUE);
                 return PageManager.INSTANCE.getProperty(PageManager.PATH_ENTER_SUM_PAGE);
             }
 
             UserBetService userBetService = new UserBetService();
-            int betId = Integer.parseInt(req.getSession().getAttribute("betId").toString());
+            int betId = Integer.parseInt(req.getSession().getAttribute(StringAttributes.BET_ID).toString());
             double coeff = Double.parseDouble(req.getSession().getAttribute(StringAttributes.COEFF).toString());
 
             service.updateUserAmount(login,userAmount.subtract(
@@ -53,6 +53,7 @@ public class EnterSumCommand implements Command {
 
         }catch (ServiceException e){
             logger.error("Service Exception in EnterSumCommand", e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
 

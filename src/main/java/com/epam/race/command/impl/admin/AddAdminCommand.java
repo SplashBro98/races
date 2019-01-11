@@ -2,7 +2,6 @@ package com.epam.race.command.impl.admin;
 
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
-import com.epam.race.command.impl.client.SignUpCommand;
 import com.epam.race.entity.user.User;
 import com.epam.race.entity.user.UserType;
 import com.epam.race.service.RaceService;
@@ -107,7 +106,7 @@ public class AddAdminCommand implements Command {
 
         } catch (ServiceException e) {
             logger.error("Service exception in AddAdminCommand", e);
-            req.setAttribute("exception",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

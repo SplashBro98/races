@@ -2,6 +2,7 @@ package com.epam.race.command.impl.page;
 
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
+import com.epam.race.command.StringAttributes;
 import com.epam.race.entity.common.RaceResult;
 import com.epam.race.service.RaceResultService;
 import com.epam.race.service.ServiceException;
@@ -21,11 +22,12 @@ public class ToRaceResultsCommand implements Command {
         try {
             RaceResultService service = new RaceResultService();
             List<RaceResult> raceResultList = service.findAllResults();
-            req.setAttribute("raceResults",raceResultList);
+            req.setAttribute(StringAttributes.RACE_RESULTS,raceResultList);
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_RACE_RESULTS_PAGE);
         }catch (ServiceException e){
-            logger.error("service exception",e);
+            logger.error("Service Exception in ToRaceResultsCommand",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
 

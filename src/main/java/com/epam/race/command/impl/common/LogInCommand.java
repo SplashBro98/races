@@ -70,7 +70,7 @@ public class LogInCommand implements Command {
 
         } catch (ServiceException e) {
             logger.error("Service Exception in LogInCommand", e);
-            req.setAttribute("exception",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

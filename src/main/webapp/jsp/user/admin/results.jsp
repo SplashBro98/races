@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title><fmt:message key="label.ho" bundle="${var}"/></title>
+    <title><fmt:message key="label.holdrace" bundle="${var}"/></title>
     <link href="/css/main.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -50,12 +50,11 @@
                         </div>
                     </div>
                 </div>
+                <c:import url="../../common/footer.jsp"/>
             </div>
         </div>
     </div>
 </section>
-
-<c:import url="../../common/footer.jsp"/>
 
 </body>
 </html>

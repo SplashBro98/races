@@ -97,9 +97,9 @@
                                         <div class="form-group">
                                             <div class="col-md-12">
                                                 <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                                    <a href="/main?command=to log in">
+                                                    <h6><a href="/main?command=to log in">
                                                         <fmt:message key="signin" bundle="${var}"/>
-                                                    </a>
+                                                    </a></h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,6 +110,7 @@
                         </div>
                     </div>
                 </div>
+                <c:import url="../../common/footer.jsp"/>
             </div>
         </div>
     </div>

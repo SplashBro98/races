@@ -11,14 +11,6 @@ import java.util.List;
 public class BetService {
 
 
-    public List<Bet> findRaceBets(int raceId) throws ServiceException {
-        try {
-            return BetRepository.getInstance().query(new SelectBetsByRaceIdSpecification(raceId));
-        }catch (RepositoryException e){
-            throw new ServiceException(e);
-        }
-    }
-
 
     public void addBet(Bet bet) throws ServiceException {
         try {

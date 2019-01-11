@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="salah" uri="liverpool" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="text" var="var"/>
 <html>
@@ -111,7 +110,6 @@
 
 
                                     <div style="margin-top:10px" class="form-group">
-                                        <!-- Button -->
                                         <div class="col-md-12 controls">
                                             <input type="submit" class="btn btn-success"
                                                    value="<fmt:message key="button.addrace" bundle="${var}"/>">
@@ -122,6 +120,7 @@
                             </div>
                         </div>
                     </div>
+                    <c:import url="../../common/footer.jsp"/>
                 </div>
             </div>
         </div>
@@ -129,7 +128,7 @@
 </div>
 
 
-<c:import url="../../common/footer.jsp"/>
+
 
 </body>
 </html>

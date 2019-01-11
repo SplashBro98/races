@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class AddBookmakerCommand implements Command {
-    private static Logger logger = LogManager.getLogger(SignUpCommand.class);
+    private static Logger logger = LogManager.getLogger(AddBookmakerCommand.class);
 
     @Override
     public String execute(HttpServletRequest req) {
@@ -93,7 +93,7 @@ public class AddBookmakerCommand implements Command {
 
 
                 new UserService().addUser(user);
-                RaceService raceService = new RaceService(1, 5);
+                RaceService raceService = new RaceService(1, 8);
                 List<Object> attributes = raceService.mainAttributes();
 
                 req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
@@ -109,7 +109,7 @@ public class AddBookmakerCommand implements Command {
 
         } catch (ServiceException e) {
             logger.error("Service Exception in AddBookmakerCommand", e);
-            req.setAttribute("e",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

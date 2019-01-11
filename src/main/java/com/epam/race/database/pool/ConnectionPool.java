@@ -28,7 +28,7 @@ public class ConnectionPool {
                 avaliableConnections.put(ConnectionLoader.INSTANCE.loadConnection());
             } catch (InterruptedException e) {
                 logger.fatal("Can`t put ProxyConnection to queue",e);
-                Thread.currentThread().interrupt();
+                throw new RuntimeException(e);
             }
         }
     }

@@ -1,6 +1,6 @@
 package com.epam.race.service;
 
-//TODO поработать с эксепшнами
+
 public class ServiceException extends Exception {
 
     public ServiceException() {
@@ -17,4 +17,6 @@ public class ServiceException extends Exception {
     public ServiceException(Throwable cause) {
         super(cause);
     }
+
+
 }

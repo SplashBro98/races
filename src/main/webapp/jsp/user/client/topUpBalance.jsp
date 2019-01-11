@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="salah" uri="liverpool" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="text" var="var"/>
 <html>
@@ -12,7 +11,7 @@
 <body>
 <c:import url="../../common/header.jsp"/>
 <section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
+    <div class="overlays"></div>
     <div class="container h-100">
         <div class="row h-100 justify-content-between align-items-center">
             <div class="col-lg-12">
@@ -39,9 +38,7 @@
                                             <div class="text-center"> ${incorrect_id}</div>
                                         </div>
 
-
                                         <div style="margin-top:10px" class="form-group">
-                                            <!-- Button -->
                                             <div class="col-md-12 controls">
                                                 <input type="submit" class="btn btn-success text-center"
                                                        value="<fmt:message key="button.makepayment" bundle="${var}"/>">
@@ -54,12 +51,11 @@
                         </div>
                     </div>
                 </div>
+                <c:import url="../../common/footer.jsp"/>
             </div>
         </div>
     </div>
 </section>
-
-<c:import url="../../common/footer.jsp"/>
 
 </body>
 </html>

@@ -23,7 +23,7 @@
 
     <jsp-config>
         <taglib>
-            <taglib-uri>liverpool</taglib-uri>
+            <taglib-uri>custom-tags</taglib-uri>
             <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
         </taglib>
     </jsp-config>

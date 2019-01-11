@@ -22,7 +22,7 @@ public class EditBetCommand implements Command {
         String enteredCoeff = req.getParameter(StringAttributes.COEFF);
         boolean isCorrectCoeff  = new BetValidator().isCorrectCoeff(enteredCoeff);
         if(!isCorrectCoeff){
-            req.setAttribute("incorrect_coeff","incorrect coefficient");
+            req.setAttribute(StringAttributes.INCORRECT_COEFF,StringAttributes.TRUE);
             return PageManager.INSTANCE.getProperty(PageManager.PATH_EDIT_BET_PAGE);
         }
 
@@ -34,8 +34,8 @@ public class EditBetCommand implements Command {
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
         }catch (ServiceException e){
-            logger.error("Service",e);
-            req.setAttribute("e",e);
+            logger.error("Service Exception in EditBetCommand",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

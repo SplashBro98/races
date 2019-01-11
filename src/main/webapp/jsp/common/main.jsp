@@ -1,7 +1,6 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="salah" uri="liverpool" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="text" var="var"/>
 <html>
@@ -16,7 +15,6 @@
 <body>
 
 <c:import url="header.jsp"/>
-
 
 <div class="parallax" style="height: max-content">
     <div class="overlays"></div>
@@ -111,14 +109,12 @@
                             </div>
                         </div>
                     </div>
+                    <c:import url="footer.jsp"/>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<c:import url="footer.jsp"/>
 
 
 </body>

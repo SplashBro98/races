@@ -7,7 +7,6 @@
 <head>
     <meta charset="UTF-8">
     <title><fmt:message key="label.userlist" bundle="${var}"/></title>
-
     <link href="/css/main.css" rel="stylesheet" type="text/css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           rel="stylesheet" id="bootstrap-css">
@@ -86,11 +85,10 @@
                     </div>
                 </div>
             </div>
+            <c:import url="../../common/footer.jsp"/>
         </div>
     </div>
 </div>
 
-
-<c:import url="../../common/footer.jsp"/>
 </body>
 </html>

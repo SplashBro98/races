@@ -16,7 +16,7 @@ public class ToEditBetCommand implements Command {
     public String execute(HttpServletRequest req) {
 
         List<Bet> bets = (List) req.getSession().getAttribute(StringAttributes.BETS);
-        int betId = Integer.parseInt(req.getParameter("betId"));
+        int betId = Integer.parseInt(req.getParameter(StringAttributes.BET_ID));
         Stream<Bet> betStream = bets.stream().filter(b -> b.getBetId() == betId);
         Bet bet = betStream.collect(Collectors.toList()).get(0);
         req.getSession().setAttribute(StringAttributes.BET, bet);

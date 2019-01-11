@@ -18,10 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Locale;
 
-
-/**
- * @author Ivan Mazaliuk
- */
 public class SignUpCommand implements Command {
     private static Logger logger = LogManager.getLogger(SignUpCommand.class);
 
@@ -135,7 +131,7 @@ public class SignUpCommand implements Command {
 
         } catch (ServiceException e) {
             logger.error("Service Exception in SignUpCommand", e);
-            req.setAttribute("e",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

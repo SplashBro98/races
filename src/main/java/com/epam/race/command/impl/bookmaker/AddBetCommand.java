@@ -35,7 +35,7 @@ public class AddBetCommand implements Command{
             req.setAttribute(StringAttributes.RACE_NAME, raceName);
             req.setAttribute(StringAttributes.HORSE_NAME, horseName);
             req.setAttribute(StringAttributes.POSITION, position);
-            req.setAttribute("incorrect_coeff","incorrect coefficient");
+            req.setAttribute(StringAttributes.INCORRECT_COEFF,StringAttributes.TRUE);
             return PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
         }
 
@@ -50,7 +50,7 @@ public class AddBetCommand implements Command{
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
         }catch (ServiceException e){
             logger.error("Service Exception in AddBetCommand", e);
-            req.setAttribute("e",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

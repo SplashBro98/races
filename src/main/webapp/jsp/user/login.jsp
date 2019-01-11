@@ -69,10 +69,10 @@
                                     <div class="form-group">
                                         <div class="col-md-12 control">
                                             <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                                <fmt:message key="form.describe" bundle="${var}"/>
+                                                <h6><fmt:message key="form.describe" bundle="${var}"/>
                                                 <a href="/main?command=to sign up">
                                                     <fmt:message key="form.signuphere" bundle="${var}"/>
-                                                </a>
+                                                </a></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -81,6 +81,7 @@
                         </div>
                     </div>
                 </div>
+                <c:import url="../common/footer.jsp"/>
             </div>
         </div>
     </div>

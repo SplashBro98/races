@@ -24,20 +24,20 @@ public class ToUserBetsCommand implements Command {
             List<UserBet> currentUserBets = new UserBetService().findCurrentUserBetsByLogin(login);
 
             if(currentUserBets.isEmpty()){
-                req.setAttribute("nothing","You haven`t any bets at the moment");
+                req.setAttribute(StringAttributes.NOTHING,StringAttributes.TRUE);
             }
-            req.setAttribute("currentUserBets",currentUserBets);
+            req.setAttribute(StringAttributes.CURRENT_USER_BETS,currentUserBets);
 
             List<UserBet> previousUserBets = new UserBetService().findPreviousUserBetsByLogin(login);
 
             if(!previousUserBets.isEmpty()){
-                req.setAttribute("previousUserBets",previousUserBets);
+                req.setAttribute(StringAttributes.PREVIOUS_USER_BETS,previousUserBets);
             }
-
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_USER_BETS_PAGE);
         }catch (ServiceException e){
-            logger.error("service exception in ToUserBetsCommand",e);
+            logger.error("Service Exception in ToUserBetsCommand",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

@@ -55,7 +55,7 @@ public class AddHorseCommand implements Command {
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
             } catch (ServiceException e) {
                 logger.error("Service Exception in AddHorseCommand",e);
-                req.setAttribute("e",e);
+                req.setAttribute(StringAttributes.E,e);
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
             }
         }else {

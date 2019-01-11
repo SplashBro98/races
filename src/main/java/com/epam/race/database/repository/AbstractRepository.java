@@ -1,7 +1,5 @@
 package com.epam.race.database.repository;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import com.epam.race.database.pool.ConnectionPool;
 import com.epam.race.database.specification.SQLSpecification;
 
@@ -14,9 +12,6 @@ import java.util.List;
 
 public abstract class AbstractRepository<T> implements Repository<T>{
 
-    private static Logger logger = LogManager.getLogger(AbstractRepository.class);
-
-
     public abstract T createItem(ResultSet resultSet) throws RepositoryException;
 
     protected void nonSelectQuery(SQLSpecification specification) throws RepositoryException{
@@ -25,7 +20,7 @@ public abstract class AbstractRepository<T> implements Repository<T>{
             statement.execute();
 
         } catch (SQLException e) {
-            throw new RepositoryException("sql exception in non-select query",e);
+            throw new RepositoryException("SQL Exception in non-select query",e);
         }
     }
 
@@ -39,7 +34,7 @@ public abstract class AbstractRepository<T> implements Repository<T>{
             }
             return result;
         } catch (SQLException e) {
-           throw new RepositoryException("sql exception in select query",e);
+           throw new RepositoryException("SQL Exception in select query",e);
         }
     }
 }

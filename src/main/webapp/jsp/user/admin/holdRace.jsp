@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="salah" uri="liverpool" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="text" var="var"/>
 <html>
@@ -60,12 +59,13 @@
                         </div>
                     </div>
                 </div>
+                <c:import url="../../common/footer.jsp"/>
             </div>
         </div>
     </div>
 </section>
 
-<c:import url="../../common/footer.jsp"/>
+
 
 </body>
 </html>

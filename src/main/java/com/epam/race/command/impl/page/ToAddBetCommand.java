@@ -2,6 +2,7 @@ package com.epam.race.command.impl.page;
 
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
+import com.epam.race.command.StringAttributes;
 import com.epam.race.entity.common.Race;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
@@ -39,7 +40,8 @@ public class ToAddBetCommand implements Command {
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
         }catch (ServiceException e){
-            logger.error("Problem with service or lower",e);
+            logger.error("Service Exception in ToAddBetCommand",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

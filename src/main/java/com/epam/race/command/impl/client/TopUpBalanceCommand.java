@@ -2,6 +2,7 @@ package com.epam.race.command.impl.client;
 
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
+import com.epam.race.command.StringAttributes;
 import com.epam.race.entity.common.Payment;
 import com.epam.race.entity.user.User;
 import com.epam.race.service.PaymentService;
@@ -22,10 +23,10 @@ public class TopUpBalanceCommand implements Command {
         String page;
 
         PaymentValidator validator = new PaymentValidator();
-        String paymentId = req.getParameter("paymentId");
+        String paymentId = req.getParameter(StringAttributes.PAYMENT_ID);
         boolean isCorrectId = validator.isCorrectPaymentId(paymentId);
         if(!isCorrectId){
-            req.setAttribute("incorrect_id","incorrect payment ID");
+            req.setAttribute(StringAttributes.INCORRECT_ID,StringAttributes.TRUE);
             return PageManager.INSTANCE.getProperty(PageManager.PATH_TOP_UP_BALANCE_PAGE);
         }
 
@@ -33,20 +34,21 @@ public class TopUpBalanceCommand implements Command {
             PaymentService paymentService = new PaymentService();
             Optional<Payment> maybePayment = paymentService.findPaymentById(paymentId);
             if(!maybePayment.isPresent()){
-                req.setAttribute("incorrect_id","payment with this ID doesn`t exist");
+                req.setAttribute(StringAttributes.INCORRECT_ID,StringAttributes.TRUE);
                 return PageManager.INSTANCE.getProperty(PageManager.PATH_TOP_UP_BALANCE_PAGE);
             }
 
             Payment payment = maybePayment.get();
             UserService userService = new UserService();
-            String userLogin = req.getSession().getAttribute("login").toString();
+            String userLogin = req.getSession().getAttribute(StringAttributes.LOGIN).toString();
             User user = userService.findUserByLogin(userLogin);
             userService.updateUserAmount(userLogin,payment.getSum().add(user.getAmount()));
             paymentService.deletePayment(paymentId);
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
         }catch (ServiceException e){
-            logger.error("sdfsd",e);
+            logger.error("Service Exception in TopUpBalanceCommand",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

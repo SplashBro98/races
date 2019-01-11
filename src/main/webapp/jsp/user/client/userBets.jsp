@@ -119,12 +119,13 @@
                         </div>
                     </div>
                 </c:if>
+                <c:import url="../../common/footer.jsp"/>
             </div>
         </div>
     </div>
 </div>
 
 
-<c:import url="../../common/footer.jsp"/>
+
 </body>
 </html>

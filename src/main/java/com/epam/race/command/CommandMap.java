@@ -67,8 +67,4 @@ public enum CommandMap {
         return result;
     }
 
-    public void addCommand(CommandType type, Command command){
-        commandMap.put(type, command);
-    }
-
 }

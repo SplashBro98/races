@@ -9,6 +9,8 @@ import com.epam.race.service.RaceService;
 import com.epam.race.command.StringAttributes;
 import com.epam.race.util.StringConstant;
 import com.epam.race.util.validation.RaceValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddRaceCommand implements Command {
+    private static Logger logger = LogManager.getLogger(AddRaceCommand.class);
 
     @Override
     public String execute(HttpServletRequest req) {
@@ -69,14 +72,15 @@ public class AddRaceCommand implements Command {
 
         if(flag) {
             try {
-
-                String firstHorseName = req.getParameter("horse№1");
-                String secondHorseName = req.getParameter("horse№2");
-                String thirdHorseName = req.getParameter("horse№3");
-                String fourthHorseName = req.getParameter("horse№4");
-
                 RaceService raceService = new RaceService();
                 HorseService horseService = new HorseService();
+
+                String firstHorseName = req.getParameter(StringAttributes.HORSE_1);
+                String secondHorseName = req.getParameter(StringAttributes.HORSE_2);
+                String thirdHorseName = req.getParameter(StringAttributes.HORSE_3);
+                String fourthHorseName = req.getParameter(StringAttributes.HORSE_4);
+
+
 
                 List<Integer> idList = new ArrayList<>();
                 idList.add(horseService.findHorseId(firstHorseName));
@@ -91,7 +95,7 @@ public class AddRaceCommand implements Command {
                         horseService.addHorseToHorseList(raceId,id);
                     }
                 }else {
-                    req.setAttribute("not_different_horses","true");
+                    req.setAttribute(StringAttributes.NOT_DIFFERENT_HORSES,StringAttributes.TRUE);
                     return PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_RACE_PAGE);
                 }
 
@@ -104,6 +108,8 @@ public class AddRaceCommand implements Command {
                 req.getSession().setAttribute(StringAttributes.RACES, service.findCurrentRaces());
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
             } catch (ServiceException e) {
+                logger.error("Service Exception in AddRaceCommand",e);
+                req.setAttribute(StringAttributes.E,e);
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
             }
         }else {

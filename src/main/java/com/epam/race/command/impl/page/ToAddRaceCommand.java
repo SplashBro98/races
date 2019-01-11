@@ -2,6 +2,7 @@ package com.epam.race.command.impl.page;
 
 import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
+import com.epam.race.command.StringAttributes;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.HorseService;
 import org.apache.logging.log4j.LogManager;
@@ -22,7 +23,8 @@ public class ToAddRaceCommand implements Command {
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_RACE_PAGE);
         }catch (ServiceException e){
-            logger.error("sdfsdfs",e);
+            logger.error("Service Exception in ToAddRaceCommand",e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

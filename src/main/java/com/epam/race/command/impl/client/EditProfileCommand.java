@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class EditProfileCommand implements Command {
-    private static Logger logger = LogManager.getLogger(SignUpCommand.class);
+    private static Logger logger = LogManager.getLogger(EditProfileCommand.class);
 
     @Override
     public String execute(HttpServletRequest req) {
@@ -93,7 +93,7 @@ public class EditProfileCommand implements Command {
                         StringAttributes.ATTRIBUTE_INCORRECT_PASSWORD);
             }
 
-            req.getSession().setAttribute("user", user);
+            req.getSession().setAttribute(StringAttributes.USER, user);
             if (flag) {
 
                 req.getSession().setAttribute(StringAttributes.LOGIN, user.getLogin());
@@ -115,7 +115,8 @@ public class EditProfileCommand implements Command {
 
 
         } catch (ServiceException e) {
-            logger.error("Problem with command or lower", e);
+            logger.error("Service Exception in EditProfileCommand", e);
+            req.setAttribute(StringAttributes.E,e);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
         }
         return page;

@@ -5,11 +5,11 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
     <tlib-version>1.0</tlib-version>
-    <short-name>salah</short-name>
-    <uri>liverpool</uri>
+    <short-name>info</short-name>
+    <uri>custom-tags</uri>
     <tag>
-        <name>info-time</name>
-        <tag-class>com.epam.race.tag.InfoTag</tag-class>
+        <name>project-footer</name>
+        <tag-class>com.epam.race.tag.CustomTag</tag-class>
         <body-content>empty</body-content>
     </tag>
 </taglib>

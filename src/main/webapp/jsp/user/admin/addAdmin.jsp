@@ -78,11 +78,12 @@
                         </div>
                     </div>
                 </div>
+                <c:import url="../../common/footer.jsp"/>
             </div>
         </div>
     </div>
 </section>
-<c:import url="../../common/footer.jsp"/>
+
 
 
 </body>

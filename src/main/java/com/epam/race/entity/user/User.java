@@ -4,7 +4,6 @@ import com.epam.race.entity.Entity;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-
 public class User implements Entity {
     private int userId;
     private String name;

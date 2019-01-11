@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Иван
-  Date: 18.11.2018
-  Time: 23:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -12,20 +5,20 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>SignUp_JSP</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
-
 </head>
 <body>
 
 <c:import url="../../common/header.jsp"/>
 
 <section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
+    <div class="overlays"></div>
     <div class="container h-100">
         <div class="row h-100 justify-content-between align-items-center">
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="margin-top: 4%">
                 <div class="text-center">
                     <%--Sign up form--%>
                     <div class="container">
@@ -100,11 +93,12 @@
                         </div>
                     </div>
                 </div>
+                <c:import url="../../common/footer.jsp"/>
             </div>
         </div>
     </div>
 </section>
-<c:import url="../../common/footer.jsp"/>
+
 
 </body>
 </html>
