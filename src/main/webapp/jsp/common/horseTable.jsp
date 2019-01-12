@@ -5,9 +5,9 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
+    <meta charset="UTF-8">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           rel="stylesheet" id="bootstrap-css">
-    <title>Title</title>
 </head>
 <body>
 
@@ -21,7 +21,7 @@
                 <thead style="color: white">
                 <tr>
                     <th>#</th>
-                    <th><fmt:message key="holder.name" bundle="${var}"/></th>
+                    <th><fmt:message key="holder.firstname" bundle="${var}"/></th>
                     <th><fmt:message key="column.age" bundle="${var}"/></th>
                     <th><fmt:message key="column.wins" bundle="${var}"/></th>
                 </tr>

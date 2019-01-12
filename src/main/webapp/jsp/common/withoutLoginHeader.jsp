@@ -8,7 +8,9 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top" id="up">
-    <a class="navbar-brand" href="#">WhoScored.com</a>
+    <div class="navbar-brand colortext">
+        WhoScored.com
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav ml-auto">

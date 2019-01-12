@@ -11,7 +11,7 @@ public class SignUpValidator {
     private static final String LOGIN_REGEX = "[a-zA-Z0-9А-Яа-я_`-]{4,40}";
     private static final String NAME_REGEX = "[A-Za-zА-Яа-я -]{1,30}";
     private static final String SURNAME_REGEX = "[A-Za-zА-Яа-я -]{1,30}";
-    private static final String PASSWORD_REGEX = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}";
+    private static final String PASSWORD_REGEX = "(?=.*[0-9])(?=.*[a-z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}";
 
 
     public boolean checkLoginIsCorrect(String login) {

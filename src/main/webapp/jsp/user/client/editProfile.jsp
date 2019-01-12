@@ -6,14 +6,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>SignUp_JSP</title>
+    <title><fmt:message key="label.editprofile" bundle="${var}"/></title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
           id="bootstrap-css">
 </head>
 <body>
 
 <c:import url="../../common/header.jsp"/>
-
 <section class="wrapper fixed-top">
     <div class="overlays"></div>
     <div class="container h-100">
@@ -26,7 +25,8 @@
                              class="mainbox col-md-8  col-sm-8">
                             <div class="panel panel-info">
                                 <div class="panel-heading" style="margin-bottom: 40px">
-                                    <div class="panel-title text-center"><h3>Edit Profile Form</h3></div>
+                                    <div class="panel-title text-center">
+                                        <h3><fmt:message key="form.editprofile" bundle="${var}"/></h3></div>
                                 </div>
                                 <div class="panel-body">
                                     <form id="signupform">

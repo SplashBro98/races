@@ -36,7 +36,7 @@
                                             <select class="selectpicker form-control" name="raceName"
                                                     required>
                                                 <option value="" disabled selected>
-                                                    Name of the Race*
+                                                    <fmt:message key="holder.nameofrace" bundle="${var}"/>*
                                                 </option>
 
                                                 <c:forEach items="${raceNames}" var="name">
@@ -47,7 +47,6 @@
 
 
                                         <div style="margin-top:10px" class="form-group">
-                                            <!-- Button -->
                                             <div class="col-md-12 controls">
                                                 <input type="submit" class="btn btn-success text-center"
                                                        value="<fmt:message key="button.holdrace" bundle="${var}"/>">

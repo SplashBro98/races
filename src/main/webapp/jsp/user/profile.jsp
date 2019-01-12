@@ -3,13 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="text" var="var"/>
-
 <html>
 <head>
+    <meta charset="UTF-8">
     <title><fmt:message key="label.profile" bundle="${var}"/></title>
     <link href="/css/profile.css" rel="stylesheet" type="text/css">
     <link href="/css/main.css" rel="stylesheet" type="text/css">
-
 </head>
 <body>
 <c:import url="../common/header.jsp"/>
@@ -30,7 +29,7 @@
                                         <table class="table table-user-information">
                                             <tbody class="colortext">
                                             <tr>
-                                                <td><fmt:message key="holder.name" bundle="${var}"/>:</td>
+                                                <td><fmt:message key="holder.firstname" bundle="${var}"/>:</td>
                                                 <td>${user.name}</td>
                                             </tr>
                                             <tr>
@@ -72,9 +71,6 @@
         </div>
     </div>
 </section>
-
-
-
 
 </body>
 </html>

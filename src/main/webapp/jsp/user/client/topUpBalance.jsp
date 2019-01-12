@@ -35,7 +35,9 @@
                                             <input type="text" class="form-control"
                                                    name="paymentId"  pattern="^\d\d-\d\d\d-\d\d\d$"
                                                    placeholder="**-***-***" required>
-                                            <div class="text-center"> ${incorrect_id}</div>
+                                            <c:if test="${not empty incorrect_id}">
+                                                <fmt:message key="incorrect.paymentid" bundle="${var}"/>
+                                            </c:if>
                                         </div>
 
                                         <div style="margin-top:10px" class="form-group">
@@ -44,7 +46,6 @@
                                                        value="<fmt:message key="button.makepayment" bundle="${var}"/>">
                                             </div>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>

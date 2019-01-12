@@ -37,7 +37,9 @@
                                                    name="paymentId"
                                                    pattern="^\d{2}-\d{3}-\d{3}$"
                                                    placeholder="**-***-***" required>
-                                            <div class="text-center"> ${incorrect_id}</div>
+                                            <c:if test="${not empty incorrect_id}">
+                                                <fmt:message key="incorrect.paymentid" bundle="${var}"/>
+                                            </c:if>
                                         </div>
 
                                         <div style="margin-bottom: 25px" class="control-group">
@@ -46,13 +48,16 @@
                                             <input type="text" class="form-control"
                                                    name="sum"
                                                    pattern="^((?!0\.00)(0[.,]\d{2}|([1-9]\d{0,5})([.,]\d{2})?))$"
-                                                   placeholder="Sum*" required>
-                                            <div class="text-center"> ${incorrect_sum}</div>
+                                                   placeholder="<fmt:message key="holder.sum" bundle="${var}"/>*"
+                                                   required>
+                                            <fmt:message key="info.correctsum" bundle="${var}"/>
+                                            <c:if test="${not empty incorrect_amount}">
+                                                <fmt:message key="incorrect.amount" bundle="${var}"/>
+                                            </c:if>
                                         </div>
 
 
                                         <div style="margin-top:10px" class="form-group">
-                                            <!-- Button -->
                                             <div class="col-md-12 controls">
                                                 <input type="submit" class="btn btn-success text-center"
                                                        value="<fmt:message key="button.addpayment" bundle="${var}"/>">
@@ -70,8 +75,6 @@
         </div>
     </div>
 </section>
-
-
 
 </body>
 </html>

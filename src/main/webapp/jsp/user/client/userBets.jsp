@@ -57,7 +57,9 @@
                                         </tbody>
                                     </table>
                                     <div style="color: white">
-                                        <h2>${nothing}</h2>
+                                        <c:if test="${not empty nothing}">
+                                            <h4><fmt:message key="info.nothing" bundle="${var}"/></h4>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>

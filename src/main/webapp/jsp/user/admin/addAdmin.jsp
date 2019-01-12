@@ -36,36 +36,53 @@
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="text" class="form-control" name="login"
                                                    pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${admin_login}"
-                                                   placeholder="Login*" required>
-                                            ${incorrect_login}
+                                                   placeholder="<fmt:message key="holder.login" bundle="${var}"/>*"
+                                                   oninvalid="this.setCustomValidity('<fmt:message key="info.incorrectlogin"
+                                                                                                   bundle="${var}"/>')"
+                                                   oninput="this.setCustomValidity('')"
+                                                   required>
+                                            <c:if test="${not empty incorrect_login}">
+                                                <fmt:message key="incorrect.login" bundle="${var}"/>
+                                            </c:if>
                                         </label>
 
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="password" class="form-control" name="password"
-                                                   pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
-                                                   placeholder="Password*" value="${password}" required>
-                                            ${incorrect_password}
+                                                   pattern="(?=.*[0-9])(?=.*[a-z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
+                                                   placeholder="<fmt:message key="holder.password" bundle="${var}"/>*"
+                                                   value="${password}"
+                                                   oninvalid="this.setCustomValidity('<fmt:message key="info.incpasswordformat"
+                                                                                                   bundle="${var}"/>')"
+                                                   oninput="this.setCustomValidity('')"
+                                                   required>
+                                            <c:if test="${not empty incorrect_password}">
+                                                <fmt:message key="incorrect.password" bundle="${var}"/>
+                                            </c:if>
                                         </label>
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="password" class="form-control"
                                                    name="confirmedPassword"
-                                                   pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
-                                                   placeholder="Confirm Password*"
+                                                   pattern="(?=.*[0-9])(?=.*[a-z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
+                                                   placeholder="<fmt:message key="holder.confirmPassword" bundle="${var}"/>*"
                                                    value="${confirmedPassword}" required>
-                                            ${not_confirmed}
+                                            <c:if test="${not empty not_confirmed}">
+                                                <fmt:message key="incorrect.password" bundle="${var}"/>
+                                            </c:if>
                                         </label>
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="email" class="form-control" name="email"
-                                                   placeholder="Email Address*" value="${email}"
+                                                   placeholder="<fmt:message key="holder.email" bundle="${var}"/>*"
+                                                   value="${email}"
                                                    required>
-                                            ${incorrect_email}
+                                            <c:if test="${not empty incorrect_email}">
+                                                <fmt:message key="incorrect.email" bundle="${var}"/>
+                                            </c:if>
                                         </label>
 
                                         <div style="margin-top:10px" class="form-group">
-                                            <!-- Button -->
                                             <div class="col-md-12">
                                                 <input type="submit" class="btn btn-success"
                                                        value="<fmt:message key="button.addadmin" bundle="${var}"/>">

@@ -12,7 +12,7 @@
 <c:import url="../../common/header.jsp"/>
 
 <section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
+    <div class="overlays"></div>
     <div class="container h-100">
         <div class="row h-100 justify-content-between align-items-center">
             <div class="col-lg-12 text-center">
@@ -57,7 +57,9 @@
                                         <input type="text" class="form-control"
                                                name="coeff" pattern="^((?!0\.00)(0[.,]\d{2}|([1-9]\d{0,5})([.,]\d{2})?))$"
                                                placeholder="Coefficient*" value="${bet.coeff}" required>
-                                        <div class="text-center"> ${incorrect_coeff}</div>
+                                        <c:if test="${not empty incorrect_coeff}">
+                                            <fmt:message key="incorrect.coeff" bundle="${var}"/>
+                                        </c:if>
                                     </div>
 
 

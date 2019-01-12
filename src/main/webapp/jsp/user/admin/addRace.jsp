@@ -36,8 +36,11 @@
                                                     class="glyphicon glyphicon-user"></i></span>
                                         <input type="text" class="form-control" name="name" value="${name}"
                                                pattern="[a-zA-Z0-9А-Яа-я_ -]{4,30}"
-                                               placeholder="Name*" required>
-                                        <div class="text-center"> ${incorrect_name}</div>
+                                               placeholder="<fmt:message key="holder.name" bundle="${var}"/>*"
+                                               required>
+                                        <c:if test="${not empty incorrect_name}">
+                                            <fmt:message key="incorrect.name" bundle="${var}"/>
+                                        </c:if>
                                     </div>
 
                                     <div style="margin-bottom: 25px" class="control-group">
@@ -46,8 +49,11 @@
                                         <input type="text" class="form-control"
                                                name="place" value="${place}"
                                                pattern="[a-zA-Z0-9А-Яа-я_ -]{4,30}"
-                                               placeholder="Place*" required>
-                                        <div class="text-center"> ${incorrect_place}</div>
+                                               placeholder="<fmt:message key="holder.place" bundle="${var}"/>*"
+                                               required>
+                                        <c:if test="${not empty incorrect_place}">
+                                            <fmt:message key="incorrect.place" bundle="${var}"/>
+                                        </c:if>
                                     </div>
 
                                     <div style="margin-bottom: 25px" class="control-group">
@@ -55,8 +61,11 @@
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         <input type="time" class="form-control"
                                                name="time" value="${time}"
-                                               placeholder="Time*" required>
-                                        <div class="text-center"> ${incorrect_time}</div>
+                                               placeholder="<fmt:message key="holder.time" bundle="${var}"/>*"
+                                               required>
+                                        <c:if test="${not empty incorrect_time}">
+                                            <fmt:message key="incorrect.time" bundle="${var}"/>
+                                        </c:if>
                                     </div>
 
                                     <div style="margin-bottom: 25px" class="control-group">
@@ -64,12 +73,16 @@
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         <input type="date" class="form-control"
                                                name="date" value="${date}"
-                                               placeholder="Date*" required>
-                                        <div class="text-center"> ${incorrect_date}</div>
+                                               placeholder="<fmt:message key="holder.date" bundle="${var}"/>*"
+                                               required>
+                                        <c:if test="${not empty incorrect_date}">
+                                            <fmt:message key="incorrect.date" bundle="${var}"/>
+                                        </c:if>
                                     </div>
                                     <div style="margin-bottom: 25px" class="control-group">
                                         <select class="selectpicker form-control" required name="horse№1">
-                                            <option value="" disabled selected>Horse№1*</option>
+                                            <option value="" disabled selected>
+                                                <fmt:message key="horse" bundle="${var}"/>№1*</option>
                                             <c:forEach items="${horseNames}" var="name">
                                                 <option>${name}</option>
                                             </c:forEach>
@@ -79,7 +92,8 @@
 
                                         <select class="selectpicker form-control" required name="horse№2">
 
-                                            <option value="" disabled selected>Horse№2*</option>
+                                            <option value="" disabled selected>
+                                                <fmt:message key="horse" bundle="${var}"/>№2*</option>
                                             <c:forEach items="${horseNames}" var="name">
                                                 <option>${name}</option>
                                             </c:forEach>
@@ -87,7 +101,8 @@
                                     </div>
                                     <div style="margin-bottom: 25px" class="control-group">
                                         <select class="selectpicker form-control" required name="horse№3">
-                                            <option value="" disabled selected>Horse№3*</option>
+                                            <option value="" disabled selected>
+                                                <fmt:message key="horse" bundle="${var}"/>№3*</option>
                                             <c:forEach items="${horseNames}" var="name">
                                                 <option>${name}</option>
                                             </c:forEach>
@@ -95,7 +110,8 @@
                                     </div>
                                     <div style="margin-bottom: 25px" class="control-group">
                                         <select class="selectpicker form-control" required name="horse№4">
-                                            <option value="" disabled selected>Horse№4*</option>
+                                            <option value="" disabled selected>
+                                                <fmt:message key="horse" bundle="${var}"/>№4*</option>
                                             <c:forEach items="${horseNames}" var="name">
                                                 <option>${name}</option>
                                             </c:forEach>

@@ -20,7 +20,7 @@ public class ToProfileCommand implements Command {
         try{
             String login = req.getSession().getAttribute(StringAttributes.LOGIN).toString();
             User user = new UserService().findUserByLogin(login);
-            req.setAttribute(StringAttributes.USER,user);
+            req.getSession().setAttribute(StringAttributes.USER,user);
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_USER_PROFILE_PAGE);
         }catch (ServiceException e){

@@ -12,10 +12,9 @@
 <div>
     <nav class="navbar navbar-expand-lg fixed-top" id="up" style="background-color: dimgray">
 
-
         <ul class="navbar-nav ml-auto navbar-collapse">
-            <li class="nav-item navbar-brand">
-                <a href="#"><h2>WhoScored.com</h2></a>
+            <li class="nav-item navbar-brand colortext">
+                <h2>WhoScored.com</h2>
             </li>
             <li class="nav-item navbar-brand">
                 <a href="/main?command=to main"><h2>

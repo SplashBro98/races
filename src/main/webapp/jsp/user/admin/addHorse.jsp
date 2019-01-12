@@ -35,8 +35,11 @@
                                                     class="glyphicon glyphicon-user"></i></span>
                                             <input type="text" class="form-control" name="name" value="${name}"
                                                    pattern="[a-zA-Z0-9А-Яа-я_ -]{4,30}"
-                                                   placeholder="Name*" required>
-                                            <div class="text-center"> ${incorrect_name}</div>
+                                                   placeholder="<fmt:message key="holder.name" bundle="${var}"/>*"
+                                                   required>
+                                            <c:if test="${not empty incorrect_name}">
+                                                <fmt:message key="incorrect.name" bundle="${var}"/>
+                                            </c:if>
                                         </div>
 
                                         <div style="margin-bottom: 25px" class="control-group">
@@ -44,17 +47,19 @@
                                                     class="glyphicon glyphicon-lock"></i></span>
                                             <input type="text" class="form-control"
                                                    name="age" pattern="^[0-9]+$"
-                                                   placeholder="Age*" required>
-                                            <div class="text-center"> ${incorrect_age}</div>
+                                                   placeholder="<fmt:message key="holder.age" bundle="${var}"/>*"
+                                                   required>
+                                            <c:if test="${not empty incorrect_age}">
+                                                <fmt:message key="incorrect.age" bundle="${var}"/>
+                                            </c:if>
                                         </div>
 
 
 
                                         <div style="margin-top:10px" class="form-group">
-                                            <!-- Button -->
                                             <div class="col-md-12 controls">
                                                 <input type="submit" class="btn btn-success"
-                                                       value="Add Horse">
+                                                       value="<fmt:message key="button.addhorse" bundle="${var}"/>">
                                             </div>
                                         </div>
                                     </form>

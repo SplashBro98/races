@@ -82,7 +82,6 @@ public final class StringAttributes {
     public static final String ATTRIBUTE_INCORRECT_DATE = "Incorrect date";
     public static final String ATTRIBUTE_INCORRECT_AGE = "Incorrect age";
     public static final String ATTRIBUTE_PASSWORDS_NOT_MATCH = "Passwords don`t match";
-    public static final String ATTRIBUTE_BLOCKED = "You are blocked";
 
     private StringAttributes() {
     }

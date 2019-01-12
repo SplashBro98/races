@@ -45,20 +45,24 @@
                                         <input id="login-username" type="text"
                                                class="form-control"
                                                name="login"
-                                               placeholder="<fmt:message key="holder.login" bundle="${var}"/>* (не больше 30 символов)"
-                                               pattern="[a-zA-Z0-9А-Яа-я_`-]{4,30}" required>
+                                               placeholder="<fmt:message key="holder.login" bundle="${var}"/>*"
+                                               pattern="[a-zA-Z0-9А-Яа-я_`-]{4,40}"
+                                               oninvalid="this.setCustomValidity('<fmt:message key="info.incorrectlogin" bundle="${var}"/>')"
+                                               oninput="this.setCustomValidity('')"
+                                               required>
                                     </div>
 
                                     <div style="margin-bottom: 25px" class="form-group">
                                         <input id="login-password" type="password" class="form-control"
                                                name="password"
-                                               pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
-                                               placeholder="<fmt:message key="holder.password" bundle="${var}"/>* (должен содержать не меньше 6 символов, цифру, прописную и строчную буквы"
+                                               pattern="(?=.*[0-9])(?=.*[a-z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,100}"
+                                               placeholder="<fmt:message key="holder.password" bundle="${var}"/>*"
+                                               oninvalid="this.setCustomValidity('<fmt:message key="info.incpasswordformat" bundle="${var}"/>')"
+                                               oninput="this.setCustomValidity('')"
                                                required>
                                     </div>
 
                                     <div style="margin-top:10px" class="form-group">
-                                        <!-- Button -->
                                         <div class="col-md-12 controls">
                                             <input type="submit" class="btn btn-success"
                                                    value="<fmt:message key="label.signin" bundle="${var}"/>">

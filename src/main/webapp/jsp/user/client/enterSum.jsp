@@ -5,13 +5,14 @@
 <fmt:setBundle basename="text" var="var"/>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title><fmt:message key="label.entersum" bundle="${var}"/></title>
 </head>
 <body>
 <c:import url="../../common/header.jsp"/>
 
 <section class="wrapper fixed-top">
-    <div class="overlays"></div><!--Mascara de imagen-->
+    <div class="overlays"></div>
     <div class="container h-100">
         <div class="row h-100 justify-content-between align-items-center">
             <div class="col-lg-12">
@@ -34,7 +35,10 @@
                                             <input type="text" class="form-control"
                                                    name="sum"
                                                    pattern="^((?!0\.00)(0[.,]\d{2}|([1-9]\d{0,5})([.,]\d{2})?))$"
-                                                   placeholder="Sum*" required>
+                                                   placeholder="Sum*"
+                                                   oninvalid="this.setCustomValidity('<fmt:message key="info.correctsum" bundle="${var}"/>')"
+                                                   oninput="this.setCustomValidity('')"
+                                                   required>
                                             <c:if test="${not empty is_incorrect_sum}">
                                                 <div class="text-center"><fmt:message key="info.sum" bundle="${var}"/></div>
                                             </c:if>
@@ -42,7 +46,6 @@
 
 
                                         <div style="margin-top:10px" class="form-group">
-                                            <!-- Button -->
                                             <div class="col-md-12 controls">
                                                 <input type="submit" class="btn btn-success text-center"
                                                        value="<fmt:message key="button.makebet" bundle="${var}"/>">
@@ -52,7 +55,6 @@
                                     <form class="form-horizontal" action="/main" method="post">
                                         <input type="hidden" name="command" value="to top up balance">
                                         <div style="margin-top:10px" class="form-group">
-                                            <!-- Button -->
                                             <div class="col-md-12 controls">
                                                 <input type="submit" class="btn btn-primary text-center"
                                                        value="<fmt:message key="header.topup" bundle="${var}"/>">

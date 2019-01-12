@@ -33,12 +33,12 @@
                                             <thead style="color: white">
                                             <tr>
                                                 <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Login</th>
-                                                <th>Email</th>
-                                                <th>Amount</th>
-                                                <th>Action</th>
+                                                <th><fmt:message key="column.firstname" bundle="${var}"/></th>
+                                                <th><fmt:message key="column.lastname" bundle="${var}"/></th>
+                                                <th><fmt:message key="holder.login" bundle="${var}"/></th>
+                                                <th><fmt:message key="holder.email" bundle="${var}"/></th>
+                                                <th><fmt:message key="holder.amount" bundle="${var}"/></th>
+                                                <th><fmt:message key="holder.action" bundle="${var}"/></th>
                                             </tr>
                                             </thead>
                                             <tbody style="color: white">
@@ -49,7 +49,7 @@
                                                     <td>${user.surname}</td>
                                                     <td>${user.login}</td>
                                                     <td>${user.email}</td>
-                                                    <td>${user.amount}</td>
+                                                    <td>${user.amount} $</td>
                                                     <c:choose>
                                                         <c:when test="${user.isLocked eq false}">
                                                             <td>

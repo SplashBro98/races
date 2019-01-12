@@ -38,7 +38,7 @@
                                             <thead class="colortext">
                                             <tr>
                                                 <th><fmt:message key="column.position" bundle="${var}"/></th>
-                                                <th><fmt:message key="holder.name" bundle="${var}"/></th>
+                                                <th><fmt:message key="holder.firstname" bundle="${var}"/></th>
                                             </tr>
                                             </thead>
                                             <tbody class="colortext">

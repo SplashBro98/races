@@ -42,7 +42,7 @@
                                             <c:choose>
                                                 <c:when test="${empty raceName}">
                                                     <option value="" disabled selected>
-                                                        Name of the Race*
+                                                        <fmt:message key="holder.nameofrace" bundle="${var}"/>*
                                                     </option>
                                                 </c:when>
                                                 <c:otherwise>
@@ -62,7 +62,8 @@
                                     <div style="margin-bottom: 25px" class="control-group">
 
                                         <select class="selectpicker form-control" name="horseName" required>
-                                            <option value="" disabled selected>Horse Name*</option>
+                                            <option value="" disabled selected>
+                                                <fmt:message key="holder.horsename" bundle="${var}"/>*</option>
                                             <c:forEach items="${horseNames}" var="name">
                                                 <option>${name}</option>
                                             </c:forEach>
@@ -72,7 +73,8 @@
                                     <div style="margin-bottom: 25px" class="control-group">
 
                                         <select class="selectpicker form-control" name="position" required>
-                                            <option value="" disabled selected>Position*</option>
+                                            <option value="" disabled selected>
+                                                <fmt:message key="holder.position" bundle="${var}"/>*</option>
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -85,13 +87,18 @@
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         <input type="text" class="form-control"
                                                name="coeff" pattern="^((?!0\.00)(0[.,]\d{2}|([1-9]\d{0,5})([.,]\d{2})?))$"
-                                               placeholder="Coefficient*" required>
-                                        <div class="text-center"> ${incorrect_coeff}</div>
+                                               placeholder="<fmt:message key="holder.coeff" bundle="${var}"/>*"
+                                               oninvalid="this.setCustomValidity('<fmt:message key="info.correctsum"
+                                                                                               bundle="${var}"/>')"
+                                               oninput="this.setCustomValidity('')"
+                                               required>
+                                        <c:if test="${not empty incorrect_coeff}">
+                                            <fmt:message key="incorrect.coeff" bundle="${var}"/>
+                                        </c:if>
                                     </div>
 
 
                                     <div style="margin-top:10px" class="form-group">
-                                        <!-- Button -->
                                         <div class="col-md-12 controls">
                                             <input type="submit" class="btn btn-success"
                                                    value="<fmt:message key="button.addbet" bundle="${var}"/>">
