@@ -24,7 +24,6 @@ public class UnlockUserCommand implements Command {
         try{
             UserService userService = new UserService();
             userService.unlockUser(login);
-
             List<User> users = userService.findAllUsers();
             req.setAttribute(StringAttributes.USERS,users);
 

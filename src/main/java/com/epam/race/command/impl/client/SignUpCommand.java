@@ -8,9 +8,10 @@ import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
 import com.epam.race.service.UserService;
 import com.epam.race.command.StringAttributes;
+import com.epam.race.util.IntegerConstant;
 import com.epam.race.util.StringConstant;
 import com.epam.race.util.Encryption;
-import com.epam.race.util.validation.SignUpValidator;
+import com.epam.race.validation.SignUpValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,10 +24,9 @@ public class SignUpCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest req) {
-
         String page;
+        boolean flag = true;
         User user = new User();
-
 
         user.setName(req.getParameter(StringAttributes.NAME));
         user.setSurname(req.getParameter(StringAttributes.SURNAME));
@@ -39,12 +39,9 @@ public class SignUpCommand implements Command {
 
         String encryptedPassword = Encryption.encrypt(req.getParameter(StringAttributes.PASSWORD));
         user.setPassword(encryptedPassword);
-
-
         try {
             SignUpValidator validator = new SignUpValidator();
 
-            boolean flag = true;
             boolean loginIsPresent = validator.checkLoginIsPresent(user.getLogin());
             boolean loginIsCorrect = validator.checkLoginIsCorrect(user.getLogin());
 
@@ -54,9 +51,9 @@ public class SignUpCommand implements Command {
             } else {
                 flag = false;
                 if (loginIsPresent) {
-                    req.setAttribute(StringAttributes.INCORRECT_LOGIN, StringAttributes.ATTRIBUTE_LOGIN_IS_PRESENT);
+                    req.setAttribute(StringAttributes.INCORRECT_LOGIN, StringAttributes.TRUE);
                 } else {
-                    req.setAttribute(StringAttributes.INCORRECT_LOGIN, StringAttributes.ATTRIBUTE_INCORRECT_LOGIN);
+                    req.setAttribute(StringAttributes.INCORRECT_LOGIN, StringAttributes.TRUE);
                 }
             }
 
@@ -66,7 +63,7 @@ public class SignUpCommand implements Command {
                 req.setAttribute(StringAttributes.EMAIL, user.getEmail());
             } else {
                 flag = false;
-                req.setAttribute(StringAttributes.INCORRECT_EMAIL, StringAttributes.ATTRIBUTE_INCORRECT_EMAIL);
+                req.setAttribute(StringAttributes.INCORRECT_EMAIL, StringAttributes.TRUE);
             }
 
             boolean isCorrectName = validator.checkName(user.getName());
@@ -75,7 +72,7 @@ public class SignUpCommand implements Command {
                 req.setAttribute(StringAttributes.NAME, user.getName());
             } else {
                 flag = false;
-                req.setAttribute(StringAttributes.INCORRECT_NAME, StringAttributes.ATTRIBUTE_INCORRECT_NAME);
+                req.setAttribute(StringAttributes.INCORRECT_NAME, StringAttributes.TRUE);
             }
 
             boolean isCorrectSurname = validator.checkSurname(user.getSurname());
@@ -84,7 +81,7 @@ public class SignUpCommand implements Command {
                 req.setAttribute(StringAttributes.SURNAME, user.getSurname());
             } else {
                 flag = false;
-                req.setAttribute(StringAttributes.INCORRECT_SURNAME, StringAttributes.ATTRIBUTE_INCORRECT_SURNAME);
+                req.setAttribute(StringAttributes.INCORRECT_SURNAME, StringAttributes.TRUE);
             }
 
             boolean isCorrectPassword = validator.checkPassword(password);
@@ -98,13 +95,13 @@ public class SignUpCommand implements Command {
                 }else {
                     flag = false;
                     req.setAttribute(StringAttributes.PASSWORDS_NOT_MATCH,
-                            StringAttributes.ATTRIBUTE_PASSWORDS_NOT_MATCH);
+                            StringAttributes.TRUE);
                 }
 
             } else {
                 flag = false;
                 req.setAttribute(StringAttributes.INCORRECT_PASSWORD,
-                        StringAttributes.ATTRIBUTE_INCORRECT_PASSWORD);
+                        StringAttributes.TRUE);
             }
 
             if (flag) {
@@ -115,13 +112,13 @@ public class SignUpCommand implements Command {
                 req.getSession().setAttribute(StringAttributes.LOCALE, Locale.getDefault());
 
                 new UserService().addUser(user);
-                RaceService raceService = new RaceService(1, 8);
+
+                RaceService raceService = new RaceService(IntegerConstant.START_PAGE,
+                        IntegerConstant.COUNT_OF_RACES);
                 List<Object> attributes = raceService.mainAttributes();
-
-                req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
-                req.getSession().setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
-
-                req.getSession().setAttribute(StringAttributes.RACES, raceService.findCurrentRaces());
+                req.setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
+                req.setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
+                req.setAttribute(StringAttributes.RACES, raceService.findCurrentRaces());
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
             }
             else {

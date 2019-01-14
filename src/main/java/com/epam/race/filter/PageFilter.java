@@ -21,7 +21,6 @@ public class PageFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-
         request.getSession().setAttribute("page", request.getServletPath());
 
         filterChain.doFilter(request, response);

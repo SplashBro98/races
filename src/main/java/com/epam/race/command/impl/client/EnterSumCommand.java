@@ -7,7 +7,7 @@ import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserBetService;
 import com.epam.race.service.UserService;
 import com.epam.race.command.StringAttributes;
-import com.epam.race.util.validation.BetValidator;
+import com.epam.race.validation.BetValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,7 +37,7 @@ public class EnterSumCommand implements Command {
             BigDecimal sumOfBet = new BigDecimal(strSum).round(new MathContext(4));
             BigDecimal userAmount = service.findUserAmount(login);
             if(userAmount.compareTo(sumOfBet) == -1){
-                req.setAttribute("is_incorrect_sum",StringAttributes.TRUE);
+                req.setAttribute(StringAttributes.INCORRECT_SUM,StringAttributes.TRUE);
                 return PageManager.INSTANCE.getProperty(PageManager.PATH_ENTER_SUM_PAGE);
             }
 

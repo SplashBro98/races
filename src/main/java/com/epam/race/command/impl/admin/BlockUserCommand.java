@@ -18,7 +18,6 @@ public class BlockUserCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         String page;
-
         String login = req.getParameter(StringAttributes.USER_LOGIN);
 
         try{
@@ -26,7 +25,7 @@ public class BlockUserCommand implements Command {
             userService.blockUser(login);
 
             List<User> users = userService.findAllUsers();
-            req.getSession().setAttribute("users",users);
+            req.setAttribute(StringAttributes.USERS,users);
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_USER_LIST_PAGE);
         }catch (ServiceException e){

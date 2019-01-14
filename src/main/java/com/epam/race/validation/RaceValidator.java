@@ -1,7 +1,6 @@
-package com.epam.race.util.validation;
+package com.epam.race.validation;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class RaceValidator {
 

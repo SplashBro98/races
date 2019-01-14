@@ -1,4 +1,4 @@
-package com.epam.race.util.validation;
+package com.epam.race.validation;
 
 public class LoginValidator {
     private static final String LOGIN_REGEX = "[a-zA-Z0-9А-Яа-я_`-]{4,40}";

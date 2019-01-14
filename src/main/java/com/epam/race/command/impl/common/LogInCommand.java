@@ -6,9 +6,10 @@ import com.epam.race.command.PageManager;
 import com.epam.race.entity.user.User;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserService;
+import com.epam.race.util.IntegerConstant;
 import com.epam.race.util.StringConstant;
 import com.epam.race.util.Encryption;
-import com.epam.race.util.validation.LoginValidator;
+import com.epam.race.validation.LoginValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.epam.race.service.RaceService;
@@ -24,10 +25,10 @@ public class LogInCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest req) {
+        String page;
+
         String login = req.getParameter(StringAttributes.LOGIN);
         String password = req.getParameter(StringAttributes.PASSWORD);
-
-
         LoginValidator loginValidator = new LoginValidator();
         if (!loginValidator.checkLogInInfo(login, password)) {
             req.setAttribute(StringAttributes.INCORRECT, StringAttributes.TRUE);
@@ -35,7 +36,7 @@ public class LogInCommand implements Command {
         }
 
         password = Encryption.encrypt(password);
-        String page;
+
         try {
             Optional<User> maybeUser = new UserService().findUser(login, password);
 
@@ -53,19 +54,16 @@ public class LogInCommand implements Command {
                 req.getSession().setAttribute(StringAttributes.LOCALE, req.getParameter(StringAttributes.LOCALE));
                 req.getSession().setAttribute(StringAttributes.LOGIN, login);
 
-                RaceService raceService = new RaceService(1, 8);
+                RaceService raceService = new RaceService(IntegerConstant.START_PAGE,
+                        IntegerConstant.COUNT_OF_RACES);
                 List<Object> attributes = raceService.mainAttributes();
-
-                req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
-                req.getSession().setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
-
-                req.getSession().setAttribute(StringAttributes.RACES, raceService.findCurrentRaces());
-
+                req.setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
+                req.setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
+                req.setAttribute(StringAttributes.RACES, raceService.findCurrentRaces());
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
             } else {
                 req.setAttribute(StringAttributes.INCORRECT, StringAttributes.TRUE);
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_LOGIN_PAGE);
-
             }
 
         } catch (ServiceException e) {

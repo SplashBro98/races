@@ -13,7 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.epam.race.database.specification.SQLSpecification;
 import com.epam.race.database.specification.race.InsertRaceSpecification;
-import com.epam.race.database.DbCols;
+import com.epam.race.database.ColumnName;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,10 +41,10 @@ public class RaceRepository extends AbstractRepository<Race> {
         try {
             Race newRace = new Race();
             newRace.setRaceId(resultSet.getInt(1));
-            newRace.setName(resultSet.getString(DbCols.NAME));
-            newRace.setPlace(resultSet.getString(DbCols.PLACE));
-            newRace.setDate(resultSet.getDate(DbCols.DATE).toLocalDate());
-            newRace.setTime(resultSet.getTime(DbCols.TIME).toLocalTime());
+            newRace.setName(resultSet.getString(ColumnName.NAME));
+            newRace.setPlace(resultSet.getString(ColumnName.PLACE));
+            newRace.setDate(resultSet.getDate(ColumnName.DATE).toLocalDate());
+            newRace.setTime(resultSet.getTime(ColumnName.TIME).toLocalTime());
             return newRace;
         } catch (SQLException e) {
             throw new RepositoryException("SQL Exception in createItem method", e);

@@ -6,7 +6,7 @@ import com.epam.race.entity.common.Bet;
 import com.epam.race.service.BetService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.command.StringAttributes;
-import com.epam.race.util.validation.BetValidator;
+import com.epam.race.validation.BetValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -4,18 +4,15 @@ import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.entity.user.User;
 import com.epam.race.entity.user.UserType;
-import com.epam.race.service.RaceService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserService;
 import com.epam.race.command.StringAttributes;
-import com.epam.race.util.StringConstant;
 import com.epam.race.util.Encryption;
-import com.epam.race.util.validation.SignUpValidator;
+import com.epam.race.validation.SignUpValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Locale;
 
 public class EditProfileCommand implements Command {
@@ -53,28 +50,28 @@ public class EditProfileCommand implements Command {
             if (!loginIsCorrect) {
 
                 flag = false;
-                req.setAttribute(StringAttributes.INCORRECT_LOGIN, StringAttributes.ATTRIBUTE_INCORRECT_LOGIN);
+                req.setAttribute(StringAttributes.INCORRECT_LOGIN, StringAttributes.TRUE);
             }
 
             boolean emailIsCorrect = validator.checkEmail(user.getEmail());
             if (!emailIsCorrect) {
 
                 flag = false;
-                req.setAttribute(StringAttributes.INCORRECT_EMAIL, StringAttributes.ATTRIBUTE_INCORRECT_EMAIL);
+                req.setAttribute(StringAttributes.INCORRECT_EMAIL, StringAttributes.TRUE);
 
             }
 
             boolean isCorrectName = validator.checkName(user.getName());
             if (!isCorrectName) {
                 flag = false;
-                req.setAttribute(StringAttributes.INCORRECT_NAME, StringAttributes.ATTRIBUTE_INCORRECT_NAME);
+                req.setAttribute(StringAttributes.INCORRECT_NAME, StringAttributes.TRUE);
 
             }
 
             boolean isCorrectSurname = validator.checkSurname(user.getSurname());
             if (!isCorrectSurname) {
                 flag = false;
-                req.setAttribute(StringAttributes.INCORRECT_SURNAME, StringAttributes.ATTRIBUTE_INCORRECT_SURNAME);
+                req.setAttribute(StringAttributes.INCORRECT_SURNAME, StringAttributes.TRUE);
 
             }
 
@@ -85,14 +82,13 @@ public class EditProfileCommand implements Command {
                 if (!isPasswordsMatch) {
                     flag = false;
                     req.setAttribute(StringAttributes.PASSWORDS_NOT_MATCH,
-                            StringAttributes.ATTRIBUTE_PASSWORDS_NOT_MATCH);
+                            StringAttributes.TRUE);
                 }
             } else {
                 flag = false;
                 req.setAttribute(StringAttributes.INCORRECT_PASSWORD,
-                        StringAttributes.ATTRIBUTE_INCORRECT_PASSWORD);
+                        StringAttributes.TRUE);
             }
-
             req.getSession().setAttribute(StringAttributes.USER, user);
             if (flag) {
 
@@ -100,19 +96,12 @@ public class EditProfileCommand implements Command {
                 req.getSession().setAttribute(StringAttributes.ROLE, user.getUserType().toString().toLowerCase());
                 req.getSession().setAttribute(StringAttributes.LOCALE, Locale.getDefault());
 
-                new UserService().updateUser(user);
-                RaceService raceService = new RaceService(1, 5);
-                List<Object> attributes = raceService.mainAttributes();
-
-                req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
-                req.getSession().setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
-
-                req.getSession().setAttribute(StringAttributes.RACES, raceService.findCurrentRaces());
+                UserService userService = new UserService();
+                userService.updateUser(user);
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_USER_PROFILE_PAGE);
             } else {
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_EDIT_PROFILE_PAGE);
             }
-
 
         } catch (ServiceException e) {
             logger.error("Service Exception in EditProfileCommand", e);

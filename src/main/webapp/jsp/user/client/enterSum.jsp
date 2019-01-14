@@ -39,7 +39,7 @@
                                                    oninvalid="this.setCustomValidity('<fmt:message key="info.correctsum" bundle="${var}"/>')"
                                                    oninput="this.setCustomValidity('')"
                                                    required>
-                                            <c:if test="${not empty is_incorrect_sum}">
+                                            <c:if test="${not empty incorrect_sum}">
                                                 <div class="text-center"><fmt:message key="info.sum" bundle="${var}"/></div>
                                             </c:if>
                                         </div>

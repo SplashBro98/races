@@ -7,8 +7,9 @@ import com.epam.race.service.HorseService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
 import com.epam.race.command.StringAttributes;
+import com.epam.race.util.IntegerConstant;
 import com.epam.race.util.StringConstant;
-import com.epam.race.util.validation.RaceValidator;
+import com.epam.race.validation.RaceValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,8 +24,9 @@ public class AddRaceCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest req) {
-
         String page;
+        boolean flag = true;
+
         Race race = new Race();
         race.setName(req.getParameter(StringAttributes.NAME));
         race.setPlace(req.getParameter(StringAttributes.PLACE));
@@ -32,15 +34,12 @@ public class AddRaceCommand implements Command {
         String time = req.getParameter(StringAttributes.TIME);
 
         RaceValidator raceValidator = new RaceValidator();
-        boolean flag = true;
-
-
         boolean isCorrectName = raceValidator.checkName(race.getName());
         if(isCorrectName){
             req.setAttribute(StringAttributes.NAME,race.getName());
         }else {
             flag = false;
-            req.setAttribute(StringAttributes.INCORRECT_NAME, StringAttributes.ATTRIBUTE_INCORRECT_NAME);
+            req.setAttribute(StringAttributes.INCORRECT_NAME, StringAttributes.TRUE);
         }
 
         boolean isCorrectPlace = raceValidator.checkPlace(race.getPlace());
@@ -48,7 +47,7 @@ public class AddRaceCommand implements Command {
             req.setAttribute(StringAttributes.PLACE,race.getPlace());
         }else {
             flag = false;
-            req.setAttribute(StringAttributes.INCORRECT_PLACE, StringAttributes.ATTRIBUTE_INCORRECT_PLACE);
+            req.setAttribute(StringAttributes.INCORRECT_PLACE, StringAttributes.TRUE);
         }
 
         boolean isCorrectTime = raceValidator.checkTime(time);
@@ -57,7 +56,7 @@ public class AddRaceCommand implements Command {
             req.setAttribute(StringAttributes.TIME,time);
         }else {
             flag = false;
-            req.setAttribute(StringAttributes.INCORRECT_TIME, StringAttributes.ATTRIBUTE_INCORRECT_TIME);
+            req.setAttribute(StringAttributes.INCORRECT_TIME, StringAttributes.TRUE);
         }
 
         boolean isCorrectDate = raceValidator.checkDate(date);
@@ -66,7 +65,7 @@ public class AddRaceCommand implements Command {
             req.setAttribute(StringAttributes.DATE,date);
         }else {
             flag = false;
-            req.setAttribute(StringAttributes.INCORRECT_DATE, StringAttributes.ATTRIBUTE_INCORRECT_DATE);
+            req.setAttribute(StringAttributes.INCORRECT_DATE, StringAttributes.TRUE);
         }
 
 
@@ -79,8 +78,6 @@ public class AddRaceCommand implements Command {
                 String secondHorseName = req.getParameter(StringAttributes.HORSE_2);
                 String thirdHorseName = req.getParameter(StringAttributes.HORSE_3);
                 String fourthHorseName = req.getParameter(StringAttributes.HORSE_4);
-
-
 
                 List<Integer> idList = new ArrayList<>();
                 idList.add(horseService.findHorseId(firstHorseName));
@@ -99,13 +96,14 @@ public class AddRaceCommand implements Command {
                     return PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_RACE_PAGE);
                 }
 
+                raceService = new RaceService(IntegerConstant.START_PAGE,
+                        IntegerConstant.COUNT_OF_RACES);
+                raceService.findAllUpcomingRaces();
+                List<Object> attributes = raceService.mainAttributes();
+                req.setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
+                req.setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
+                req.setAttribute(StringAttributes.RACES, raceService.findCurrentRaces());
 
-                RaceService service = new RaceService(1, 8);
-                service.findAllUpcomingRaces();
-                req.getSession().setAttribute(StringConstant.CURRENT_PAGE, service.getCurrentPage());
-                req.getSession().setAttribute(StringConstant.NUMBER_OF_PAGES, service.getNumberOfPages());
-
-                req.getSession().setAttribute(StringAttributes.RACES, service.findCurrentRaces());
                 page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
             } catch (ServiceException e) {
                 logger.error("Service Exception in AddRaceCommand",e);

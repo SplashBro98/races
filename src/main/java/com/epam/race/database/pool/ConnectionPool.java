@@ -17,10 +17,9 @@ public class ConnectionPool {
     private static ReentrantLock lock = new ReentrantLock();
     private static AtomicBoolean isCreated = new AtomicBoolean(false);
 
-    public static final int MAX_POOL_SIZE = 15;
+    private static final int MAX_POOL_SIZE = 15;
     private static BlockingQueue<ProxyConnection> avaliableConnections = new LinkedBlockingQueue<>();
     private static BlockingQueue<ProxyConnection> usedConnections = new LinkedBlockingQueue<>();
-
 
     private ConnectionPool() {
         for (int i = 0; i < MAX_POOL_SIZE ; i++) {
@@ -31,8 +30,8 @@ public class ConnectionPool {
                 throw new RuntimeException(e);
             }
         }
-    }
 
+    }
 
     public static ConnectionPool getInstance(){
         if(!isCreated.get()){
@@ -50,13 +49,12 @@ public class ConnectionPool {
     }
 
     public Connection takeConnection(){
-        ProxyConnection connection;
+        ProxyConnection connection = null;
         try {
             connection = avaliableConnections.take();
             usedConnections.put(connection);
         } catch (InterruptedException e) {
             logger.error("Error while take connection",e);
-            throw new RuntimeException(e);
         }
         return connection;
     }
@@ -68,19 +66,17 @@ public class ConnectionPool {
                 usedConnections.remove(realConnection);
             } catch (InterruptedException e) {
                 logger.error("Interrupted Exception in connection pool",e);
-                throw new RuntimeException(e);
             }
         }
     }
 
-    public void close(){
+    public void closePool(){
         for (int i = 0; i < avaliableConnections.size(); i++) {
             try {
                 ProxyConnection connection = avaliableConnections.take();
                 connection.realClose();
             } catch (InterruptedException | SQLException e) {
-                logger.error("Error while close connections",e);
-                throw new RuntimeException(e);
+                logger.error("Error while closePool connections",e);
             }
         }
         DriverManager.drivers().forEach(x-> {
@@ -88,7 +84,6 @@ public class ConnectionPool {
                 DriverManager.deregisterDriver(x);
             } catch (SQLException e) {
                 logger.error("Error while deregister drivers", e);
-                throw new RuntimeException(e);
             }
         });
     }

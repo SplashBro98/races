@@ -1,6 +1,7 @@
 package com.epam.race.command;
 
 public final class StringAttributes {
+
     public static final String NAME = "name";
     public static final String EMAIL = "email";
     public static final String LOGIN = "login";
@@ -38,6 +39,7 @@ public final class StringAttributes {
     public static final String HORSE_2 = "horse№2";
     public static final String HORSE_3 = "horse№3";
     public static final String HORSE_4 = "horse№4";
+    public static final String RACE_NAME_ID_MAP = "raceNameIdMap";
     public static final String CURRENT_USER_BETS = "currentUserBets";
     public static final String PREVIOUS_USER_BETS = "previousUserBets";
     public static final String INCORRECT_LOGIN = "incorrect_login";
@@ -62,26 +64,9 @@ public final class StringAttributes {
     public static final String NOTHING = "nothing";
 
     public static final String NOT_DIFFERENT_HORSES = "not_different_horses";
-
-
     public static final String BLOCKED = "blocked";
     public static final String TRUE = "true";
-    public static final String FALSE = "false";
 
-
-
-    public static final String ATTRIBUTE_WRONG_EMAIL_OR_PASSWORD = "Incorrect login or password, try again";
-    public static final String ATTRIBUTE_LOGIN_IS_PRESENT = "User with this login is already exists";
-    public static final String ATTRIBUTE_INCORRECT_LOGIN = "Incorrect login";
-    public static final String ATTRIBUTE_INCORRECT_EMAIL = "Incorrect email";
-    public static final String ATTRIBUTE_INCORRECT_NAME = "Incorrect name";
-    public static final String ATTRIBUTE_INCORRECT_SURNAME = "Incorrect surname";
-    public static final String ATTRIBUTE_INCORRECT_PASSWORD = "Incorrect password";
-    public static final String ATTRIBUTE_INCORRECT_PLACE = "Incorrect place";
-    public static final String ATTRIBUTE_INCORRECT_TIME = "Incorrect time";
-    public static final String ATTRIBUTE_INCORRECT_DATE = "Incorrect date";
-    public static final String ATTRIBUTE_INCORRECT_AGE = "Incorrect age";
-    public static final String ATTRIBUTE_PASSWORDS_NOT_MATCH = "Passwords don`t match";
 
     private StringAttributes() {
     }

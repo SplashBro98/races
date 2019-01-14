@@ -1,10 +1,6 @@
 package com.epam.race.validation;
 
 
-import com.epam.race.util.validation.BetValidator;
-import com.epam.race.util.validation.LoginValidator;
-import com.epam.race.util.validation.PaymentValidator;
-import com.epam.race.util.validation.RaceValidator;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;

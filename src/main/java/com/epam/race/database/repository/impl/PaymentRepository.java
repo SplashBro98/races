@@ -1,6 +1,6 @@
 package com.epam.race.database.repository.impl;
 
-import com.epam.race.database.DbCols;
+import com.epam.race.database.ColumnName;
 import com.epam.race.entity.common.Payment;
 import com.epam.race.database.repository.AbstractRepository;
 import com.epam.race.database.repository.RepositoryException;
@@ -31,7 +31,7 @@ public class PaymentRepository extends AbstractRepository<Payment> {
     public Payment createItem(ResultSet resultSet) throws RepositoryException {
         try{
             Payment payment = new Payment();
-            payment.setPaymentId(resultSet.getString(DbCols.PAYMENT_ID));
+            payment.setPaymentId(resultSet.getString(ColumnName.PAYMENT_ID));
             payment.setSum(resultSet.getBigDecimal(2));
             return payment;
         }catch (SQLException e){

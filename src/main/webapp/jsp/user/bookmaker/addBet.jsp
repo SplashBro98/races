@@ -11,6 +11,11 @@
 </head>
 
 <body>
+<script>
+    if(window.location.replaceState){
+        window.location.replaceState(null,null,window.location.href)
+    }
+</script>
 <c:import url="../../common/header.jsp"/>
 
 <section class="wrapper fixed-top">

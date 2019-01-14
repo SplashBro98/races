@@ -1,4 +1,4 @@
-package com.epam.race.util.validation;
+package com.epam.race.validation;
 
 import com.epam.race.service.ServiceException;
 import com.epam.race.entity.user.User;

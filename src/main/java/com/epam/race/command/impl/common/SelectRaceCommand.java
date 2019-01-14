@@ -17,15 +17,15 @@ public class SelectRaceCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         String page;
+
         String raceName = req.getParameter(StringAttributes.NAME);
         try {
             RaceService service = new RaceService();
             Race race = service.findRaceWithBetsAndHorses(raceName);
 
-            req.getSession().setAttribute(StringAttributes.RACE, race);
-            req.getSession().setAttribute(StringAttributes.BETS, race.getBets());
-            req.getSession().setAttribute(StringAttributes.HORSES, race.getHorses());
-
+            req.setAttribute(StringAttributes.RACE, race);
+            req.setAttribute(StringAttributes.BETS, race.getBets());
+            req.setAttribute(StringAttributes.HORSES, race.getHorses());
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_RACE_PAGE);
         } catch (ServiceException e) {

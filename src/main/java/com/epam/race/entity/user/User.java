@@ -129,7 +129,6 @@ public class User implements Entity {
                 amount.equals(user.amount);
     }
 
-
     @Override
     public int hashCode() {
         return Objects.hash(name, surname, login, password, email, userType, amount);

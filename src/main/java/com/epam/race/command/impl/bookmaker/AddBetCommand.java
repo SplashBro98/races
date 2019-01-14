@@ -10,7 +10,7 @@ import com.epam.race.service.ServiceException;
 import com.epam.race.service.BetService;
 import com.epam.race.service.RaceService;
 import com.epam.race.command.StringAttributes;
-import com.epam.race.util.validation.BetValidator;
+import com.epam.race.validation.BetValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +28,6 @@ public class AddBetCommand implements Command{
 
         int position = Integer.parseInt(req.getParameter(StringAttributes.POSITION));
 
-
         String stringCoeff = req.getParameter(StringAttributes.COEFF);
         boolean isCorrectCoeff  = new BetValidator().isCorrectCoeff(stringCoeff);
         if(!isCorrectCoeff){
@@ -45,7 +44,8 @@ public class AddBetCommand implements Command{
             Race race = new RaceService().findRace(raceName).get();
             Horse horse = new HorseService().findHorse(horseName).get();
             Bet bet = new Bet(race, horse, position, coeff);
-            new BetService().addBet(bet);
+            BetService betService = new BetService();
+            betService.addBet(bet);
 
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
         }catch (ServiceException e){

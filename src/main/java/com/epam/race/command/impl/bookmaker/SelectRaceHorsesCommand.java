@@ -23,14 +23,15 @@ public class SelectRaceHorsesCommand implements Command {
 
         String raceName = req.getParameter(StringAttributes.NAME);
         try{
-            Map<String, Integer> raceNameIdMap = (Map) req.getSession().getAttribute("raceNameIdMap");
+            Map<String, Integer> raceNameIdMap = (Map) req.getSession().
+                    getAttribute(StringAttributes.RACE_NAME_ID_MAP);
             List<Horse> horses = new HorseService().findHorsesByRace(raceNameIdMap.get(raceName));
 
             List<String> horseNames = new ArrayList<>();
             horses.forEach(h -> horseNames.add(h.getName()));
 
-            req.getSession().setAttribute("horseNames",horseNames);
-            req.getSession().setAttribute("raceName", raceName);
+            req.setAttribute(StringAttributes.HORSE_NAMES,horseNames);
+            req.setAttribute(StringAttributes.RACE_NAME, raceName);
             page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
 
         }catch (ServiceException e){

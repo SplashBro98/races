@@ -1,7 +1,6 @@
 package com.epam.race.database.repository.impl;
 
-import com.epam.race.command.StringAttributes;
-import com.epam.race.database.DbCols;
+import com.epam.race.database.ColumnName;
 import com.epam.race.entity.user.User;
 import com.epam.race.entity.user.UserType;
 import com.epam.race.database.repository.AbstractRepository;
@@ -10,7 +9,6 @@ import com.epam.race.database.specification.SQLSpecification;
 import com.epam.race.database.specification.user.InsertUserSpecification;
 import com.epam.race.database.specification.user.DeleteUserSpecification;
 
-import java.math.MathContext;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -36,14 +34,14 @@ public class UserRepository extends AbstractRepository<User> {
         try {
             User newUser = new User();
             newUser.setUserId(resultSet.getInt(1));
-            newUser.setName(resultSet.getString(DbCols.NAME));
-            newUser.setSurname(resultSet.getString(DbCols.SURNAME));
-            newUser.setLogin(resultSet.getString(DbCols.LOGIN));
-            newUser.setPassword(resultSet.getString(DbCols.PASSWORD));
-            newUser.setEmail(resultSet.getString(DbCols.EMAIL));
-            int type = resultSet.getInt(DbCols.USERTYPE_ID);
+            newUser.setName(resultSet.getString(ColumnName.NAME));
+            newUser.setSurname(resultSet.getString(ColumnName.SURNAME));
+            newUser.setLogin(resultSet.getString(ColumnName.LOGIN));
+            newUser.setPassword(resultSet.getString(ColumnName.PASSWORD));
+            newUser.setEmail(resultSet.getString(ColumnName.EMAIL));
+            int type = resultSet.getInt(ColumnName.USERTYPE_ID);
             if(type == 1) {
-                newUser.setAmount(resultSet.getBigDecimal(DbCols.AMOUNT));
+                newUser.setAmount(resultSet.getBigDecimal(ColumnName.AMOUNT));
             }
             newUser.setLocked(resultSet.getBoolean("is_locked"));
 

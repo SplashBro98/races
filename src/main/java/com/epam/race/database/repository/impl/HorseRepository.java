@@ -1,6 +1,6 @@
 package com.epam.race.database.repository.impl;
 
-import com.epam.race.database.DbCols;
+import com.epam.race.database.ColumnName;
 import com.epam.race.entity.common.Horse;
 import com.epam.race.database.pool.ConnectionPool;
 import com.epam.race.database.repository.AbstractRepository;
@@ -57,10 +57,10 @@ public class HorseRepository extends AbstractRepository<Horse> {
     public Horse createItem(ResultSet resultSet) throws RepositoryException{
         Horse newHorse = new Horse();
         try {
-            newHorse.setHorseId(resultSet.getInt(DbCols.HORSE_ID));
-            newHorse.setName(resultSet.getString(DbCols.NAME));
-            newHorse.setAge(resultSet.getInt(DbCols.AGE));
-            newHorse.setWins(resultSet.getInt(DbCols.WINS));
+            newHorse.setHorseId(resultSet.getInt(ColumnName.HORSE_ID));
+            newHorse.setName(resultSet.getString(ColumnName.NAME));
+            newHorse.setAge(resultSet.getInt(ColumnName.AGE));
+            newHorse.setWins(resultSet.getInt(ColumnName.WINS));
             return newHorse;
         }catch (SQLException e){
             throw new RepositoryException("SQL Exception in createItem method",e);

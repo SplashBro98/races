@@ -1,4 +1,4 @@
-package com.epam.race.util.validation;
+package com.epam.race.validation;
 
 public class PaymentValidator {
 

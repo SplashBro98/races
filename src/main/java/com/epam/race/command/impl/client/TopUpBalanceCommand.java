@@ -8,7 +8,7 @@ import com.epam.race.entity.user.User;
 import com.epam.race.service.PaymentService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserService;
-import com.epam.race.util.validation.PaymentValidator;
+import com.epam.race.validation.PaymentValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

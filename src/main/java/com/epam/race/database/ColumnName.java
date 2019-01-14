@@ -1,6 +1,6 @@
 package com.epam.race.database;
 
-public final class DbCols {
+public final class ColumnName {
 
     public static final String NAME = "name";
     public static final String SURNAME = "surname";
@@ -23,6 +23,6 @@ public final class DbCols {
     public static final String AMOUNT = "amount";
     public static final String USERTYPE_ID = "usertype_id";
 
-    private DbCols() {
+    private ColumnName() {
     }
 }
