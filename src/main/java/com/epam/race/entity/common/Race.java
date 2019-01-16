@@ -77,13 +77,16 @@ public class Race implements Entity {
         this.time = time;
     }
 
-
     public void addBet(Bet bet){
         bets.add(bet);
     }
 
-    public void removeBet(Bet bet){
-        bets.remove(bet);
+    public void setBets(List<Bet> bets) {
+        this.bets = bets;
+    }
+
+    public void setHorses(List<Horse> horses) {
+        this.horses = horses;
     }
 
     public List<Bet> getBets() {

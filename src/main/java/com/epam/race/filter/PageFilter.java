@@ -10,8 +10,10 @@ import java.io.IOException;
         DispatcherType.FORWARD})
 public class PageFilter implements Filter {
 
+    private static final String PAGE = "page";
+
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 
@@ -21,7 +23,7 @@ public class PageFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        request.getSession().setAttribute("page", request.getServletPath());
+        request.getSession().setAttribute(PAGE, request.getServletPath());
 
         filterChain.doFilter(request, response);
     }

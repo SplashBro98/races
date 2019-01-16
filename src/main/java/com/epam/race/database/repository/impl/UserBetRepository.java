@@ -3,14 +3,13 @@ package com.epam.race.database.repository.impl;
 import com.epam.race.database.specification.userbet.DeleteUserBetSpecification;
 import com.epam.race.entity.common.Horse;
 import com.epam.race.entity.common.Race;
-import com.epam.race.database.pool.ConnectionPool;
+import com.epam.race.pool.ConnectionPool;
 import com.epam.race.database.repository.AbstractRepository;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.specification.userbet.InsertUserBetSpecification;
 import com.epam.race.entity.user.UserBet;
 import com.epam.race.database.specification.SQLSpecification;
 
-import java.math.MathContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

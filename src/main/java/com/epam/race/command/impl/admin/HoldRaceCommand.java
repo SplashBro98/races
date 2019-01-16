@@ -6,8 +6,9 @@ import com.epam.race.entity.common.Horse;
 import com.epam.race.entity.common.Race;
 import com.epam.race.entity.common.RaceResult;
 import com.epam.race.service.*;
+import com.epam.race.servlet.Router;
 import com.epam.race.util.RandomGenerator;
-import com.epam.race.command.StringAttributes;
+import com.epam.race.command.StringAttribute;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,11 +20,11 @@ public class HoldRaceCommand implements Command {
     private static Logger logger = LogManager.getLogger(HoldRaceCommand.class);
 
     @Override
-    public String execute(HttpServletRequest req) {
-        String page;
+    public Router execute(HttpServletRequest req) {
+        Router router = new Router();
 
-        String raceName = req.getParameter(StringAttributes.RACE_NAME);
-        List<Race> races= (List) req.getSession().getAttribute(StringAttributes.RACES);
+        String raceName = req.getParameter(StringAttribute.RACE_NAME);
+        List<Race> races= (List) req.getSession().getAttribute(StringAttribute.RACES);
         Race race = races.stream().filter(r -> r.getName().equals(raceName)).collect(Collectors.toList()).get(0);
 
         try{
@@ -56,15 +57,16 @@ public class HoldRaceCommand implements Command {
 
             horses.clear();
             raceResultMap.values().forEach(h -> horses.add(h));
-            req.setAttribute("horses",horses);
-            req.setAttribute("raceName",raceName);
+            req.getSession().setAttribute(StringAttribute.HORSES,horses);
+            req.getSession().setAttribute(StringAttribute.RACE_NAME,raceName);
 
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_RESULTS_PAGE);
+            router.setRedirect();
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_RESULTS_PAGE));
         }catch (ServiceException e){
             logger.error("Service Exception in HoldRaceCommand", e);
-            req.setAttribute(StringAttributes.E,e);
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
+            req.setAttribute(StringAttribute.E,e);
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE));
         }
-        return page;
+        return router;
     }
 }

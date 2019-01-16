@@ -53,6 +53,9 @@ public class Horse implements Entity {
         return name;
     }
 
+    public int getWins() {
+        return wins;
+    }
     public void setName(String name) {
         this.name = name;
     }
@@ -63,10 +66,6 @@ public class Horse implements Entity {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public int getWins() {
-        return wins;
     }
 
     public void setWins(int wins) {

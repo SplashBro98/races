@@ -6,7 +6,8 @@ import com.epam.race.entity.common.Horse;
 import com.epam.race.service.HorseService;
 import com.epam.race.service.RaceService;
 import com.epam.race.service.ServiceException;
-import com.epam.race.command.StringAttributes;
+import com.epam.race.command.StringAttribute;
+import com.epam.race.servlet.Router;
 import com.epam.race.util.IntegerConstant;
 import com.epam.race.util.StringConstant;
 import com.epam.race.validation.HorseValidator;
@@ -20,28 +21,28 @@ public class AddHorseCommand implements Command {
     private static Logger logger = LogManager.getLogger(AddHorseCommand.class);
 
     @Override
-    public String execute(HttpServletRequest req) {
-        String page;
+    public Router execute(HttpServletRequest req) {
+        Router router = new Router();
         boolean flag = true;
 
-        String horseName = req.getParameter(StringAttributes.NAME);
-        String horseAge = req.getParameter(StringAttributes.AGE);
+        String horseName = req.getParameter(StringAttribute.NAME);
+        String horseAge = req.getParameter(StringAttribute.AGE);
         HorseValidator horseValidator = new HorseValidator();
 
         boolean isCorrectName = horseValidator.isCorrectName(horseName);
         if(isCorrectName){
-            req.setAttribute(StringAttributes.NAME,horseName);
+            req.setAttribute(StringAttribute.NAME,horseName);
         }else {
             flag = false;
-            req.setAttribute(StringAttributes.INCORRECT_NAME, StringAttributes.TRUE);
+            req.setAttribute(StringAttribute.INCORRECT_NAME, StringAttribute.TRUE);
         }
 
         boolean isCorrectAge = horseValidator.isCorrectAge(horseAge);
         if(isCorrectAge){
-            req.setAttribute(StringAttributes.AGE,horseAge);
+            req.setAttribute(StringAttribute.AGE,horseAge);
         }else {
             flag = false;
-            req.setAttribute(StringAttributes.INCORRECT_AGE, StringAttributes.TRUE);
+            req.setAttribute(StringAttribute.INCORRECT_AGE, StringAttribute.TRUE);
         }
 
         if(flag) {
@@ -55,19 +56,20 @@ public class AddHorseCommand implements Command {
                 RaceService raceService = new RaceService(IntegerConstant.START_PAGE,
                         IntegerConstant.COUNT_OF_RACES);
                 List<Object> attributes = raceService.mainAttributes();
-                req.setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
-                req.setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
-                req.setAttribute(StringAttributes.RACES, raceService.findCurrentRaces());
+                req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
+                req.getSession().setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
+                req.getSession().setAttribute(StringAttribute.RACES, raceService.findCurrentRaces());
 
-                page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
+                router.setRedirect();
+                router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE));
             } catch (ServiceException e) {
                 logger.error("Service Exception in AddHorseCommand",e);
-                req.setAttribute(StringAttributes.E,e);
-                page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
+                req.setAttribute(StringAttribute.E,e);
+                router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE));
             }
         }else {
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_HORSE_PAGE);
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_HORSE_PAGE));
         }
-        return page;
+        return router;
     }
 }

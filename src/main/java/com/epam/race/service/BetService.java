@@ -4,13 +4,8 @@ import com.epam.race.entity.common.Bet;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.repository.impl.BetRepository;
 import com.epam.race.database.specification.bet.EditBetSpecification;
-import com.epam.race.database.specification.bet.SelectBetsByRaceIdSpecification;
-
-import java.util.List;
 
 public class BetService {
-
-
 
     public void addBet(Bet bet) throws ServiceException {
         try {

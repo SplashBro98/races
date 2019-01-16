@@ -10,9 +10,10 @@ import java.io.IOException;
 @WebFilter( urlPatterns = "/jsp/*",initParams = { @WebInitParam(name = "INDEX_PATH", value = "/index.jsp") })
 public class SecurityFilter implements Filter {
 
+    private static final String REFERER = "Referer";
     private String indexPath;
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         indexPath = filterConfig.getInitParameter("INDEX_PATH");
     }
 
@@ -22,7 +23,11 @@ public class SecurityFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        response.sendRedirect(request.getContextPath() + indexPath);
+        String referer = request.getHeader(REFERER);
+        if (referer == null) {
+            response.sendRedirect(request.getContextPath() + indexPath);
+        }
+
         filterChain.doFilter(request, response);
 
     }

@@ -1,7 +1,9 @@
 package com.epam.race.command;
 
+import com.epam.race.servlet.Router;
+
 import javax.servlet.http.HttpServletRequest;
 
 public interface Command {
-    String execute(HttpServletRequest req);
+    Router execute(HttpServletRequest req);
 }

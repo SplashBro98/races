@@ -2,7 +2,7 @@ package com.epam.race.database.repository.impl;
 
 import com.epam.race.database.ColumnName;
 import com.epam.race.entity.common.Horse;
-import com.epam.race.database.pool.ConnectionPool;
+import com.epam.race.pool.ConnectionPool;
 import com.epam.race.database.repository.AbstractRepository;
 import com.epam.race.database.repository.RepositoryException;
 import com.epam.race.database.specification.SQLSpecification;

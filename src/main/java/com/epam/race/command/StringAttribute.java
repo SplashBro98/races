@@ -1,6 +1,6 @@
 package com.epam.race.command;
 
-public final class StringAttributes {
+public final class StringAttribute {
 
     public static final String NAME = "name";
     public static final String EMAIL = "email";
@@ -9,10 +9,8 @@ public final class StringAttributes {
     public static final String CONFIRMED_PASSWORD = "confirmedPassword";
     public static final String SURNAME = "surname";
     public static final String USER = "user";
-    public static final String USER_ID = "userId";
     public static final String COEFF = "coeff";
     public static final String AGE = "age";
-    public static final String WINS = "wins";
     public static final String SUM = "sum";
     public static final String PLACE = "place";
     public static final String DATE = "date";
@@ -29,9 +27,9 @@ public final class StringAttributes {
     public static final String BET_ID = "betId";
     public static final String PAYMENT_ID = "paymentId";
     public static final String INCORRECT = "incorrect";
-    public static final String TYPE = "type";
     public static final String USERS = "users";
     public static final String RACE_NAME = "raceName";
+    public static final String RACE_NAMES = "raceNames";
     public static final String HORSE_NAME = "horseName";
     public static final String POSITION = "position";
     public static final String RACE_RESULTS = "raceResults";
@@ -62,12 +60,14 @@ public final class StringAttributes {
     public static final String USER_LOGIN = "userLogin";
     public static final String E = "e";
     public static final String NOTHING = "nothing";
+    public static final String PRESENT_LOGIN = "present_login";
+    public static final String PRESENT_NAME = "present_name";
 
     public static final String NOT_DIFFERENT_HORSES = "not_different_horses";
     public static final String BLOCKED = "blocked";
     public static final String TRUE = "true";
 
 
-    private StringAttributes() {
+    private StringAttribute() {
     }
 }

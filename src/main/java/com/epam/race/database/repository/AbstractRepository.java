@@ -1,6 +1,6 @@
 package com.epam.race.database.repository;
 
-import com.epam.race.database.pool.ConnectionPool;
+import com.epam.race.pool.ConnectionPool;
 import com.epam.race.database.specification.SQLSpecification;
 
 import java.sql.Connection;

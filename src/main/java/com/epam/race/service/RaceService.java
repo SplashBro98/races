@@ -26,10 +26,10 @@ public class RaceService {
         this.recordsPerPage = recordsPerPage;
     }
 
-    public List<Object> mainAttributes() throws ServiceException {
+    public List mainAttributes() throws ServiceException {
 
         findAllUpcomingRaces();
-        ArrayList<Object> result = new ArrayList<>();
+        ArrayList<Integer> result = new ArrayList<>();
         result.add(this.currentPage);
         result.add(this.numberOfPages);
         return result;
@@ -52,6 +52,16 @@ public class RaceService {
             throw new ServiceException(e);
         }
     }
+    public List<Race> findAllRaces() throws ServiceException {
+
+        try {
+           return RaceRepository.getInstance().query(new SelectAllRacesSpecification());
+
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 
     public void updateRaceState(int raceId) throws ServiceException {
         try {
@@ -105,43 +115,16 @@ public class RaceService {
         }
     }
 
-    public List<String> findRacesNames() throws ServiceException {
-
-        List<Race> races = findAllUpcomingRaces();
-        List<String> names = new ArrayList<>();
-        races.forEach(r -> names.add(r.getName()));
-        return names;
-    }
-
     public static List<Race> getAllRaces() {
         return Collections.unmodifiableList(allRaces);
-    }
-
-    public void setAllRaces(List<Race> allRaces) {
-        this.allRaces = allRaces;
     }
 
     public int getCurrentPage() {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    public int getRecordsPerPage() {
-        return recordsPerPage;
-    }
-
-    public void setRecordsPerPage(int recordsPerPage) {
-        this.recordsPerPage = recordsPerPage;
-    }
-
     public int getNumberOfPages() {
         return numberOfPages;
     }
 
-    public void setNumberOfPages(int numberOfPages) {
-        this.numberOfPages = numberOfPages;
-    }
 }

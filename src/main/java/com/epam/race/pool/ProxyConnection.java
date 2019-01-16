@@ -1,5 +1,4 @@
-package com.epam.race.database.pool;
-
+package com.epam.race.pool;
 
 import java.sql.*;
 import java.util.Map;

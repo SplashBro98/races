@@ -6,7 +6,8 @@ import com.epam.race.entity.user.UserBet;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.UserBetService;
 import com.epam.race.service.UserService;
-import com.epam.race.command.StringAttributes;
+import com.epam.race.command.StringAttribute;
+import com.epam.race.servlet.Router;
 import com.epam.race.validation.BetValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,44 +20,45 @@ public class EnterSumCommand implements Command {
     private static Logger logger = LogManager.getLogger(EnterSumCommand.class);
 
     @Override
-    public String execute(HttpServletRequest req) {
-        String page;
+    public Router execute(HttpServletRequest req) {
+        Router router = new Router();
 
-        String strSum = req.getParameter(StringAttributes.SUM);
+        String strSum = req.getParameter(StringAttribute.SUM);
 
         boolean isCorrectSum = new BetValidator().isCorrectSum(strSum);
 
         if(!isCorrectSum){
-            req.setAttribute(StringAttributes.INCORRECT_SUM,StringAttributes.TRUE);
-            return PageManager.INSTANCE.getProperty(PageManager.PATH_ENTER_SUM_PAGE);
+            req.setAttribute(StringAttribute.INCORRECT_SUM, StringAttribute.TRUE);
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ENTER_SUM_PAGE));
+            return router;
         }
 
         try{
             UserService service = new UserService();
-            String login = req.getSession().getAttribute(StringAttributes.LOGIN).toString();
-            BigDecimal sumOfBet = new BigDecimal(strSum).round(new MathContext(4));
+            String login = req.getSession().getAttribute(StringAttribute.LOGIN).toString();
+            BigDecimal sumOfBet = new BigDecimal(strSum);
             BigDecimal userAmount = service.findUserAmount(login);
             if(userAmount.compareTo(sumOfBet) == -1){
-                req.setAttribute(StringAttributes.INCORRECT_SUM,StringAttributes.TRUE);
-                return PageManager.INSTANCE.getProperty(PageManager.PATH_ENTER_SUM_PAGE);
+                req.setAttribute(StringAttribute.INCORRECT_SUM, StringAttribute.TRUE);
+                router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ENTER_SUM_PAGE));
+                return router;
             }
 
             UserBetService userBetService = new UserBetService();
-            int betId = Integer.parseInt(req.getSession().getAttribute(StringAttributes.BET_ID).toString());
-            double coeff = Double.parseDouble(req.getSession().getAttribute(StringAttributes.COEFF).toString());
+            int betId = Integer.parseInt(req.getSession().getAttribute(StringAttribute.BET_ID).toString());
+            double coeff = Double.parseDouble(req.getSession().getAttribute(StringAttribute.COEFF).toString());
 
             service.updateUserAmount(login,userAmount.subtract(
                     sumOfBet).round(new MathContext(4)));
             userBetService.addUserBet(new UserBet(betId,login,sumOfBet,coeff));
 
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
-
+            router.setRedirect();
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE));
         }catch (ServiceException e){
             logger.error("Service Exception in EnterSumCommand", e);
-            req.setAttribute(StringAttributes.E,e);
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
+            req.setAttribute(StringAttribute.E,e);
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE));
         }
-
-        return page;
+        return router;
     }
 }

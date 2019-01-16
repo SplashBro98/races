@@ -9,7 +9,8 @@ import com.epam.race.service.HorseService;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.BetService;
 import com.epam.race.service.RaceService;
-import com.epam.race.command.StringAttributes;
+import com.epam.race.command.StringAttribute;
+import com.epam.race.servlet.Router;
 import com.epam.race.validation.BetValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,22 +21,23 @@ public class AddBetCommand implements Command{
     private static Logger logger = LogManager.getLogger(AddBetCommand.class);
 
     @Override
-    public String execute(HttpServletRequest req) {
-        String page;
+    public Router execute(HttpServletRequest req) {
+        Router router = new Router();
 
-        String raceName = req.getParameter(StringAttributes.RACE_NAME);
-        String horseName = req.getParameter(StringAttributes.HORSE_NAME);
+        String raceName = req.getParameter(StringAttribute.RACE_NAME);
+        String horseName = req.getParameter(StringAttribute.HORSE_NAME);
 
-        int position = Integer.parseInt(req.getParameter(StringAttributes.POSITION));
+        int position = Integer.parseInt(req.getParameter(StringAttribute.POSITION));
 
-        String stringCoeff = req.getParameter(StringAttributes.COEFF);
+        String stringCoeff = req.getParameter(StringAttribute.COEFF);
         boolean isCorrectCoeff  = new BetValidator().isCorrectCoeff(stringCoeff);
         if(!isCorrectCoeff){
-            req.setAttribute(StringAttributes.RACE_NAME, raceName);
-            req.setAttribute(StringAttributes.HORSE_NAME, horseName);
-            req.setAttribute(StringAttributes.POSITION, position);
-            req.setAttribute(StringAttributes.INCORRECT_COEFF,StringAttributes.TRUE);
-            return PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
+            req.setAttribute(StringAttribute.RACE_NAME, raceName);
+            req.setAttribute(StringAttribute.HORSE_NAME, horseName);
+            req.setAttribute(StringAttribute.POSITION, position);
+            req.setAttribute(StringAttribute.INCORRECT_COEFF, StringAttribute.TRUE);
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE));
+            return router;
         }
 
         double coeff = Double.parseDouble(stringCoeff);
@@ -47,12 +49,13 @@ public class AddBetCommand implements Command{
             BetService betService = new BetService();
             betService.addBet(bet);
 
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE);
+            router.setRedirect();
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_BET_PAGE));
         }catch (ServiceException e){
             logger.error("Service Exception in AddBetCommand", e);
-            req.setAttribute(StringAttributes.E,e);
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
+            req.setAttribute(StringAttribute.E,e);
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE));
         }
-        return page;
+        return router;
     }
 }

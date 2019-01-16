@@ -52,7 +52,7 @@ public class BetRepository extends AbstractRepository<Bet> {
     }
 
     @Override
-    public void remove(Bet bet) throws RepositoryException {
+    public void remove(Bet bet) {
         throw new UnsupportedOperationException();
     }
 

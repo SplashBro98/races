@@ -31,7 +31,7 @@
                                 <form action="/main" method="post">
                                     <input type="hidden" name="command" value="add race">
 
-                                    <div style="margin-bottom: 25px" class="control-group">
+                                    <div style="margin-bottom: 25px" class="control-group colortext">
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-user"></i></span>
                                         <input type="text" class="form-control" name="name" value="${name}"
@@ -41,9 +41,12 @@
                                         <c:if test="${not empty incorrect_name}">
                                             <fmt:message key="incorrect.name" bundle="${var}"/>
                                         </c:if>
+                                        <c:if test="${not empty present_name}">
+                                            <fmt:message key="present.name" bundle="${var}"/>
+                                        </c:if>
                                     </div>
 
-                                    <div style="margin-bottom: 25px" class="control-group">
+                                    <div style="margin-bottom: 25px" class="control-group colortext">
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         <input type="text" class="form-control"
@@ -56,7 +59,7 @@
                                         </c:if>
                                     </div>
 
-                                    <div style="margin-bottom: 25px" class="control-group">
+                                    <div style="margin-bottom: 25px" class="control-group colortext">
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         <input type="time" class="form-control"
@@ -68,7 +71,7 @@
                                         </c:if>
                                     </div>
 
-                                    <div style="margin-bottom: 25px" class="control-group">
+                                    <div style="margin-bottom: 25px" class="control-group colortext">
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         <input type="date" class="form-control"

@@ -16,6 +16,7 @@ import java.util.List;
 public class UserRepository extends AbstractRepository<User> {
 
 
+    public static final String COLUMN_IS_LOCKED = "is_locked";
     private static UserRepository instance;
 
     private UserRepository(){
@@ -43,7 +44,7 @@ public class UserRepository extends AbstractRepository<User> {
             if(type == 1) {
                 newUser.setAmount(resultSet.getBigDecimal(ColumnName.AMOUNT));
             }
-            newUser.setLocked(resultSet.getBoolean("is_locked"));
+            newUser.setLocked(resultSet.getBoolean(COLUMN_IS_LOCKED));
 
             switch (type) {
                 case 3:

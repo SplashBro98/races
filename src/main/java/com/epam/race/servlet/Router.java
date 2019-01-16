@@ -1,14 +1,15 @@
 package com.epam.race.servlet;
 
 public class Router {
-    private enum MoveType{
+
+    private String page;
+    public enum MoveType{
         FORWARD,
         REDIRECT
     }
     private MoveType moveType = MoveType.FORWARD;
 
-    public Router(MoveType moveType) {
-        this.moveType = moveType;
+    public Router() {
     }
 
     public MoveType getMoveType() {
@@ -19,7 +20,16 @@ public class Router {
         moveType = MoveType.REDIRECT;
     }
 
-    public void setForward(){
-        moveType = MoveType.FORWARD;
+
+    public Router(String page) {
+        this.page = page;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
     }
 }

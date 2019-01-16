@@ -66,6 +66,9 @@
                                             <c:if test="${not empty incorrect_login}">
                                                 <fmt:message key="incorrect.login" bundle="${var}"/>
                                             </c:if>
+                                            <c:if test="${not empty present_login}">
+                                                <fmt:message key="present.login" bundle="${var}"/>
+                                            </c:if>
                                         </label>
 
 

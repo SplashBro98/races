@@ -4,7 +4,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
-import java.time.LocalTime;
 
 @SuppressWarnings("serial")
 public class CustomTag extends TagSupport {
@@ -25,7 +24,7 @@ public class CustomTag extends TagSupport {
     }
 
     @Override
-    public int doEndTag() throws JspException {
+    public int doEndTag() {
         return EVAL_PAGE;
     }
 }

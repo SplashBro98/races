@@ -5,7 +5,8 @@ import com.epam.race.command.PageManager;
 import com.epam.race.entity.common.Race;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
-import com.epam.race.command.StringAttributes;
+import com.epam.race.command.StringAttribute;
+import com.epam.race.servlet.Router;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,24 +16,24 @@ public class SelectRaceCommand implements Command {
     private static Logger logger = LogManager.getLogger(SelectRaceCommand.class);
 
     @Override
-    public String execute(HttpServletRequest req) {
-        String page;
+    public Router execute(HttpServletRequest req) {
+        Router router = new Router();
 
-        String raceName = req.getParameter(StringAttributes.NAME);
+        String raceName = req.getParameter(StringAttribute.NAME);
         try {
             RaceService service = new RaceService();
             Race race = service.findRaceWithBetsAndHorses(raceName);
 
-            req.setAttribute(StringAttributes.RACE, race);
-            req.setAttribute(StringAttributes.BETS, race.getBets());
-            req.setAttribute(StringAttributes.HORSES, race.getHorses());
+            req.setAttribute(StringAttribute.RACE, race);
+            req.setAttribute(StringAttribute.BETS, race.getBets());
+            req.setAttribute(StringAttribute.HORSES, race.getHorses());
 
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_RACE_PAGE);
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_RACE_PAGE));
         } catch (ServiceException e) {
             logger.error("Service Exception in SelectRaceCommand", e);
-            req.setAttribute(StringAttributes.E,e);
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
+            req.setAttribute(StringAttribute.E,e);
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE));
         }
-        return page;
+        return router;
     }
 }

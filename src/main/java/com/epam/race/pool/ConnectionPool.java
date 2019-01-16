@@ -1,4 +1,4 @@
-package com.epam.race.database.pool;
+package com.epam.race.pool;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -12,11 +12,6 @@ public class UpdateAmountSpecification implements SQLSpecification {
 
     private BigDecimal sum;
     private String login;
-
-    public UpdateAmountSpecification() {
-
-    }
-
     public UpdateAmountSpecification(BigDecimal sum, String login) {
         this.sum = sum;
         this.login = login;

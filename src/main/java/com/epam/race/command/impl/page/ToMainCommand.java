@@ -4,7 +4,10 @@ import com.epam.race.command.Command;
 import com.epam.race.command.PageManager;
 import com.epam.race.service.ServiceException;
 import com.epam.race.service.RaceService;
-import com.epam.race.command.StringAttributes;
+import com.epam.race.command.StringAttribute;
+import com.epam.race.servlet.Router;
+import com.epam.race.util.IntegerConstant;
+import com.epam.race.util.StringConstant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,22 +19,22 @@ public class ToMainCommand implements Command {
 
 
     @Override
-    public String execute(HttpServletRequest req) {
-        String page;
+    public Router execute(HttpServletRequest req) {
+        Router router = new Router();
         try {
-            RaceService service = new RaceService(1, 8);
-            List<Object> attrs = service.mainAttributes();
+            RaceService raceService = new RaceService(IntegerConstant.START_PAGE,
+                    IntegerConstant.COUNT_OF_RACES);
+            List<Integer> attributes = raceService.mainAttributes();
+            req.setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
+            req.setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
+            req.setAttribute(StringAttribute.RACES, raceService.findCurrentRaces());
 
-            req.getSession().setAttribute(StringAttributes.CURRENT_PAGE, attrs.get(0));
-            req.getSession().setAttribute(StringAttributes.NUMBER_OF_PAGES, attrs.get(1));
-
-            req.getSession().setAttribute(StringAttributes.RACES, service.findCurrentRaces());
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE);
-        }catch (ServiceException e){
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE));
+        } catch (ServiceException e) {
             logger.error("Service Exception in ToMainCommand", e);
-            req.setAttribute(StringAttributes.E,e);
-            page = PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE);
+            req.setAttribute(StringAttribute.E, e);
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ERROR_PAGE));
         }
-        return page;
+        return router;
     }
 }
