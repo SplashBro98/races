@@ -37,7 +37,9 @@
                                             <input type="text" class="form-control" name="name"
                                                    pattern="[A-Za-zА-Яа-я -]{1,30}" value="${user.name}"
                                                    placeholder="First Name*" required>
-                                            <div class="text-center">${incorrect_name}</div>
+                                            <c:if test="${not empty incorrect_name}">
+                                                <fmt:message key="incorrect.name" bundle="${var}"/>
+                                            </c:if>
                                         </label>
 
 
@@ -45,7 +47,9 @@
                                             <input type="text" class="form-control" name="surname"
                                                    pattern="[A-Za-zА-Яа-я -]{1,30}" value="${user.surname}"
                                                    placeholder="Last Name*" required>
-                                            ${incorrect_surname}
+                                            <c:if test="${not empty incorrect_surname}">
+                                                <fmt:message key="incorrect.surname" bundle="${var}"/>
+                                            </c:if>
                                         </label>
 
 
@@ -53,21 +57,25 @@
                                             <input type="text" class="form-control" name="login"
                                                    pattern="[a-zA-Z0-9А-Яа-я_`]{4,30}" value="${user.login}"
                                                    placeholder="Login*" required>
-                                            ${incorrect_login}
+                                            <c:if test="${not empty incorrect_login}">
+                                                <fmt:message key="incorrect.login" bundle="${var}"/>
+                                            </c:if>
                                         </label>
 
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="password" class="form-control" name="password"
-                                                   pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
+                                                   pattern="(?=.*[0-9])(?=.*[a-z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
                                                    placeholder="Password*" value="${user.password}" required>
-                                            ${incorrect_password}
+                                            <c:if test="${not empty incorrect_password}">
+                                                <fmt:message key="incorrect.password" bundle="${var}"/>
+                                            </c:if>
                                         </label>
 
                                         <label class="col-md-6 control-label" style="margin-bottom: 15px">
                                             <input type="password" class="form-control"
                                                    name="confirmedPassword"
-                                                   pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
+                                                   pattern="(?=.*[0-9])(?=.*[a-z])[0-9!@#$%^&*a-zA-ZА-Яа-я]{6,50}"
                                                    placeholder="Confirm Password*"
                                                    value="${user.password}" required>
                                             ${not_confirmed}

@@ -91,7 +91,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <form>
+                    <form action="/main" method="post">
                         <input type="hidden" name="command" value="log out">
                         <input type="submit" class="btn btn-success"
                                value="<fmt:message key="header.logout" bundle="${var}"/>">

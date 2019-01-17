@@ -45,15 +45,8 @@ public class AddPaymentCommand implements Command {
             PaymentService paymentService = new PaymentService();
             paymentService.addPayment(new Payment(paymentId, new BigDecimal(sum)));
 
-            RaceService raceService = new RaceService(IntegerConstant.START_PAGE,
-                    IntegerConstant.COUNT_OF_RACES);
-            List<Object> attributes = raceService.mainAttributes();
-            req.getSession().setAttribute(StringConstant.CURRENT_PAGE, attributes.get(0));
-            req.getSession().setAttribute(StringConstant.NUMBER_OF_PAGES, attributes.get(1));
-            req.setAttribute(StringAttribute.RACES, raceService.findCurrentRaces());
-
             router.setRedirect();
-            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_MAIN_PAGE));
+            router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_ADD_PAYMENT_PAGE));
         }catch (ServiceException e){
             logger.error("Service Exception in AddPaymentCommand",e);
             req.setAttribute(StringAttribute.E,e);

@@ -49,8 +49,9 @@ public class ValidationTest {
                 {"Va12341251235", true},
                 {"stephgonnasteph", false},
                 {"2Admin", true},
-                {"96emudes", false},
+                {"96emudes", true},
                 {"Qwerty007", true},
+                {"Qwer0", false},
 
         };
     }

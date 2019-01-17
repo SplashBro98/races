@@ -20,7 +20,7 @@ public class ToEditBetCommand implements Command {
         int betId = Integer.parseInt(req.getParameter(StringAttribute.BET_ID));
         Stream<Bet> betStream = bets.stream().filter(b -> b.getBetId() == betId);
         Bet bet = betStream.collect(Collectors.toList()).get(0);
-        req.setAttribute(StringAttribute.BET, bet);
+        req.getSession().setAttribute(StringAttribute.BET, bet);
 
         router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_EDIT_BET_PAGE));
         return router;

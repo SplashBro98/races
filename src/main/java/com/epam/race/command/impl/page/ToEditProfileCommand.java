@@ -17,6 +17,7 @@ public class ToEditProfileCommand implements Command {
         User user = (User) req.getSession().getAttribute(StringAttribute.USER);
         String realPassword = Encryption.decrypt(user.getPassword());
         user.setPassword(realPassword);
+        req.getSession().setAttribute(StringAttribute.USER, user);
 
         router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_EDIT_PROFILE_PAGE));
         return router;

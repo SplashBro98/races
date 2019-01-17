@@ -25,7 +25,7 @@ public class SelectRaceCommand implements Command {
             Race race = service.findRaceWithBetsAndHorses(raceName);
 
             req.setAttribute(StringAttribute.RACE, race);
-            req.setAttribute(StringAttribute.BETS, race.getBets());
+            req.getSession().setAttribute(StringAttribute.BETS, race.getBets());
             req.setAttribute(StringAttribute.HORSES, race.getHorses());
 
             router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_RACE_PAGE));

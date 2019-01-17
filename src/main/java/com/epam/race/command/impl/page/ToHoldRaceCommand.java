@@ -26,7 +26,7 @@ public class ToHoldRaceCommand implements Command {
             List<String> raceNames = new ArrayList<>();
             races.forEach(r -> raceNames.add(r.getName()));
             req.setAttribute(StringAttribute.RACE_NAMES, raceNames);
-            req.setAttribute(StringAttribute.RACES, races);
+            req.getSession().setAttribute(StringAttribute.RACES, races);
 
             router.setPage(PageManager.INSTANCE.getProperty(PageManager.PATH_HOLD_RACE_PAGE));
         }catch (ServiceException e){
